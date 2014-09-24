@@ -12,7 +12,7 @@ namespace ShapeAnimator.View.Shapes
         #region Instance variables
 
         /// <summary>
-        ///     The actual shape object.
+        ///     The shape object.
         /// </summary>
         protected readonly Shape TheShape;
 
