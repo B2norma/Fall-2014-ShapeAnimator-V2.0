@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 using ShapeAnimator.Properties;
-using ShapeAnimator.View.Shapes;
 
 namespace ShapeAnimator.Model
 {
@@ -16,14 +14,14 @@ namespace ShapeAnimator.Model
         #region Instance variables
 
         private readonly PictureBox canvas;
-        private List<Shape> shapesList;
+        private readonly List<Shape> shapesList;
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="CanvasManager"/> class from being created.
+        ///     Prevents a default instance of the <see cref="CanvasManager" /> class from being created.
         /// </summary>
         private CanvasManager()
         {
@@ -58,28 +56,38 @@ namespace ShapeAnimator.Model
             var randomizer = new Random();
             for (int i = 0; i < numberOfShapes; i++)
             {
-            int x = randomizer.Next(this.canvas.Width);
-            int y = randomizer.Next(this.canvas.Height);
-
-                String randomShapeSprite;
-                int tempInteger = randomizer.Next(3);
-                if (tempInteger == 0)
-                {
-                    randomShapeSprite = "circle";
-                }
-                else if (tempInteger == 1)
-                {
-                    randomShapeSprite = "rectangle";
-                }
-                else
-                {
-                    randomShapeSprite = "lRectangle";
-                }
-
-            this.shapesList.Add(new Shape(x, y,randomizer,randomShapeSprite));
-
+                this.placeIndividualShapeOnCanvas(randomizer);
+            }
         }
-    }
+
+        private void placeIndividualShapeOnCanvas(Random randomizer)
+        {
+            int x = randomizer.Next(this.canvas.Width - 100);
+            int y = randomizer.Next(this.canvas.Height - 100);
+
+            string randomShapeSprite = determineSpriteShape(randomizer);
+
+            this.shapesList.Add(new Shape(x, y, randomizer, randomShapeSprite));
+        }
+
+        private static string determineSpriteShape(Random randomizer)
+        {
+            string randomShapeSprite;
+            int tempInteger = randomizer.Next(3);
+            if (tempInteger == 0)
+            {
+                randomShapeSprite = "circle";
+            }
+            else if (tempInteger == 1)
+            {
+                randomShapeSprite = "rectangle";
+            }
+            else
+            {
+                randomShapeSprite = "lRectangle";
+            }
+            return randomShapeSprite;
+        }
 
         /// <summary>
         ///     Moves the shape around and the calls the Shape::Paint method to draw the shape.
@@ -93,14 +101,13 @@ namespace ShapeAnimator.Model
                 throw new ArgumentNullException("g");
             }
 
-           if (shapesList != null)
+            if (this.shapesList != null)
             {
-                foreach (Shape shape in shapesList)
+                foreach (Shape shape in this.shapesList)
                 {
                     moveAndDrawShape(g, shape);
                 }
-           }
-
+            }
         }
 
         private static void moveAndDrawShape(Graphics g, Shape shape)

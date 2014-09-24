@@ -1,5 +1,4 @@
 using System.Windows.Forms;
-using ShapeAnimator.View.Forms;
 
 namespace ShapeAnimator.View.Forms
 {

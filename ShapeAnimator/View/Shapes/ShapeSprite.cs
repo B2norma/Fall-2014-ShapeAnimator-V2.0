@@ -1,40 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
 {
     /// <summary>
-    /// Holds all common attributes of shapes. 
+    ///     Holds all common attributes of shapes.
     /// </summary>
     public abstract class ShapeSprite
     {
         #region Instance variables
 
         /// <summary>
-        /// The actual shape object. 
+        ///     The actual shape object.
         /// </summary>
-        protected readonly Shape theShape;
+        protected readonly Shape TheShape;
 
         #endregion
 
+        /// <summary>
+        ///     Prevents a default instance of the <see cref="ShapeSprite" /> class from being created.
+        /// </summary>
         protected ShapeSprite()
         {
-            theShape = null;
+            this.TheShape = null;
         }
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ShapeSprite" /> class.
+        /// </summary>
+        /// <param name="theShape">The shape.</param>
+        /// <exception cref="System.ArgumentNullException">shape</exception>
         protected ShapeSprite(Shape theShape)
         {
             if (theShape == null)
             {
-                throw new ArgumentNullException("shape");
+                throw new ArgumentNullException("theShape");
             }
-            this.theShape = theShape;
+            this.TheShape = theShape;
         }
 
         /// <summary>

@@ -9,18 +9,6 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public class CircleSprite : ShapeSprite
     {
-
-
-        /// <summary>
-        ///     Prevents a default instance of the <see cref="CircleSprite" /> class from being created.
-        /// </summary>
-        private CircleSprite() : base()
-        {
-            
-        }
-
-
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CircleSprite" /> class.
         ///     Precondition: shape != null
@@ -28,7 +16,6 @@ namespace ShapeAnimator.View.Shapes
         /// <param name="shape">The shape.</param>
         public CircleSprite(Shape shape) : base(shape)
         {
-
         }
 
         /// <summary>
@@ -43,13 +30,13 @@ namespace ShapeAnimator.View.Shapes
                 throw new ArgumentNullException("g");
             }
 
-            if (theShape == null)
+            if (this.TheShape == null)
             {
                 return;
             }
 
             var yellowBrush = new SolidBrush(Color.Yellow);
-            g.FillEllipse(yellowBrush, this.theShape.X, this.theShape.Y, 100, 100);
+            g.FillEllipse(yellowBrush, this.TheShape.X, this.TheShape.Y, 100, 100);
         }
     }
 }

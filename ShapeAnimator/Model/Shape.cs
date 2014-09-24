@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.Threading;
 using ShapeAnimator.View.Shapes;
 
 namespace ShapeAnimator.Model
@@ -80,20 +79,29 @@ namespace ShapeAnimator.Model
         /// </summary>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
-        public Shape(int x, int y,Random tempRandom) : this()
+        /// ///
+        /// <param name="tempRandom">Random number generator</param>
+        public Shape(int x, int y, Random tempRandom) : this()
         {
             this.location = new Point(x, y);
-            randomizer = tempRandom;
+            this.randomizer = tempRandom;
         }
 
-        public Shape(int x, int y, Random tempRandom,String tempShape)
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Shape" /> class with the shape defined by tempShape.
+        ///     Precondition: tempShape != null
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="tempRandom">The random number generator.</param>
+        /// <param name="tempShape">The designated shape.</param>
+        public Shape(int x, int y, Random tempRandom, String tempShape) : this(x, y, tempRandom)
         {
-            this.location = new Point(x, y);
-            randomizer = tempRandom;
             if (tempShape.Equals("circle"))
             {
                 this.sprite = new CircleSprite(this);
-            } else if(tempShape.Equals("rectangle"))
+            }
+            else if (tempShape.Equals("rectangle"))
             {
                 this.sprite = new RectangleSprite(this);
             }
