@@ -9,13 +9,16 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public abstract class ShapeSprite
     {
+        #region Properties
+        public int width { get; private set; }
+        public int height { get; private set; }
+        #endregion
         #region Instance variables
 
         /// <summary>
         ///     The shape object.
         /// </summary>
         protected readonly Shape TheShape;
-
         #endregion
 
         /// <summary>
@@ -31,12 +34,14 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         /// <param name="theShape">The shape.</param>
         /// <exception cref="System.ArgumentNullException">shape</exception>
-        protected ShapeSprite(Shape theShape)
+        protected ShapeSprite(Shape theShape,int tempWidth, int tempHeight)
         {
             if (theShape == null)
             {
                 throw new ArgumentNullException("theShape");
             }
+            width = tempWidth;
+            height = tempHeight;
             this.TheShape = theShape;
         }
 
@@ -57,5 +62,6 @@ namespace ShapeAnimator.View.Shapes
                 throw new Exception("Shape is null");
             }
         }
+
     }
 }

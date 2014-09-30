@@ -85,7 +85,7 @@ namespace ShapeAnimator.Model
         {
             this.location = new Point(x, y);
             this.randomizer = tempRandom;
-            this.sprite = SpriteFactory.GenerateRandomSprite(this,randomizer);
+            this.sprite = SpriteFactory.GenerateRandomSprite(this);
         }
         #endregion
 

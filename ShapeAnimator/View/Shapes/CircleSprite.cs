@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -8,12 +9,14 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public class CircleSprite : ShapeSprite
     {
+        private const int myWidth = 100;
+        private const int myHeight = 100;
         /// <summary>
         ///     Initializes a new instance of the <see cref="CircleSprite" /> class.
         ///     Precondition: shape != null
         /// </summary>
         /// <param name="shape">The shape.</param>
-        public CircleSprite(Shape shape) : base(shape)
+        public CircleSprite(Shape shape):base(shape,myWidth,myHeight)
         {
         }
 

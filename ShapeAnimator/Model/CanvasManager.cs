@@ -53,6 +53,7 @@ namespace ShapeAnimator.Model
         /// <param name="numberOfShapes"></param>
         public void PlaceShapesOnCanvas(int numberOfShapes)
         {
+            this.shapesList.Clear();
             var randomizer = new Random();
             for (int i = 0; i < numberOfShapes; i++)
             {

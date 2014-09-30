@@ -9,7 +9,8 @@ namespace ShapeAnimator.View.Shapes
 {
     static class SpriteFactory
     {
-        public static ShapeSprite GenerateRandomSprite(Shape tempShape,Random randomizer)
+        private readonly static Random randomizer = new Random();
+        public static ShapeSprite GenerateRandomSprite(Shape tempShape)
         {
             int tempRandomNumber = randomizer.Next(0, 3);
             switch (tempRandomNumber)
