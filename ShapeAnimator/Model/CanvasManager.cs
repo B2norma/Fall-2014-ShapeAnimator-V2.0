@@ -59,34 +59,13 @@ namespace ShapeAnimator.Model
                 this.placeIndividualShapeOnCanvas(randomizer);
             }
         }
-
+        //TODO redo keeping shapes in bounds
         private void placeIndividualShapeOnCanvas(Random randomizer)
         {
             int x = randomizer.Next(this.canvas.Width - 100);
             int y = randomizer.Next(this.canvas.Height - 100);
 
-            string randomShapeSprite = determineSpriteShape(randomizer);
-
-            this.shapesList.Add(new Shape(x, y, randomizer, randomShapeSprite));
-        }
-
-        private static string determineSpriteShape(Random randomizer)
-        {
-            string randomShapeSprite;
-            int tempInteger = randomizer.Next(3);
-            if (tempInteger == 0)
-            {
-                randomShapeSprite = "circle";
-            }
-            else if (tempInteger == 1)
-            {
-                randomShapeSprite = "rectangle";
-            }
-            else
-            {
-                randomShapeSprite = "lRectangle";
-            }
-            return randomShapeSprite;
+            this.shapesList.Add(new Shape(x, y, randomizer));
         }
 
         /// <summary>

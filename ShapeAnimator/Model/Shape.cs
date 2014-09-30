@@ -85,32 +85,8 @@ namespace ShapeAnimator.Model
         {
             this.location = new Point(x, y);
             this.randomizer = tempRandom;
+            this.sprite = SpriteFactory.GenerateRandomSprite(this,randomizer);
         }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Shape" /> class with the shape defined by tempShape.
-        ///     Precondition: tempShape != null
-        /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        /// <param name="tempRandom">The random number generator.</param>
-        /// <param name="tempShape">The designated shape.</param>
-        public Shape(int x, int y, Random tempRandom, String tempShape) : this(x, y, tempRandom)
-        {
-            if (tempShape.Equals("circle"))
-            {
-                this.sprite = new CircleSprite(this);
-            }
-            else if (tempShape.Equals("rectangle"))
-            {
-                this.sprite = new RectangleSprite(this);
-            }
-            else if (tempShape.Equals("lRectangle"))
-            {
-                this.sprite = new LRectangleSprite(this);
-            }
-        }
-
         #endregion
 
         #region Methods

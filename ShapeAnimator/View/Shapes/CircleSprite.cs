@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -25,15 +24,7 @@ namespace ShapeAnimator.View.Shapes
         /// <param name="g">The graphics object to draw the shape one</param>
         public override void Paint(Graphics g)
         {
-            if (g == null)
-            {
-                throw new ArgumentNullException("g");
-            }
-
-            if (this.TheShape == null)
-            {
-                return;
-            }
+            base.Paint(g);
 
             var yellowBrush = new SolidBrush(Color.Yellow);
             g.FillEllipse(yellowBrush, this.TheShape.X, this.TheShape.Y, 100, 100);

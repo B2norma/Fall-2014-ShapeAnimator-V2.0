@@ -45,6 +45,17 @@ namespace ShapeAnimator.View.Shapes
         ///     Preconditon: g != null
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
-        public abstract void Paint(Graphics g);
+        public virtual void Paint(Graphics g)
+        {
+            if (g == null)
+            {
+                throw new ArgumentNullException("g");
+            }
+
+            if (this.TheShape == null)
+            {
+                throw new Exception("Shape is null");
+            }
+        }
     }
 }

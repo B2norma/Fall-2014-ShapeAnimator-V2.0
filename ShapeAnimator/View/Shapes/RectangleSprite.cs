@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -20,17 +19,9 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
         /// <exception cref="System.ArgumentNullException">g</exception>
-        public override void Paint(Graphics g)
+        public override void Paint(Graphics g) 
         {
-            if (g == null)
-            {
-                throw new ArgumentNullException("g");
-            }
-
-            if (this.TheShape == null)
-            {
-                return;
-            }
+            base.Paint(g);
 
             var yellowBrush = new SolidBrush(Color.Blue);
             g.FillRectangle(yellowBrush, this.TheShape.X, this.TheShape.Y, 75, 125);

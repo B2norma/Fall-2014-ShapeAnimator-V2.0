@@ -76,6 +76,7 @@
     <Compile Include="View\Shapes\LRectangleSprite.cs" />
     <Compile Include="View\Shapes\RectangleSprite.cs" />
     <Compile Include="View\Shapes\ShapeSprite.cs" />
+    <Compile Include="View\Shapes\SpriteFactory.cs" />
     <EmbeddedResource Include="View\Forms\ShapeAnimatorForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ShapeAnimatorForm.cs</DependentUpon>
