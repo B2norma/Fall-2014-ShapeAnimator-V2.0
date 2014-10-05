@@ -12,7 +12,7 @@ namespace ShapeAnimator.Model.Shapes
     {
         
 
-        public Circle(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : base(Location, tempDirection, tempSpeedX, tempSpeedY)
+        public Circle(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor) : base(Location, tempDirection, tempSpeedX, tempSpeedY, tempColor)
         {
             width = 100;
             height = 100;

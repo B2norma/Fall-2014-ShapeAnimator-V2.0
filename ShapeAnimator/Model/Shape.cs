@@ -18,6 +18,7 @@ namespace ShapeAnimator.Model
         private int direction;
         private readonly int speedX;
         private readonly int speedY;
+        private readonly Color shapeColor;
 
 
         #endregion
@@ -75,6 +76,11 @@ namespace ShapeAnimator.Model
             get { return this.speedY; }
         }
 
+        public Color color
+        {
+            get { return shapeColor; }
+        }
+
         #endregion
 
         #region Constructors
@@ -84,6 +90,7 @@ namespace ShapeAnimator.Model
         /// </summary>
         protected Shape()
         {
+            
             this.sprite = new CircleSprite(this);
         }
 
@@ -103,11 +110,12 @@ namespace ShapeAnimator.Model
             this.location = location;
         }
 
-        protected Shape(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : this(Location)
+        protected Shape(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor) : this(Location)
         {
             this.direction = tempDirection;
             this.speedX = tempSpeedX;
             this.speedY = tempSpeedY;
+            this.shapeColor = tempColor;
         }
 
         /// <summary>

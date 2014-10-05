@@ -12,7 +12,7 @@ namespace ShapeAnimator.Model
     class SpottedRectangle : Shape
     {
 
-        public SpottedRectangle (Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : base(Location, tempDirection, tempSpeedX, tempSpeedY)
+        public SpottedRectangle (Point Location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor) : base(Location, tempDirection, tempSpeedX, tempSpeedY, tempColor)
         {
             width = 75;
             height = 125;

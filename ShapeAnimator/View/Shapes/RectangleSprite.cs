@@ -25,8 +25,8 @@ namespace ShapeAnimator.View.Shapes
         {
             base.Paint(g);
 
-            var yellowBrush = new SolidBrush(Color.Blue);
-            g.FillRectangle(yellowBrush, this.TheShape.X, this.TheShape.Y, this.TheShape.Width, this.TheShape.Height);
+            var theBrush = new SolidBrush(this.TheShape.color);
+            g.FillRectangle(theBrush, this.TheShape.X, this.TheShape.Y, this.TheShape.Width, this.TheShape.Height);
         }
     }
 }

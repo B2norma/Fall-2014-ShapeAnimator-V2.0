@@ -16,7 +16,7 @@ namespace ShapeAnimator.View.Shapes
         }
 
         /// <summary>
-        ///     Draws a SpottedRectangle shape
+        ///     Draws a LRectangle shape
         ///     Preconditon: g != null
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
