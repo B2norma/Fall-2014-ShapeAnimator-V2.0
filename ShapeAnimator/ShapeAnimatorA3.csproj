@@ -62,8 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\CanvasManager.cs" />
+    <Compile Include="Model\CanvasController.cs" />
+    <Compile Include="Model\Shapes\Circle.cs" />
+    <Compile Include="Model\Shapes\LRectangle.cs" />
+    <Compile Include="Model\Shapes\Rectangle.cs" />
     <Compile Include="Model\Shape.cs" />
+    <Compile Include="Model\ShapeFactory.cs" />
     <Compile Include="View\Forms\ShapeAnimatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,7 +80,6 @@
     <Compile Include="View\Shapes\LRectangleSprite.cs" />
     <Compile Include="View\Shapes\RectangleSprite.cs" />
     <Compile Include="View\Shapes\ShapeSprite.cs" />
-    <Compile Include="View\Shapes\SpriteFactory.cs" />
     <EmbeddedResource Include="View\Forms\ShapeAnimatorForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ShapeAnimatorForm.cs</DependentUpon>

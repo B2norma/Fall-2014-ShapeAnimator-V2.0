@@ -9,7 +9,7 @@ namespace ShapeAnimator.Model
     /// <summary>
     ///     Manages the collection of shapes on the canvas.
     /// </summary>
-    public class CanvasManager
+    public class CanvasController
     {
         #region Instance variables
 
@@ -21,19 +21,19 @@ namespace ShapeAnimator.Model
         #region Constructors
 
         /// <summary>
-        ///     Prevents a default instance of the <see cref="CanvasManager" /> class from being created.
+        ///     Prevents a default instance of the <see cref="CanvasController" /> class from being created.
         /// </summary>
-        private CanvasManager()
+        private CanvasController()
         {
             this.shapesList = null;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CanvasManager" /> class.
+        ///     Initializes a new instance of the <see cref="CanvasController" /> class.
         ///     Precondition: pictureBox != null
         /// </summary>
         /// <param name="pictureBox">The picture box that will be drawing on</param>
-        public CanvasManager(PictureBox pictureBox) : this()
+        public CanvasController(PictureBox pictureBox) : this()
         {
             if (pictureBox == null)
             {
@@ -63,8 +63,8 @@ namespace ShapeAnimator.Model
         //TODO redo keeping shapes in bounds
         private void placeIndividualShapeOnCanvas(Random randomizer)
         {
-            int x = randomizer.Next(this.canvas.Width - 100);
-            int y = randomizer.Next(this.canvas.Height - 100);
+            int x = randomizer.Next(this.canvas.Width);
+            int y = randomizer.Next(this.canvas.Height);
 
             this.shapesList.Add(new Shape(x, y, randomizer));
         }
