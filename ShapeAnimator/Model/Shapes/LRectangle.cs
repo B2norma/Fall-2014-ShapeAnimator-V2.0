@@ -10,7 +10,7 @@ namespace ShapeAnimator.Model
     {
         public override void Move()
         {
-
+            return;
         }
     }
 }
