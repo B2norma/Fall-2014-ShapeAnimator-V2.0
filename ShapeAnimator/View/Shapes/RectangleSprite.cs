@@ -5,13 +5,11 @@ namespace ShapeAnimator.View.Shapes
 {
     internal class RectangleSprite : ShapeSprite
     {
-        private const int myWidth = 75;
-        private const int myHeight = 125;
         /// <summary>
         ///     Initializes a new instance of the <see cref="RectangleSprite" /> class.
         /// </summary>
         /// <param name="shape">The shape.</param>
-        public RectangleSprite(Shape shape) : base(shape,myWidth,myHeight)
+        public RectangleSprite(Shape shape) : base(shape)
         {
         }
 

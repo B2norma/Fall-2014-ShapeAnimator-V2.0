@@ -5,8 +5,6 @@ namespace ShapeAnimator.View.Shapes
 {
     internal class LRectangleSprite : RectangleSprite
     {
-        private const int myWidth = 125;
-        private const int myHeight = 50;
         /// <summary>
         ///     Initializes a new instance of the <see cref="LRectangleSprite" /> class.
         /// </summary>

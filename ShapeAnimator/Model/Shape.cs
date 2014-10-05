@@ -49,33 +49,67 @@ namespace ShapeAnimator.Model
             set { this.location.Y = value; }
         }
 
+        /// <summary>
+        /// Gets
+        /// </summary>
+        /// <value>
+        /// The width.
+        /// </value>
         public int Width
         {
             get { return this.width; }
-            protected set { width = value; }
         }
 
+        /// <summary>
+        /// Gets the height.
+        /// </summary>
+        /// <value>
+        /// The height.
+        /// </value>
         public int Height
         {
             get { return this.height;  }
-            protected set { height = value; }
         }
 
+        /// <summary>
+        /// Gets the direction.
+        /// </summary>
+        /// <value>
+        /// The direction.
+        /// </value>
         public int Direction
         {
             get { return this.direction; }
         }
 
+        /// <summary>
+        /// Gets the speed x.
+        /// </summary>
+        /// <value>
+        /// The speed x.
+        /// </value>
         public int SpeedX
         {
             get { return this.speedX; }
         }
 
+        /// <summary>
+        /// Gets the speed y.
+        /// </summary>
+        /// <value>
+        /// The speed y.
+        /// </value>
         public int SpeedY
         {
             get { return this.speedY; }
         }
 
+        /// <summary>
+        /// Gets the color.
+        /// </summary>
+        /// <value>
+        /// The color.
+        /// </value>
         public Color color
         {
             get { return shapeColor; }
