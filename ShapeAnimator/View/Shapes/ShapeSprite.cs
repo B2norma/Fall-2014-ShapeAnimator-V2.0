@@ -15,6 +15,7 @@ namespace ShapeAnimator.View.Shapes
         ///     The shape object.
         /// </summary>
         protected readonly Shape TheShape;
+
         #endregion
 
         /// <summary>
@@ -56,6 +57,5 @@ namespace ShapeAnimator.View.Shapes
                 throw new Exception("Shape is null");
             }
         }
-
     }
 }

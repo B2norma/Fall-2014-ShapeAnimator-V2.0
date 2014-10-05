@@ -57,13 +57,8 @@ namespace ShapeAnimator.Model
             var randomizer = new Random();
             for (int i = 0; i < numberOfShapes; i++)
             {
-                this.placeIndividualShapeOnCanvas(randomizer);
+                this.shapesList.Add(ShapeFactory.CreateNewShape(randomizer, canvas.Width, canvas.Height));
             }
-        }
-
-        private void placeIndividualShapeOnCanvas(Random randomizer)
-        {
-            this.shapesList.Add(ShapeFactory.CreateNewShape(randomizer, canvas.Width, canvas.Height));
         }
 
         /// <summary>

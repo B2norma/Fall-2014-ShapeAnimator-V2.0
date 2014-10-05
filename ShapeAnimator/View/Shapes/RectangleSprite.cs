@@ -3,10 +3,14 @@ using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
 {
-    internal class RectangleSprite : ShapeSprite
+    /// <summary>
+    /// A Rectangle Sprite, inherits from ShapeSprite.
+    /// </summary>
+    public class RectangleSprite : ShapeSprite
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="RectangleSprite" /> class.
+        ///     Precondition: shape != null
         /// </summary>
         /// <param name="shape">The shape.</param>
         public RectangleSprite(Shape shape) : base(shape)
@@ -19,11 +23,11 @@ namespace ShapeAnimator.View.Shapes
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
         /// <exception cref="System.ArgumentNullException">g</exception>
-        public override void Paint(Graphics g) 
+        public override void Paint(Graphics g)
         {
             base.Paint(g);
 
-            var theBrush = new SolidBrush(this.TheShape.color);
+            var theBrush = new SolidBrush(this.TheShape.Color);
             g.FillRectangle(theBrush, this.TheShape.X, this.TheShape.Y, this.TheShape.Width, this.TheShape.Height);
         }
     }

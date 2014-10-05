@@ -11,15 +11,12 @@ namespace ShapeAnimator.Model
     {
         #region Instance variables
 
-        protected ShapeSprite sprite;
-        private Point location;
-        protected int width;
-        protected int height;
-        private int direction;
+        private readonly Color shapeColor;
         private readonly int speedX;
         private readonly int speedY;
-        private readonly Color shapeColor;
-
+        private int direction;
+        private Point location;
+        private ShapeSprite sprite;
 
         #endregion
 
@@ -50,32 +47,37 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets
+        ///     Gets
         /// </summary>
         /// <value>
-        /// The width.
+        ///     The width.
         /// </value>
-        public int Width
+        public int Width { get; protected set; }
+
+        /// <summary>
+        ///     Gets the height.
+        /// </summary>
+        /// <value>
+        ///     The height.
+        /// </value>
+        public int Height { get; protected set; }
+
+        /// <summary>
+        ///     Gets the sprite.
+        /// </summary>
+        /// <value>
+        ///     The sprite.
+        /// </value>
+        protected ShapeSprite Sprite
         {
-            get { return this.width; }
+            set { this.sprite = value; }
         }
 
         /// <summary>
-        /// Gets the height.
+        ///     Gets the direction.
         /// </summary>
         /// <value>
-        /// The height.
-        /// </value>
-        public int Height
-        {
-            get { return this.height;  }
-        }
-
-        /// <summary>
-        /// Gets the direction.
-        /// </summary>
-        /// <value>
-        /// The direction.
+        ///     The direction.
         /// </value>
         public int Direction
         {
@@ -83,10 +85,10 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets the speed x.
+        ///     Gets the speed x.
         /// </summary>
         /// <value>
-        /// The speed x.
+        ///     The speed x.
         /// </value>
         public int SpeedX
         {
@@ -94,10 +96,10 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets the speed y.
+        ///     Gets the speed y.
         /// </summary>
         /// <value>
-        /// The speed y.
+        ///     The speed y.
         /// </value>
         public int SpeedY
         {
@@ -105,14 +107,14 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Gets the color.
+        ///     Gets the color.
         /// </summary>
         /// <value>
-        /// The color.
+        ///     The color.
         /// </value>
-        public Color color
+        public Color Color
         {
-            get { return shapeColor; }
+            get { return this.shapeColor; }
         }
 
         #endregion
@@ -124,7 +126,6 @@ namespace ShapeAnimator.Model
         /// </summary>
         protected Shape()
         {
-            
             this.sprite = new CircleSprite(this);
         }
 
@@ -144,7 +145,16 @@ namespace ShapeAnimator.Model
             this.location = location;
         }
 
-        protected Shape(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor) : this(Location)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shape"/> class.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <param name="tempDirection">The temporary direction.</param>
+        /// <param name="tempSpeedX">The temporary speed x.</param>
+        /// <param name="tempSpeedY">The temporary speed y.</param>
+        /// <param name="tempColor">Color of the temporary.</param>
+        protected Shape(Point location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
+            : this(location)
         {
             this.direction = tempDirection;
             this.speedX = tempSpeedX;
@@ -152,24 +162,12 @@ namespace ShapeAnimator.Model
             this.shapeColor = tempColor;
         }
 
-        /// <summary>
-        ///     Constructs a shape specified x,y location
-        ///     Precondition: None
-        ///     Postcondition: X == x; Y == y
-        /// </summary>
-        /// <param name="x">The x coordinate</param>
-        /// <param name="y">The y coordinate</param>
-        /// ///
-        /// <param name="tempRandom">Random number generator</param>
-
         #endregion
 
         #region Methods
 
         /// <summary>
-        ///     Randomly moves a shape in the x, y direction
-        ///     Precondition: None
-        ///     Postcondition: X == X@prev + amount of movement in X direction; Y == Y@prev + amount of movement in Y direction
+        /// Moves this instance.
         /// </summary>
         public abstract void Move();
 
@@ -184,32 +182,31 @@ namespace ShapeAnimator.Model
             {
                 throw new ArgumentNullException("g");
             }
-            checkBounds(g);
+            this.checkBounds(g);
             this.sprite.Paint(g);
         }
 
         private void checkBounds(Graphics g)
         {
-            if (this.X + this.Width > g.VisibleClipBounds.Width || this.Y + this.Height > g.VisibleClipBounds.Height || this.X < 0 || this.Y < 0)
+            if (this.X + this.Width > g.VisibleClipBounds.Width || this.Y + this.Height > g.VisibleClipBounds.Height ||
+                this.X < 0 || this.Y < 0)
             {
-                directionFlip();
+                this.directionFlip();
                 this.Move();
             }
         }
 
         private void directionFlip()
         {
-            if (direction == 1)
+            if (this.direction == 1)
             {
-                direction = -1;
+                this.direction = -1;
             }
             else
             {
-                direction = 1;
+                this.direction = 1;
             }
         }
-
-
 
         #endregion
     }

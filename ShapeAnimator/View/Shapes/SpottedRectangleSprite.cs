@@ -3,13 +3,17 @@ using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
 {
-    internal class LRectangleSprite : RectangleSprite
+    /// <summary>
+    /// A Spotted Rectangle Sprite, inherits from the Rectangle Sprite. 
+    /// </summary>
+    public class SpottedRectangleSprite : RectangleSprite
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="LRectangleSprite" /> class.
+        ///     Initializes a new instance of the <see cref="SpottedRectangleSprite" /> class.
+        ///     Precondition: shape != null
         /// </summary>
         /// <param name="shape">The shape.</param>
-        public LRectangleSprite(Shape shape) : base(shape)
+        public SpottedRectangleSprite(Shape shape) : base(shape)
         {
         }
 
@@ -24,7 +28,8 @@ namespace ShapeAnimator.View.Shapes
             base.Paint(g);
 
             var yellowBrush = new SolidBrush(Color.IndianRed);
-            g.FillEllipse(yellowBrush, this.TheShape.X+this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,10,10);
+            g.FillEllipse(yellowBrush, this.TheShape.X + this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,
+                10, 10);
         }
     }
 }

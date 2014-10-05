@@ -1,6 +1,4 @@
 ﻿using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms.VisualStyles;
 using ShapeAnimator.Model;
 
 namespace ShapeAnimator.View.Shapes
@@ -28,7 +26,7 @@ namespace ShapeAnimator.View.Shapes
         {
             base.Paint(g);
 
-            var theBrush = new SolidBrush(this.TheShape.color);
+            var theBrush = new SolidBrush(this.TheShape.Color);
             g.FillEllipse(theBrush, this.TheShape.X, this.TheShape.Y, this.TheShape.Width, this.TheShape.Height);
         }
     }
