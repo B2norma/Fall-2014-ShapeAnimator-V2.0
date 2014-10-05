@@ -7,13 +7,18 @@ namespace ShapeAnimator.Model
     /// <summary>
     ///     Holds information about a shape
     /// </summary>
-    public class Shape
+    public abstract class Shape
     {
         #region Instance variables
 
-        private readonly Random randomizer;
         private readonly ShapeSprite sprite;
         private Point location;
+        protected readonly int width;
+        protected readonly int height;
+        private readonly int direction;
+        private readonly int speedX;
+        private readonly int speedY;
+
 
         #endregion
 
@@ -43,6 +48,31 @@ namespace ShapeAnimator.Model
             set { this.location.Y = value; }
         }
 
+        public int Width
+        {
+            get { return this.width; }
+        }
+
+        public int Height
+        {
+            get {  return this.height}
+        }
+
+        public int Direction
+        {
+            get { return this.direction; }
+        }
+
+        public int SpeedX
+        {
+            get { return this.speedX; }
+        }
+
+        public int SpeedY
+        {
+            get { return this.speedY; }
+        }
+
         #endregion
 
         #region Constructors
@@ -50,9 +80,8 @@ namespace ShapeAnimator.Model
         /// <summary>
         ///     Default constructor
         /// </summary>
-        private Shape()
+        protected Shape()
         {
-            this.randomizer = new Random();
             this.sprite = new CircleSprite(this);
         }
 
@@ -62,7 +91,7 @@ namespace ShapeAnimator.Model
         ///     Postcondition: X == location.X; Y == location.Y
         /// </summary>
         /// <param name="location">Location to create shape</param>
-        public Shape(Point location) : this()
+        protected Shape(Point location) : this()
         {
             if (location == null)
             {
@@ -70,6 +99,13 @@ namespace ShapeAnimator.Model
             }
 
             this.location = location;
+        }
+
+        public Shape(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : this(Location)
+        {
+            this.direction = tempDirection;
+            this.speedX = tempSpeedX;
+            this.speedY = tempSpeedY;
         }
 
         /// <summary>
@@ -81,12 +117,6 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         /// ///
         /// <param name="tempRandom">Random number generator</param>
-        public Shape(int x, int y, Random tempRandom) : this()
-        {
-            this.location = new Point(x, y);
-            this.randomizer = tempRandom;
-            this.sprite = SpriteFactory.GenerateRandomSprite(this);
-        }
         #endregion
 
         #region Methods
@@ -96,11 +126,7 @@ namespace ShapeAnimator.Model
         ///     Precondition: None
         ///     Postcondition: X == X@prev + amount of movement in X direction; Y == Y@prev + amount of movement in Y direction
         /// </summary>
-        public void Move()
-        {
-            this.X += this.randomizer.Next(-5, 6);
-            this.Y += this.randomizer.Next(-5, 6);
-        }
+        public abstract void Move();
 
         /// <summary>
         ///     Draws a shape
