@@ -10,9 +10,7 @@ namespace ShapeAnimator.Model.Shapes
     class Circle : Shape
     {
         
-        private Circle()
-        {
-        }
+
         public Circle(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : base(Location, tempDirection, tempSpeedX, tempSpeedY)
         {
             width = 100;

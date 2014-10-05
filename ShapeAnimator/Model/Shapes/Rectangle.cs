@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShapeAnimator.Model.Shapes
 {
-    abstract class Rectangle : Shape
+    virtual class Rectangle : Shape
     {
         public Rectangle(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : base(Location, tempDirection, tempSpeedX, tempSpeedY)
         {

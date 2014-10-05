@@ -30,7 +30,7 @@ namespace ShapeAnimator.View.Shapes
             base.Paint(g);
 
             var yellowBrush = new SolidBrush(Color.Yellow);
-            g.FillEllipse(yellowBrush, this.TheShape.X, this.TheShape.Y, 100, 100);
+            g.FillEllipse(yellowBrush, this.TheShape.X, this.TheShape.Y, this.TheShape.Width, this.TheShape.Height);
         }
     }
 }

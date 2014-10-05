@@ -103,7 +103,7 @@ namespace ShapeAnimator.Model
             this.location = location;
         }
 
-        public Shape(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : this(Location)
+        protected Shape(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : this(Location)
         {
             this.direction = tempDirection;
             this.speedX = tempSpeedX;
@@ -119,6 +119,7 @@ namespace ShapeAnimator.Model
         /// <param name="y">The y coordinate</param>
         /// ///
         /// <param name="tempRandom">Random number generator</param>
+
         #endregion
 
         #region Methods
@@ -128,7 +129,11 @@ namespace ShapeAnimator.Model
         ///     Precondition: None
         ///     Postcondition: X == X@prev + amount of movement in X direction; Y == Y@prev + amount of movement in Y direction
         /// </summary>
-        public abstract void Move();
+        public void Move()
+        {
+            X += speedX*direction;
+            Y += speedY*direction;
+        }
 
         /// <summary>
         ///     Draws a shape
