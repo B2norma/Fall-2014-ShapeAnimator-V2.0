@@ -13,8 +13,8 @@ namespace ShapeAnimator.Model
 
         private readonly ShapeSprite sprite;
         private Point location;
-        protected readonly int width;
-        protected readonly int height;
+        protected int width;
+        protected int height;
         private readonly int direction;
         private readonly int speedX;
         private readonly int speedY;
@@ -51,11 +51,13 @@ namespace ShapeAnimator.Model
         public int Width
         {
             get { return this.width; }
+            protected set { width = value; }
         }
 
         public int Height
         {
-            get {  return this.height}
+            get { return this.height;  }
+            protected set { height = value; }
         }
 
         public int Direction
