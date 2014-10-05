@@ -22,8 +22,8 @@ namespace ShapeAnimator.Model
         public static Shape CreateNewShape(Random randomizer, int boundsWidth, int boundsHeight)
         {
             int randomNumber = randomizer.Next(3);
-            int tempSpeedX = randomizer.Next(6);
-            int tempSpeedY = randomizer.Next(6);
+            int tempSpeedX = randomizer.Next(1,6);
+            int tempSpeedY = randomizer.Next(1,6);
             int randomDirection = randomizer.Next(2);
             int tempPointX;
             int tempPointY;
@@ -53,9 +53,9 @@ namespace ShapeAnimator.Model
             }
             else if (randomNumber == (int) Shapes.LRectangle)
             {
-                return new LRectangle(tempPoint, randomDirection, tempSpeedX, tempSpeedY);
+                return new SpottedRectangle(tempPoint, randomDirection, tempSpeedX, tempSpeedY);
             }
-            return __;
+            return null;
         }
 
         private static Shape createTemporaryShape(int randomNumber, int randomDirection, int randomX, int randomY)
@@ -70,8 +70,9 @@ namespace ShapeAnimator.Model
             }
             else if (randomNumber == (int) Shapes.LRectangle)
             {
-               return new LRectangle(new Point(1), randomDirection, randomX, randomY);
+               return new SpottedRectangle(new Point(1), randomDirection, randomX, randomY);
             }
+            return null;
         }
 
         private static int flipDirectionValue(int randomDirection)
@@ -80,6 +81,7 @@ namespace ShapeAnimator.Model
             {
                 return -1;
             }
+            return 1;
         }
     }
 }

@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Model\CanvasController.cs" />
     <Compile Include="Model\Shapes\Circle.cs" />
-    <Compile Include="Model\Shapes\LRectangle.cs" />
+    <Compile Include="Model\Shapes\SpottedRectangle.cs" />
     <Compile Include="Model\Shape.cs" />
     <Compile Include="Model\ShapeFactory.cs" />
     <Compile Include="Model\Shapes\Rectangle.cs" />

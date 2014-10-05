@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShapeAnimator.View.Shapes;
+using Rectangle = ShapeAnimator.Model.Shapes.Rectangle;
 
-namespace ShapeAnimator.Model.Shapes
+namespace ShapeAnimator.Model
 {
-    class Rectangle : Shape
+    class SpottedRectangle : Shape
     {
-        public Rectangle(Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : base(Location, tempDirection, tempSpeedX, tempSpeedY)
+
+        public SpottedRectangle (Point Location, int tempDirection, int tempSpeedX, int tempSpeedY) : base(Location, tempDirection, tempSpeedX, tempSpeedY)
         {
             width = 75;
             height = 125;
-            sprite = new RectangleSprite(this);
-
+            this.sprite = new LRectangleSprite(this);
         }
 
         public override void Move()

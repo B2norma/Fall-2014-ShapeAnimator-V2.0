@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShapeAnimator.View.Shapes;
 
 namespace ShapeAnimator.Model.Shapes
 {
@@ -15,6 +16,7 @@ namespace ShapeAnimator.Model.Shapes
         {
             width = 100;
             height = 100;
+            sprite = new CircleSprite(this);
         }
 
         /// <summary>
@@ -24,7 +26,7 @@ namespace ShapeAnimator.Model.Shapes
 
         public override void Move()
         {
-
+            X += SpeedX*Direction;
             return;
         }
 

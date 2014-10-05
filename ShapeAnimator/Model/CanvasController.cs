@@ -60,13 +60,10 @@ namespace ShapeAnimator.Model
                 this.placeIndividualShapeOnCanvas(randomizer);
             }
         }
-        //TODO redo keeping shapes in bounds
+
         private void placeIndividualShapeOnCanvas(Random randomizer)
         {
-            int x = randomizer.Next(this.canvas.Width);
-            int y = randomizer.Next(this.canvas.Height);
-
-            this.shapesList.Add(new Shape(x, y, randomizer));
+            this.shapesList.Add(ShapeFactory.CreateNewShape(randomizer, canvas.Width, canvas.Height));
         }
 
         /// <summary>

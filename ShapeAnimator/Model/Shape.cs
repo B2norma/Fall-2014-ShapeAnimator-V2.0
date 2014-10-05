@@ -11,11 +11,11 @@ namespace ShapeAnimator.Model
     {
         #region Instance variables
 
-        private readonly ShapeSprite sprite;
+        protected ShapeSprite sprite;
         private Point location;
         protected int width;
         protected int height;
-        private readonly int direction;
+        private int direction;
         private readonly int speedX;
         private readonly int speedY;
 
@@ -129,11 +129,7 @@ namespace ShapeAnimator.Model
         ///     Precondition: None
         ///     Postcondition: X == X@prev + amount of movement in X direction; Y == Y@prev + amount of movement in Y direction
         /// </summary>
-        public void Move()
-        {
-            X += speedX*direction;
-            Y += speedY*direction;
-        }
+        public abstract void Move();
 
         /// <summary>
         ///     Draws a shape
@@ -146,9 +142,32 @@ namespace ShapeAnimator.Model
             {
                 throw new ArgumentNullException("g");
             }
-
+            checkBounds(g);
             this.sprite.Paint(g);
         }
+
+        private void checkBounds(Graphics g)
+        {
+            if (this.X + this.Width > g.VisibleClipBounds.Width || this.Y + this.Height > g.VisibleClipBounds.Height || this.X < 0 || this.Y < 0)
+            {
+                directionFlip();
+                this.Move();
+            }
+        }
+
+        private void directionFlip()
+        {
+            if (direction == 1)
+            {
+                direction = -1;
+            }
+            else
+            {
+                direction = 1;
+            }
+        }
+
+
 
         #endregion
     }

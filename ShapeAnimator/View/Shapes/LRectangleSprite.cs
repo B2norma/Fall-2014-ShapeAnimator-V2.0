@@ -16,7 +16,7 @@ namespace ShapeAnimator.View.Shapes
         }
 
         /// <summary>
-        ///     Draws a LRectangle shape
+        ///     Draws a SpottedRectangle shape
         ///     Preconditon: g != null
         /// </summary>
         /// <param name="g">The graphics object to draw the shape one</param>
@@ -26,7 +26,7 @@ namespace ShapeAnimator.View.Shapes
             base.Paint(g);
 
             var yellowBrush = new SolidBrush(Color.IndianRed);
-            g.FillRectangle(yellowBrush, this.TheShape.X, this.TheShape.Y + 75, this.TheShape.Width, this.TheShape.Height);
+            g.FillEllipse(yellowBrush, this.TheShape.X+this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,10,10);
         }
     }
 }
