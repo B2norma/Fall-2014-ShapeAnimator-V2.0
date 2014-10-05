@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShapeAnimator.Model
+namespace ShapeAnimator.Model.Shapes
 {
-    class LRectangle : Shape
+    class Rectangle : Shape
     {
         public override void Move()
         {

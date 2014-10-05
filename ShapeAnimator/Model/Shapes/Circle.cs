@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShapeAnimator.Model
+namespace ShapeAnimator.Model.Shapes
 {
-    class LRectangle : Shape
+    class Circle : Shape
     {
+
         public override void Move()
         {
 
         }
+
     }
 }
