@@ -5,6 +5,8 @@ namespace ShapeAnimator.Model.Shapes
 {
     internal class SpottedRectangle : Shape
     {
+        private const int shapeWidth = 75;
+        private const int shapeHeight = 125;
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpottedRectangle" /> class.
         /// </summary>
@@ -16,8 +18,8 @@ namespace ShapeAnimator.Model.Shapes
         public SpottedRectangle(Point location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
             : base(location, tempDirection, tempSpeedX, tempSpeedY, tempColor)
         {
-            this.Width = 75;
-            this.Height = 125;
+            this.Width = shapeWidth;
+            this.Height = shapeHeight;
             this.Sprite = new SpottedRectangleSprite(this);
         }
 

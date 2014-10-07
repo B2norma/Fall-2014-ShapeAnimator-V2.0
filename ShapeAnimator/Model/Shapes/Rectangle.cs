@@ -5,6 +5,9 @@ namespace ShapeAnimator.Model.Shapes
 {
     internal class Rectangle : Shape
     {
+        private const int shapeWidth = 75;
+        private const int shapeHeight = 125;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Rectangle" /> class.
         ///     Pre: nothing can be null
@@ -17,8 +20,8 @@ namespace ShapeAnimator.Model.Shapes
         public Rectangle(Point location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
             : base(location, tempDirection, tempSpeedX, tempSpeedY, tempColor)
         {
-            this.Width = 75;
-            this.Height = 125;
+            this.Width = shapeWidth;
+            this.Height = shapeHeight;
             this.Sprite = new RectangleSprite(this);
         }
 

@@ -5,6 +5,9 @@ namespace ShapeAnimator.Model.Shapes
 {
     internal class Circle : Shape
     {
+        private const int shapeWidth = 100;
+        private const int shapeHeight = 100;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Circle" /> class.
         ///     Pre: Nothing can be null.
@@ -17,8 +20,8 @@ namespace ShapeAnimator.Model.Shapes
         public Circle(Point location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
             : base(location, tempDirection, tempSpeedX, tempSpeedY, tempColor)
         {
-            this.Width = 100;
-            this.Height = 100;
+            this.Width = shapeWidth;
+            this.Height = shapeHeight;
             this.Sprite = new CircleSprite(this);
         }
 

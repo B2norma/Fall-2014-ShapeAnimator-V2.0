@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq.Expressions;
 using ShapeAnimator.Model.Shapes;
 using Rectangle = ShapeAnimator.Model.Shapes.Rectangle;
 
@@ -7,6 +8,8 @@ namespace ShapeAnimator.Model
 {
     internal static class ShapeFactory
     {
+        private const int minimumSpeed = 1;
+        private const int maximumSpeed = 6;
         /// <summary>
         ///     Creates a new shape. It generates a Random Shape, random speed in the x and y direction, a random direction, a
         ///     random location withing the bounds specified,
@@ -19,9 +22,9 @@ namespace ShapeAnimator.Model
         /// <returns></returns>
         public static Shape CreateNewShape(Random randomizer, int boundsWidth, int boundsHeight)
         {
-            int randomNumber = randomizer.Next(3);
-            int tempSpeedX = randomizer.Next(1, 6);
-            int tempSpeedY = randomizer.Next(1, 6);
+            int randomNumber = randomizer.Next(Enum.GetNames(typeof(Shapes)).Length);
+            int tempSpeedX = randomizer.Next(minimumSpeed, maximumSpeed);
+            int tempSpeedY = randomizer.Next(minimumSpeed, maximumSpeed);
             int randomDirection = randomizer.Next(2);
             Color tempColor = Color.Black;
             Shape tempShape = createTemporaryShape(randomNumber, randomDirection, tempSpeedX, tempSpeedY, tempColor);
@@ -31,6 +34,7 @@ namespace ShapeAnimator.Model
 
             int tempPointX = randomizer.Next(boundsWidth - tempShape.Width);
             int tempPointY = randomizer.Next(boundsHeight - tempShape.Height);
+            
             var tempPoint = new Point(tempPointX, tempPointY);
 
             tempColor = generateRandomColor(randomizer);
