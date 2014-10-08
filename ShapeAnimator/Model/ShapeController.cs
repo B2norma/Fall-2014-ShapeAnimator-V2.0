@@ -9,7 +9,7 @@ namespace ShapeAnimator.Model
     /// <summary>
     ///     Manages the collection of shapes on the canvas.
     /// </summary>
-    public class CanvasController
+    public class ShapeController
     {
         #region Instance variables
 
@@ -21,19 +21,19 @@ namespace ShapeAnimator.Model
         #region Constructors
 
         /// <summary>
-        ///     Prevents a default instance of the <see cref="CanvasController" /> class from being created.
+        ///     Prevents a default instance of the <see cref="ShapeController" /> class from being created.
         /// </summary>
-        private CanvasController()
+        private ShapeController()
         {
             this.shapesList = null;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CanvasController" /> class.
+        ///     Initializes a new instance of the <see cref="ShapeController" /> class.
         ///     Precondition: pictureBox != null
         /// </summary>
         /// <param name="pictureBox">The picture box that will be drawing on</param>
-        public CanvasController(PictureBox pictureBox) : this()
+        public ShapeController(PictureBox pictureBox) : this()
         {
             if (pictureBox == null)
             {
@@ -46,6 +46,8 @@ namespace ShapeAnimator.Model
 
         #endregion
 
+        #region Methods
+
         /// <summary>
         ///     Places the shape on the canvas.
         ///     Precondition: None
@@ -57,8 +59,18 @@ namespace ShapeAnimator.Model
             var randomizer = new Random();
             for (int i = 0; i < numberOfShapes; i++)
             {
-                this.shapesList.Add(ShapeFactory.CreateNewShape(randomizer, canvas.Width, canvas.Height));
+                Shape tempShape = ShapeFactory.CreateNewShape(randomizer);
+                tempShape = this.placeShapeWithinBounds(tempShape, randomizer);
+                this.shapesList.Add(tempShape);
             }
+        }
+
+        private Shape placeShapeWithinBounds(Shape tempShape, Random randomizer)
+        {
+            tempShape.X = randomizer.Next(this.canvas.Width - tempShape.Width);
+            tempShape.Y = randomizer.Next(this.canvas.Height - tempShape.Height);
+
+            return tempShape;
         }
 
         /// <summary>
@@ -87,5 +99,7 @@ namespace ShapeAnimator.Model
             shape.Move();
             shape.Paint(g);
         }
+
+        #endregion
     }
 }

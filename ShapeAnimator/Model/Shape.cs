@@ -146,20 +146,19 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Shape"/> class.
+        ///     Initializes a new instance of the <see cref="Shape" /> class.
         /// </summary>
-        /// <param name="location">The location.</param>
         /// <param name="tempDirection">The temporary direction.</param>
         /// <param name="tempSpeedX">The temporary speed x.</param>
         /// <param name="tempSpeedY">The temporary speed y.</param>
         /// <param name="tempColor">Color of the temporary.</param>
-        protected Shape(Point location, int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
-            : this(location)
+        protected Shape(int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
         {
             this.direction = tempDirection;
             this.speedX = tempSpeedX;
             this.speedY = tempSpeedY;
             this.shapeColor = tempColor;
+            this.location = new Point(0, 0);
         }
 
         #endregion
@@ -167,7 +166,7 @@ namespace ShapeAnimator.Model
         #region Methods
 
         /// <summary>
-        /// Moves this instance.
+        ///     Moves this instance.
         /// </summary>
         public abstract void Move();
 

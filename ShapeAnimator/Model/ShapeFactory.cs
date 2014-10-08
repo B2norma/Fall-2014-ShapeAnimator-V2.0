@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq.Expressions;
 using ShapeAnimator.Model.Shapes;
 using Rectangle = ShapeAnimator.Model.Shapes.Rectangle;
 
@@ -8,37 +7,28 @@ namespace ShapeAnimator.Model
 {
     internal static class ShapeFactory
     {
-        private const int minimumSpeed = 1;
-        private const int maximumSpeed = 6;
+        private const int MinimumSpeed = 1;
+        private const int MaximumSpeed = 6;
+
         /// <summary>
-        ///     Creates a new shape. It generates a Random Shape, random speed in the x and y direction, a random direction, a
-        ///     random location withing the bounds specified,
+        ///     Creates a new shape. It generates a Random Shape, random speed in the x and y direction, a random direction, 
         ///     and a random color.
         ///     Prerequisites: Nothing can be null.
         /// </summary>
         /// <param name="randomizer">The randomizer.</param>
-        /// <param name="boundsWidth">Width of the bounds.</param>
-        /// <param name="boundsHeight">Height of the bounds.</param>
         /// <returns></returns>
-        public static Shape CreateNewShape(Random randomizer, int boundsWidth, int boundsHeight)
+        public static Shape CreateNewShape(Random randomizer)
         {
-            int randomNumber = randomizer.Next(Enum.GetNames(typeof(Shapes)).Length);
-            int tempSpeedX = randomizer.Next(minimumSpeed, maximumSpeed);
-            int tempSpeedY = randomizer.Next(minimumSpeed, maximumSpeed);
+            int randomShape = randomizer.Next(Enum.GetNames(typeof (Shapes)).Length);
+
+            int tempSpeedX = randomizer.Next(MinimumSpeed, MaximumSpeed);
+            int tempSpeedY = randomizer.Next(MinimumSpeed, MaximumSpeed);
+
             int randomDirection = randomizer.Next(2);
-            Color tempColor = Color.Black;
-            Shape tempShape = createTemporaryShape(randomNumber, randomDirection, tempSpeedX, tempSpeedY, tempColor);
+            randomDirection = verifyDirectionValue(randomDirection);
 
-            randomDirection = flipDirectionValue(randomDirection);
-            
-
-            int tempPointX = randomizer.Next(boundsWidth - tempShape.Width);
-            int tempPointY = randomizer.Next(boundsHeight - tempShape.Height);
-            
-            var tempPoint = new Point(tempPointX, tempPointY);
-
-            tempColor = generateRandomColor(randomizer);
-            return createFinalShape(randomNumber, tempPoint, randomDirection, tempSpeedX, tempSpeedY, tempColor);
+            Color tempColor = generateRandomColor(randomizer);
+            return createFinalShape(randomShape, randomDirection, tempSpeedX, tempSpeedY, tempColor);
         }
 
         private static Color generateRandomColor(Random randomizer)
@@ -55,43 +45,24 @@ namespace ShapeAnimator.Model
             return randomizer.Next(1, 256);
         }
 
-        private static Shape createFinalShape(int randomNumber, Point tempPoint, int randomDirection, int tempSpeedX,
+        private static Shape createFinalShape(int randomNumber, int randomDirection, int tempSpeedX,
             int tempSpeedY, Color tempColor)
         {
             if (randomNumber == (int) Shapes.Circle)
             {
-                return new Circle(tempPoint, randomDirection, tempSpeedX, tempSpeedY, tempColor);
+                return new Circle(randomDirection, tempSpeedX, tempSpeedY, tempColor);
             }
             if (randomNumber == (int) Shapes.Rectangle)
             {
-                return new Rectangle(tempPoint, randomDirection, tempSpeedX, tempSpeedY, tempColor);
+                return new Rectangle(randomDirection, tempSpeedX, tempSpeedY, tempColor);
             }
             if (randomNumber == (int) Shapes.LRectangle)
             {
-                return new SpottedRectangle(tempPoint, randomDirection, tempSpeedX, tempSpeedY, tempColor);
+                return new SpottedRectangle(randomDirection, tempSpeedX, tempSpeedY, tempColor);
             }
             return null;
         }
-
-        private static Shape createTemporaryShape(int randomNumber, int randomDirection, int randomX, int randomY,
-            Color tempColor)
-        {
-            if (randomNumber == (int) Shapes.Circle)
-            {
-                return new Circle(new Point(1), randomDirection, randomX, randomY, tempColor);
-            }
-            if (randomNumber == (int) Shapes.Rectangle)
-            {
-                return new Rectangle(new Point(1), randomDirection, randomX, randomY, tempColor);
-            }
-            if (randomNumber == (int) Shapes.LRectangle)
-            {
-                return new SpottedRectangle(new Point(1), randomDirection, randomX, randomY, tempColor);
-            }
-            return null;
-        }
-
-        private static int flipDirectionValue(int randomDirection)
+        private static int verifyDirectionValue(int randomDirection)
         {
             if (randomDirection == 0)
             {

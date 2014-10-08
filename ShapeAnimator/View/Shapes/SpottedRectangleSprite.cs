@@ -4,7 +4,7 @@ using ShapeAnimator.Model;
 namespace ShapeAnimator.View.Shapes
 {
     /// <summary>
-    /// A Spotted Rectangle Sprite, inherits from the Rectangle Sprite. 
+    ///     A Spotted Rectangle Sprite, inherits from the Rectangle Sprite.
     /// </summary>
     public class SpottedRectangleSprite : RectangleSprite
     {
@@ -27,8 +27,8 @@ namespace ShapeAnimator.View.Shapes
         {
             base.Paint(g);
 
-            var yellowBrush = new SolidBrush(Color.IndianRed);
-            g.FillEllipse(yellowBrush, this.TheShape.X + this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,
+            var redBrush = new SolidBrush(Color.IndianRed);
+            g.FillEllipse(redBrush, this.TheShape.X + this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,
                 10, 10);
         }
     }

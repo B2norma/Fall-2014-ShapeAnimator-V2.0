@@ -13,7 +13,7 @@ namespace ShapeAnimator.View.Shapes
         ///     Precondition: shape != null
         /// </summary>
         /// <param name="shape">The shape.</param>
-        public CircleSprite(Shape shape):base(shape)
+        public CircleSprite(Shape shape) : base(shape)
         {
         }
 

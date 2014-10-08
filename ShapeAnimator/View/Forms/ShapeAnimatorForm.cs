@@ -12,7 +12,7 @@ namespace ShapeAnimator.View.Forms
     {
         #region Instance variables
 
-        private readonly CanvasController canvasManager; 
+        private readonly ShapeController canvasManager; 
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace ShapeAnimator.View.Forms
         {
             this.InitializeComponent();
 
-            this.canvasManager = new CanvasController(this.canvasPictureBox);
+            this.canvasManager = new ShapeController(this.canvasPictureBox);
 
         }
 

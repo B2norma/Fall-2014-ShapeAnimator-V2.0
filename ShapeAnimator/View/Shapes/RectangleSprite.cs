@@ -4,7 +4,7 @@ using ShapeAnimator.Model;
 namespace ShapeAnimator.View.Shapes
 {
     /// <summary>
-    /// A Rectangle Sprite, inherits from ShapeSprite.
+    ///     A Rectangle Sprite, inherits from ShapeSprite.
     /// </summary>
     public class RectangleSprite : ShapeSprite
     {
