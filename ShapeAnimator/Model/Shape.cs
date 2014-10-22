@@ -14,7 +14,8 @@ namespace ShapeAnimator.Model
         private readonly Color shapeColor;
         private readonly int speedX;
         private readonly int speedY;
-        private int direction;
+        private int directionX;
+        private int directionY;
         private Point location;
         private ShapeSprite sprite;
 
@@ -52,7 +53,7 @@ namespace ShapeAnimator.Model
         /// <value>
         ///     The width.
         /// </value>
-        public int Width { get; protected set; }
+        public int Width { get; private set; }
 
         /// <summary>
         ///     Gets the height.
@@ -60,7 +61,7 @@ namespace ShapeAnimator.Model
         /// <value>
         ///     The height.
         /// </value>
-        public int Height { get; protected set; }
+        public int Height { get; private set; }
 
         /// <summary>
         ///     Gets the sprite.
@@ -74,14 +75,25 @@ namespace ShapeAnimator.Model
         }
 
         /// <summary>
-        ///     Gets the direction.
+        ///     Gets the directionX.
         /// </summary>
         /// <value>
-        ///     The direction.
+        ///     The directionX.
         /// </value>
-        public int Direction
+        public int DirectionX
         {
-            get { return this.direction; }
+            get { return this.directionX; }
+        }
+
+        /// <summary>
+        ///     Gets the direction y.
+        /// </summary>
+        /// <value>
+        ///     The direction y.
+        /// </value>
+        public int DirectionY
+        {
+            get { return this.directionY; }
         }
 
         /// <summary>
@@ -122,43 +134,17 @@ namespace ShapeAnimator.Model
         #region Constructors
 
         /// <summary>
-        ///     Default constructor
-        /// </summary>
-        protected Shape()
-        {
-            this.sprite = new CircleSprite(this);
-        }
-
-        /// <summary>
-        ///     Constructs a shape at specified location
-        ///     Precondition: location != null
-        ///     Postcondition: X == location.X; Y == location.Y
-        /// </summary>
-        /// <param name="location">Location to create shape</param>
-        protected Shape(Point location) : this()
-        {
-            if (location == null)
-            {
-                throw new ArgumentNullException("location");
-            }
-
-            this.location = location;
-        }
-
-        /// <summary>
         ///     Initializes a new instance of the <see cref="Shape" /> class.
         /// </summary>
-        /// <param name="tempDirection">The temporary direction.</param>
-        /// <param name="tempSpeedX">The temporary speed x.</param>
-        /// <param name="tempSpeedY">The temporary speed y.</param>
-        /// <param name="tempColor">Color of the temporary.</param>
-        protected Shape(int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
+        protected Shape(int shapeWidth, int shapeHeight)
         {
-            this.direction = tempDirection;
-            this.speedX = tempSpeedX;
-            this.speedY = tempSpeedY;
-            this.shapeColor = tempColor;
-            this.location = new Point(0, 0);
+            this.shapeColor = RandomUtils.GenerateRandomColor();
+            this.speedX = RandomUtils.GenerateRandomSpeed();
+            this.speedY = RandomUtils.GenerateRandomSpeed();
+            this.directionX = RandomUtils.GenerateRandomDirection();
+            this.directionY = RandomUtils.GenerateRandomDirection();
+            this.Width = shapeWidth;
+            this.Height = shapeHeight;
         }
 
         #endregion
@@ -168,7 +154,11 @@ namespace ShapeAnimator.Model
         /// <summary>
         ///     Moves this instance.
         /// </summary>
-        public abstract void Move();
+        public void Move()
+        {
+            this.X += this.SpeedX*this.DirectionX;
+            this.Y += this.SpeedY*this.DirectionY;
+        }
 
         /// <summary>
         ///     Draws a shape
@@ -181,29 +171,36 @@ namespace ShapeAnimator.Model
             {
                 throw new ArgumentNullException("g");
             }
-            this.checkBounds(g);
             this.sprite.Paint(g);
         }
 
-        private void checkBounds(Graphics g)
+        /// <summary>
+        ///     Flips the X direction.
+        /// </summary>
+        public void DirectionXFlip()
         {
-            if (this.X + this.Width > g.VisibleClipBounds.Width || this.Y + this.Height > g.VisibleClipBounds.Height ||
-                this.X < 0 || this.Y < 0)
+            if (this.directionX == 1)
             {
-                this.directionFlip();
-                this.Move();
-            }
-        }
-
-        private void directionFlip()
-        {
-            if (this.direction == 1)
-            {
-                this.direction = -1;
+                this.directionX = -1;
             }
             else
             {
-                this.direction = 1;
+                this.directionX = 1;
+            }
+        }
+
+        /// <summary>
+        ///     Flips the Y direction.
+        /// </summary>
+        public void DirectionYFlip()
+        {
+            if (this.directionY == 1)
+            {
+                this.directionY = -1;
+            }
+            else
+            {
+                this.directionY = 1;
             }
         }
 

@@ -25,7 +25,6 @@ namespace ShapeAnimator.View.Shapes
         public override void Paint(Graphics g)
         {
             base.Paint(g);
-
             var theBrush = new SolidBrush(this.TheShape.Color);
             g.FillEllipse(theBrush, this.TheShape.X, this.TheShape.Y, this.TheShape.Width, this.TheShape.Height);
         }

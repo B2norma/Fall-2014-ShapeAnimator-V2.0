@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\RandomUtils.cs" />
     <Compile Include="Model\ShapeController.cs" />
     <Compile Include="Model\Shapes\Circle.cs" />
     <Compile Include="Model\Shapes\SpottedRectangle.cs" />

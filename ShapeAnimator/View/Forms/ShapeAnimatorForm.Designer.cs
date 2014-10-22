@@ -84,7 +84,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 545);
+            this.ClientSize = new System.Drawing.Size(762, 545);
             this.Controls.Add(this.animateButton);
             this.Controls.Add(this.numberShapesTextBox);
             this.Controls.Add(this.numberOfShapesLabel);

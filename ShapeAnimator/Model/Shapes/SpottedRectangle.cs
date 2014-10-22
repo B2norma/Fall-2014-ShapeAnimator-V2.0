@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using ShapeAnimator.View.Shapes;
+﻿using ShapeAnimator.View.Shapes;
 
 namespace ShapeAnimator.Model.Shapes
 {
@@ -11,21 +10,9 @@ namespace ShapeAnimator.Model.Shapes
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpottedRectangle" /> class.
         /// </summary>
-        /// <param name="tempDirection">The direction.</param>
-        /// <param name="tempSpeedX">The speed x.</param>
-        /// <param name="tempSpeedY">The speed y.</param>
-        /// <param name="tempColor">Color of the Shape.</param>
-        public SpottedRectangle(int tempDirection, int tempSpeedX, int tempSpeedY, Color tempColor)
-            : base(tempDirection, tempSpeedX, tempSpeedY, tempColor)
+        public SpottedRectangle() : base(ShapeWidth,ShapeHeight)
         {
-            this.Width = ShapeWidth;
-            this.Height = ShapeHeight;
             this.Sprite = new SpottedRectangleSprite(this);
-        }
-
-        public override void Move()
-        {
-            this.Y += this.SpeedY*this.Direction;
         }
     }
 }
