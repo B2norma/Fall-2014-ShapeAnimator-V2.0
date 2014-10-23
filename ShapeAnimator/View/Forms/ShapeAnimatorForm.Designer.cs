@@ -91,7 +91,7 @@ namespace ShapeAnimator.View.Forms
             this.Controls.Add(this.canvasPictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ShapeAnimatorForm";
-            this.Text = "Shape Animator A3 by Jonah Nestrick";
+            this.Text = "Shape Animator A3 by Nestrick and Norman";
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
