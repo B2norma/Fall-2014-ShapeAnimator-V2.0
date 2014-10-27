@@ -52,23 +52,65 @@ namespace ShapeAnimator.Model
         ///     Places the shape on the canvas.
         ///     Precondition: None
         /// </summary>
-        /// <param name="numberOfShapes"></param>
-        public void PlaceShapesOnCanvas(int numberOfShapes)
+        /// <param name="numberOfShapes">The number of shapes</param>
+        /// <param name="numberOfCircles">The number of circles.</param>
+        /// <param name="numberOfRectangles">The number of rectangles.</param>
+        /// <param name="numberOfSpottedCircles">The number of spotted circles.</param>
+        public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfCircles, int numberOfRectangles,
+            int numberOfSpottedCircles)
         {
             this.shapesList.Clear();
-            var randomizer = new Random();
-            for (int i = 0; i < numberOfShapes; i++)
+
+            this.generateShapes(numberOfShapes);
+            this.generateCircles(numberOfCircles);
+            this.generateRectangles(numberOfRectangles);
+            this.generateSpottedCircles(numberOfSpottedCircles);
+        }
+
+        private void generateSpottedCircles(int numberOfSpottedCircles)
+        {
+            for (int i = 0; i < numberOfSpottedCircles; i++)
             {
-                Shape tempShape = ShapeFactory.CreateNewShape();
-                tempShape = this.placeShapeWithinBounds(tempShape, randomizer);
+                Shape tempShape = ShapeFactory.CreateNewSpottedCircle();
+                tempShape = this.placeShapeWithinBounds(tempShape);
                 this.shapesList.Add(tempShape);
             }
         }
 
-        private Shape placeShapeWithinBounds(Shape tempShape, Random randomizer)
+        private void generateRectangles(int numberOfRectangles)
         {
-            tempShape.X = randomizer.Next(this.canvas.Width - tempShape.Width);
-            tempShape.Y = randomizer.Next(this.canvas.Height - tempShape.Height);
+            for (int i = 0; i < numberOfRectangles; i++)
+            {
+                Shape tempShape = ShapeFactory.CreateNewRectangle();
+                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.shapesList.Add(tempShape);
+            }
+        }
+
+        private void generateCircles(int numberOfCircles)
+        {
+            for (int i = 0; i < numberOfCircles; i++)
+            {
+                Shape tempShape = ShapeFactory.CreateNewCircle();
+                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.shapesList.Add(tempShape);
+            }
+        }
+
+        private void generateShapes(int numberOfShapes)
+        {
+            for (int i = 0; i < numberOfShapes; i++)
+            {
+                Shape tempShape = ShapeFactory.CreateNewShape();
+                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.shapesList.Add(tempShape);
+            }
+        }
+
+        private Shape placeShapeWithinBounds(Shape tempShape)
+        {
+            tempShape.X = RandomUtils.NextInt(this.canvas.Width - tempShape.Width);
+            tempShape.Y = RandomUtils.NextInt(this.canvas.Height - tempShape.Height);
 
             return tempShape;
         }

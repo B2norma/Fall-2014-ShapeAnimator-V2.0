@@ -26,18 +26,45 @@ namespace ShapeAnimator.Model
             {
                 return new Rectangle();
             }
-            if ((Shapes) randomShape == Shapes.LRectangle)
+            if ((Shapes) randomShape == Shapes.SpottedCircle)
             {
                 return new SpottedRectangle();
             }
             return null;
         }
 
+        /// <summary>
+        ///     Creates a new circle.
+        /// </summary>
+        /// <returns></returns>
+        public static Shape CreateNewCircle()
+        {
+            return createFinalShape((int) Shapes.Circle);
+        }
+
+        /// <summary>
+        ///     Creates a new rectangle.
+        /// </summary>
+        /// <returns></returns>
+        public static Shape CreateNewRectangle()
+        {
+            return createFinalShape((int) Shapes.Rectangle);
+        }
+
+        /// <summary>
+        ///     Creates a new spotted circle.
+        /// </summary>
+        /// <returns></returns>
+        public static Shape CreateNewSpottedCircle()
+        {
+            return createFinalShape((int) Shapes.SpottedCircle);
+        }
+
         private enum Shapes
         {
             Circle,
             Rectangle,
-            LRectangle
+            SpottedCircle
         }
     }
 }
