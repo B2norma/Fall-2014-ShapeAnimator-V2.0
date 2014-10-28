@@ -92,13 +92,13 @@ namespace ShapeAnimator.View.Forms
         ///     Converts the text in the SpottedCircleBox to an integer. If the text
         ///     is not convertable to an integer value it returns 0.
         /// </summary>
-        public int NumberSpottedCircles
+        public int NumberSpottedRectangles
         {
             get
             {
                 try
                 {
-                    return Convert.ToInt32(this.SpottedCircleBox.Text);
+                    return Convert.ToInt32(this.SpottedRectangleBox.Text);
                 }
                 catch (Exception)
                 {
@@ -147,7 +147,7 @@ namespace ShapeAnimator.View.Forms
         {
             this.animationTimer.Stop();
             this.canvasManager.PlaceShapesOnCanvas(this.NumberShapes, this.NumberCircles, this.NumberRectangles,
-                this.NumberSpottedCircles);
+                this.NumberSpottedRectangles);
             this.animationTimer.Start();
 
             this.enableButtonsForAnimation();

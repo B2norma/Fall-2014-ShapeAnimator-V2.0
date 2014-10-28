@@ -38,10 +38,10 @@ namespace ShapeAnimator.View.Forms
             this.startButton = new System.Windows.Forms.Button();
             this.CircleBox = new System.Windows.Forms.TextBox();
             this.RectangleBox = new System.Windows.Forms.TextBox();
-            this.SpottedCircleBox = new System.Windows.Forms.TextBox();
+            this.SpottedRectangleBox = new System.Windows.Forms.TextBox();
             this.CircleLabel = new System.Windows.Forms.Label();
             this.RectanglesLabel = new System.Windows.Forms.Label();
-            this.SpottedCircleLabel = new System.Windows.Forms.Label();
+            this.SpottedRectangleLabel = new System.Windows.Forms.Label();
             this.PauseResumeButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.AnimationSlider = new System.Windows.Forms.TrackBar();
@@ -105,12 +105,12 @@ namespace ShapeAnimator.View.Forms
             this.RectangleBox.Size = new System.Drawing.Size(100, 20);
             this.RectangleBox.TabIndex = 5;
             // 
-            // SpottedCircleBox
+            // SpottedRectangleBox
             // 
-            this.SpottedCircleBox.Location = new System.Drawing.Point(573, 16);
-            this.SpottedCircleBox.Name = "SpottedCircleBox";
-            this.SpottedCircleBox.Size = new System.Drawing.Size(100, 20);
-            this.SpottedCircleBox.TabIndex = 6;
+            this.SpottedRectangleBox.Location = new System.Drawing.Point(596, 16);
+            this.SpottedRectangleBox.Name = "SpottedRectangleBox";
+            this.SpottedRectangleBox.Size = new System.Drawing.Size(100, 20);
+            this.SpottedRectangleBox.TabIndex = 6;
             // 
             // CircleLabel
             // 
@@ -130,14 +130,14 @@ namespace ShapeAnimator.View.Forms
             this.RectanglesLabel.TabIndex = 8;
             this.RectanglesLabel.Text = "Rectangles";
             // 
-            // SpottedCircleLabel
+            // SpottedRectangleLabel
             // 
-            this.SpottedCircleLabel.AutoSize = true;
-            this.SpottedCircleLabel.Location = new System.Drawing.Point(489, 19);
-            this.SpottedCircleLabel.Name = "SpottedCircleLabel";
-            this.SpottedCircleLabel.Size = new System.Drawing.Size(78, 13);
-            this.SpottedCircleLabel.TabIndex = 9;
-            this.SpottedCircleLabel.Text = "Spotted Circles";
+            this.SpottedRectangleLabel.AutoSize = true;
+            this.SpottedRectangleLabel.Location = new System.Drawing.Point(489, 19);
+            this.SpottedRectangleLabel.Name = "SpottedRectangleLabel";
+            this.SpottedRectangleLabel.Size = new System.Drawing.Size(101, 13);
+            this.SpottedRectangleLabel.TabIndex = 9;
+            this.SpottedRectangleLabel.Text = "Spotted Rectangles";
             // 
             // PauseResumeButton
             // 
@@ -191,10 +191,10 @@ namespace ShapeAnimator.View.Forms
             this.Controls.Add(this.AnimationSlider);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.PauseResumeButton);
-            this.Controls.Add(this.SpottedCircleLabel);
+            this.Controls.Add(this.SpottedRectangleLabel);
             this.Controls.Add(this.RectanglesLabel);
             this.Controls.Add(this.CircleLabel);
-            this.Controls.Add(this.SpottedCircleBox);
+            this.Controls.Add(this.SpottedRectangleBox);
             this.Controls.Add(this.RectangleBox);
             this.Controls.Add(this.CircleBox);
             this.Controls.Add(this.startButton);
@@ -221,10 +221,10 @@ namespace ShapeAnimator.View.Forms
         private System.Windows.Forms.Button startButton;
         private TextBox CircleBox;
         private TextBox RectangleBox;
-        private TextBox SpottedCircleBox;
+        private TextBox SpottedRectangleBox;
         private Label CircleLabel;
         private Label RectanglesLabel;
-        private Label SpottedCircleLabel;
+        private Label SpottedRectangleLabel;
         private Button PauseResumeButton;
         private Button ClearButton;
         private TrackBar AnimationSlider;

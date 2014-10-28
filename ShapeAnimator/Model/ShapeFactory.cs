@@ -26,7 +26,7 @@ namespace ShapeAnimator.Model
             {
                 return new Rectangle();
             }
-            if ((Shapes) randomShape == Shapes.SpottedCircle)
+            if ((Shapes) randomShape == Shapes.SpottedRectangle)
             {
                 return new SpottedRectangle();
             }
@@ -55,16 +55,16 @@ namespace ShapeAnimator.Model
         ///     Creates a new spotted circle.
         /// </summary>
         /// <returns></returns>
-        public static Shape CreateNewSpottedCircle()
+        public static Shape CreateNewSpottedRectangle()
         {
-            return createFinalShape((int) Shapes.SpottedCircle);
+            return createFinalShape((int) Shapes.SpottedRectangle);
         }
 
         private enum Shapes
         {
             Circle,
             Rectangle,
-            SpottedCircle
+            SpottedRectangle
         }
     }
 }

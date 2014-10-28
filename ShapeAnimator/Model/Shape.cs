@@ -136,15 +136,15 @@ namespace ShapeAnimator.Model
         /// <summary>
         ///     Initializes a new instance of the <see cref="Shape" /> class.
         /// </summary>
-        protected Shape(int shapeWidth, int shapeHeight)
+        protected Shape()
         {
             this.shapeColor = RandomUtils.GenerateRandomColor();
             this.speedX = RandomUtils.GenerateRandomSpeed();
             this.speedY = RandomUtils.GenerateRandomSpeed();
             this.directionX = RandomUtils.GenerateRandomDirection();
             this.directionY = RandomUtils.GenerateRandomDirection();
-            this.Width = shapeWidth;
-            this.Height = shapeHeight;
+            this.Width = RandomUtils.GenerateRandomHeightWidth();
+            this.Height = RandomUtils.GenerateRandomHeightWidth();
         }
 
         #endregion

@@ -10,6 +10,9 @@ namespace ShapeAnimator.Model
         private const int MaxRgbValue = 256;
         private const int MinRgbValue = 1;
         private const int MaxSpeedValue = 5;
+        private const int MinSize = 20;
+        private const int MaxSize = 101;
+
         private static readonly Random Randomizer = new Random();
 
         #endregion
@@ -53,6 +56,15 @@ namespace ShapeAnimator.Model
         public static int GenerateRandomSpeed()
         {
             return NextInt(MaxSpeedValue);
+        }
+
+        /// <summary>
+        /// Generates the random width or height.
+        /// </summary>
+        /// <returns></returns>
+        public static int GenerateRandomHeightWidth()
+        {
+            return NextInt(MinSize, MaxSize);
         }
 
         /// <summary>

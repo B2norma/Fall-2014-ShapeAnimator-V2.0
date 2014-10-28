@@ -55,23 +55,23 @@ namespace ShapeAnimator.Model
         /// <param name="numberOfShapes">The number of shapes</param>
         /// <param name="numberOfCircles">The number of circles.</param>
         /// <param name="numberOfRectangles">The number of rectangles.</param>
-        /// <param name="numberOfSpottedCircles">The number of spotted circles.</param>
+        /// <param name="numberOfSpottedRectangles">The number of spotted circles.</param>
         public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfCircles, int numberOfRectangles,
-            int numberOfSpottedCircles)
+            int numberOfSpottedRectangles)
         {
             this.shapesList.Clear();
 
             this.generateShapes(numberOfShapes);
             this.generateCircles(numberOfCircles);
             this.generateRectangles(numberOfRectangles);
-            this.generateSpottedCircles(numberOfSpottedCircles);
+            this.generateSpottedRectangle(numberOfSpottedRectangles);
         }
 
-        private void generateSpottedCircles(int numberOfSpottedCircles)
+        private void generateSpottedRectangle(int numberOfSpottedCircles)
         {
             for (int i = 0; i < numberOfSpottedCircles; i++)
             {
-                Shape tempShape = ShapeFactory.CreateNewSpottedCircle();
+                Shape tempShape = ShapeFactory.CreateNewSpottedRectangle();
                 tempShape = this.placeShapeWithinBounds(tempShape);
                 this.shapesList.Add(tempShape);
             }
