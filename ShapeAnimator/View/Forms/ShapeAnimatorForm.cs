@@ -109,7 +109,7 @@ namespace ShapeAnimator.View.Forms
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ShapeAnimatorForm" /> class.

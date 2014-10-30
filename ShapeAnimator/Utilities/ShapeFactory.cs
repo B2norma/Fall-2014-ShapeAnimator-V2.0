@@ -5,6 +5,20 @@ namespace ShapeAnimator.Model
 {
     internal static class ShapeFactory
     {
+
+        #region Enums
+
+        private enum Shapes
+        {
+            Circle,
+            Rectangle,
+            SpottedRectangle
+        }
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         ///     Creates a new shape.
         ///     Prerequisites:
@@ -39,7 +53,7 @@ namespace ShapeAnimator.Model
         /// <returns></returns>
         public static Shape CreateNewCircle()
         {
-            return createFinalShape((int) Shapes.Circle);
+            return new Circle();
         }
 
         /// <summary>
@@ -48,7 +62,7 @@ namespace ShapeAnimator.Model
         /// <returns></returns>
         public static Shape CreateNewRectangle()
         {
-            return createFinalShape((int) Shapes.Rectangle);
+            return new Rectangle();
         }
 
         /// <summary>
@@ -57,14 +71,10 @@ namespace ShapeAnimator.Model
         /// <returns></returns>
         public static Shape CreateNewSpottedRectangle()
         {
-            return createFinalShape((int) Shapes.SpottedRectangle);
+            return new SpottedRectangle();
         }
 
-        private enum Shapes
-        {
-            Circle,
-            Rectangle,
-            SpottedRectangle
-        }
+        #endregion
+
     }
 }

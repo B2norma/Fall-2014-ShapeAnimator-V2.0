@@ -4,6 +4,9 @@ namespace ShapeAnimator.Model.Shapes
 {
     internal class SpottedRectangle : Shape
     {
+
+        #region Constructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpottedRectangle" /> class.
         /// </summary>
@@ -11,5 +14,8 @@ namespace ShapeAnimator.Model.Shapes
         {
             this.Sprite = new SpottedRectangleSprite(this);
         }
+
+        #endregion
+
     }
 }

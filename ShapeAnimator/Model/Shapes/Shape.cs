@@ -9,6 +9,7 @@ namespace ShapeAnimator.Model
     /// </summary>
     public abstract class Shape
     {
+
         #region Instance variables
 
         private readonly Color shapeColor;
@@ -204,6 +205,19 @@ namespace ShapeAnimator.Model
             }
         }
 
+        /// <summary>
+        ///  Calculates the area of the shape.
+        /// </summary>
+        /// <returns> The area of the shape. </returns>
+        public abstract double CalculateArea();
+
+        /// <summary>
+        ///  Calculates the perimeter of the shape.
+        /// </summary>
+        /// <returns> The parimeter of the shape. </returns>
+        public abstract double CalculatePerimeter();
+
         #endregion
+
     }
 }

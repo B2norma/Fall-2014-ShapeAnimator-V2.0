@@ -62,12 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\RandomUtils.cs" />
-    <Compile Include="Model\ShapeController.cs" />
+    <Compile Include="Utilities\RandomUtils.cs" />
+    <Compile Include="Controller\ShapeController.cs" />
     <Compile Include="Model\Shapes\Circle.cs" />
     <Compile Include="Model\Shapes\SpottedRectangle.cs" />
-    <Compile Include="Model\Shape.cs" />
-    <Compile Include="Model\ShapeFactory.cs" />
+    <Compile Include="Model\Shapes\Shape.cs" />
+    <Compile Include="Utilities\ShapeFactory.cs" />
     <Compile Include="Model\Shapes\Rectangle.cs" />
     <Compile Include="View\Forms\ShapeAnimatorForm.cs">
       <SubType>Form</SubType>
@@ -77,10 +77,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Shapes\CircleSprite.cs" />
-    <Compile Include="View\Shapes\SpottedRectangleSprite.cs" />
-    <Compile Include="View\Shapes\RectangleSprite.cs" />
-    <Compile Include="View\Shapes\ShapeSprite.cs" />
+    <Compile Include="View\Shape Sprites\CircleSprite.cs" />
+    <Compile Include="View\Shape Sprites\SpottedRectangleSprite.cs" />
+    <Compile Include="View\Shape Sprites\RectangleSprite.cs" />
+    <Compile Include="View\Shape Sprites\ShapeSprite.cs" />
     <EmbeddedResource Include="View\Forms\ShapeAnimatorForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ShapeAnimatorForm.cs</DependentUpon>

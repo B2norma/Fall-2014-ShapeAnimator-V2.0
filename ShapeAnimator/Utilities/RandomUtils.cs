@@ -5,15 +5,20 @@ namespace ShapeAnimator.Model
 {
     internal static class RandomUtils
     {
+
         #region Variables
+
+        private static readonly Random Randomizer = new Random();
+
+        #endregion
+
+        #region Constants
 
         private const int MaxRgbValue = 256;
         private const int MinRgbValue = 1;
         private const int MaxSpeedValue = 5;
         private const int MinSize = 20;
         private const int MaxSize = 101;
-
-        private static readonly Random Randomizer = new Random();
 
         #endregion
 
@@ -86,5 +91,6 @@ namespace ShapeAnimator.Model
         }
 
         #endregion
+
     }
 }

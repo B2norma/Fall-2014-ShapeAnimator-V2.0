@@ -4,6 +4,9 @@ namespace ShapeAnimator.Model.Shapes
 {
     internal class Rectangle : Shape
     {
+
+        #region Constructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Rectangle" /> class.
         ///     Pre: nothing can be null
@@ -12,5 +15,8 @@ namespace ShapeAnimator.Model.Shapes
         {
             this.Sprite = new RectangleSprite(this);
         }
+
+        #endregion
+
     }
 }

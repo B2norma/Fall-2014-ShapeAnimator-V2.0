@@ -11,6 +11,7 @@ namespace ShapeAnimator.Model
     /// </summary>
     public class ShapeController
     {
+
         #region Instance variables
 
         private readonly PictureBox canvas;
@@ -72,7 +73,7 @@ namespace ShapeAnimator.Model
             for (int i = 0; i < numberOfSpottedCircles; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewSpottedRectangle();
-                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBounds(tempShape);
                 this.shapesList.Add(tempShape);
             }
         }
@@ -82,7 +83,7 @@ namespace ShapeAnimator.Model
             for (int i = 0; i < numberOfRectangles; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewRectangle();
-                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBounds(tempShape);
                 this.shapesList.Add(tempShape);
             }
         }
@@ -92,7 +93,7 @@ namespace ShapeAnimator.Model
             for (int i = 0; i < numberOfCircles; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewCircle();
-                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBounds(tempShape);
                 this.shapesList.Add(tempShape);
             }
         }
@@ -102,17 +103,17 @@ namespace ShapeAnimator.Model
             for (int i = 0; i < numberOfShapes; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewShape();
-                tempShape = this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBounds(tempShape);
                 this.shapesList.Add(tempShape);
             }
         }
 
-        private Shape placeShapeWithinBounds(Shape tempShape)
+        private void placeShapeWithinBounds(Shape tempShape)
         {
+
             tempShape.X = RandomUtils.NextInt(this.canvas.Width - tempShape.Width);
             tempShape.Y = RandomUtils.NextInt(this.canvas.Height - tempShape.Height);
-
-            return tempShape;
+            
         }
 
         /// <summary>
@@ -166,5 +167,6 @@ namespace ShapeAnimator.Model
         }
 
         #endregion
+
     }
 }

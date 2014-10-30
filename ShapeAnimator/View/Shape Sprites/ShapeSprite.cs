@@ -34,7 +34,6 @@ namespace ShapeAnimator.View.Shapes
 
         #endregion
 
-
         #region Constructors
 
         /// <summary>
