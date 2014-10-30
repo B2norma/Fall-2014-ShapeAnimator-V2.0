@@ -21,6 +21,21 @@ namespace ShapeAnimator.Controller
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the shapes list.
+        /// </summary>
+        /// <value>
+        /// The shapes list.
+        /// </value>
+        public List<Shape> ShapesList
+        {
+            get { return this.shapesList; }
+        }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -46,7 +61,6 @@ namespace ShapeAnimator.Controller
             this.canvas = pictureBox;
             this.shapesList = new List<Shape>();
         }
-
         #endregion
 
         #region Methods
@@ -62,7 +76,7 @@ namespace ShapeAnimator.Controller
         public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfCircles, int numberOfRectangles,
             int numberOfSpottedRectangles)
         {
-            this.shapesList.Clear();
+            this.ShapesList.Clear();
 
             this.generateShapes(numberOfShapes);
             this.generateCircles(numberOfCircles);
@@ -76,7 +90,7 @@ namespace ShapeAnimator.Controller
             {
                 Shape tempShape = ShapeFactory.CreateNewSpottedRectangle();
                 this.placeShapeWithinBounds(tempShape);
-                this.shapesList.Add(tempShape);
+                this.ShapesList.Add(tempShape);
             }
         }
 
@@ -86,7 +100,7 @@ namespace ShapeAnimator.Controller
             {
                 Shape tempShape = ShapeFactory.CreateNewRectangle();
                 this.placeShapeWithinBounds(tempShape);
-                this.shapesList.Add(tempShape);
+                this.ShapesList.Add(tempShape);
             }
         }
 
@@ -96,7 +110,7 @@ namespace ShapeAnimator.Controller
             {
                 Shape tempShape = ShapeFactory.CreateNewCircle();
                 this.placeShapeWithinBounds(tempShape);
-                this.shapesList.Add(tempShape);
+                this.ShapesList.Add(tempShape);
             }
         }
 
@@ -106,7 +120,7 @@ namespace ShapeAnimator.Controller
             {
                 Shape tempShape = ShapeFactory.CreateNewShape();
                 this.placeShapeWithinBounds(tempShape);
-                this.shapesList.Add(tempShape);
+                this.ShapesList.Add(tempShape);
             }
         }
 
@@ -130,9 +144,9 @@ namespace ShapeAnimator.Controller
                 throw new ArgumentNullException("g");
             }
 
-            if (this.shapesList != null)
+            if (this.ShapesList != null)
             {
-                foreach (Shape shape in this.shapesList)
+                foreach (Shape shape in this.ShapesList)
                 {
                     moveAndDrawShape(g, shape);
                 }

@@ -130,11 +130,27 @@ namespace ShapeAnimator.View.Forms
         {
             if (this.isPaused == false)
             {
+                this.updateGuiDataGrid();
                 for (int i = 0; i < (this.AnimationSlider.Value/DefaultAnimationSpeed); i++)
                 {
                     this.Refresh();
                 }
             }
+        }
+
+        private void updateGuiDataGrid()
+        {
+            this.dataGridForShapes.Rows.Clear();
+            foreach (var currentShape in canvasManager.ShapesList)
+            {
+                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, formatColor(currentShape.Color),
+                    currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount);
+            }
+        }
+
+        private object formatColor(Color color)
+        {
+            return "(" + color.R + ", " + color.G + ", " + color.B + ")";
         }
 
         private void shapeCanvasPictureBox_Paint(object sender, PaintEventArgs e)

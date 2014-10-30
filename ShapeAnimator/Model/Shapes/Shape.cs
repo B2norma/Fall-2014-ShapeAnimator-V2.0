@@ -31,6 +31,7 @@ namespace ShapeAnimator.Model.Shapes
         private int directionY;
         private Point location;
         private ShapeSprite sprite;
+        private int hitCount;
 
         #endregion
 
@@ -142,6 +143,17 @@ namespace ShapeAnimator.Model.Shapes
             get { return this.shapeColor; }
         }
 
+        /// <summary>
+        /// Gets the hit count.
+        /// </summary>
+        /// <value>
+        /// The hit count.
+        /// </value>
+        public int HitCount
+        {
+            get { return this.hitCount; }
+        }
+
         #endregion
 
         #region Constructors
@@ -192,6 +204,7 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         public void DirectionXFlip()
         {
+            hitCount++;
             if (this.directionX == 1)
             {
                 this.directionX = -1;
@@ -207,6 +220,7 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         public void DirectionYFlip()
         {
+            hitCount++;
             if (this.directionY == 1)
             {
                 this.directionY = -1;
