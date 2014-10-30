@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using ShapeAnimator.Model.Shapes;
 using ShapeAnimator.Properties;
+using ShapeAnimator.Utilities;
 
-namespace ShapeAnimator.Model
+namespace ShapeAnimator.Controller
 {
     /// <summary>
     ///     Manages the collection of shapes on the canvas.

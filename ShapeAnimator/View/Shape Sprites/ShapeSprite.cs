@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using ShapeAnimator.Model;
+using ShapeAnimator.Model.Shapes;
 
-namespace ShapeAnimator.View.Shapes
+namespace ShapeAnimator.View
 {
     /// <summary>
     ///     Holds all common attributes of shapes.
@@ -10,11 +10,6 @@ namespace ShapeAnimator.View.Shapes
     public abstract class ShapeSprite
     {
         #region Instance variables
-
-        /// <summary>
-        ///     The shape object.
-        /// </summary>
-        private Shape theShape;
 
         #endregion
 
@@ -26,11 +21,7 @@ namespace ShapeAnimator.View.Shapes
         /// <value>
         /// theShape.
         /// </value>
-        protected Shape TheShape
-        {
-            get { return this.theShape;}
-            set { this.theShape = value;}
-        }
+        protected Shape TheShape { get; set; }
 
         #endregion
 

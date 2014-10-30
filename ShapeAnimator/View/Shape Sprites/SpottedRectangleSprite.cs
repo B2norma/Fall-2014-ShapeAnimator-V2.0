@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
-using ShapeAnimator.Model;
+using ShapeAnimator.Model.Shapes;
 
-namespace ShapeAnimator.View.Shapes
+namespace ShapeAnimator.View
 {
     /// <summary>
     ///     A Spotted Rectangle Sprite, inherits from the Rectangle Sprite.

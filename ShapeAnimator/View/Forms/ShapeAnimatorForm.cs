@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using ShapeAnimator.Model;
+using ShapeAnimator.Controller;
 
 namespace ShapeAnimator.View.Forms
 {
@@ -204,11 +204,6 @@ namespace ShapeAnimator.View.Forms
         }
 
         private void AnimationSlider_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

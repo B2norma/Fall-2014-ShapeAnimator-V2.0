@@ -1,4 +1,4 @@
-﻿using ShapeAnimator.View.Shapes;
+﻿using ShapeAnimator.View;
 using System;
 
 namespace ShapeAnimator.Model.Shapes
@@ -11,7 +11,7 @@ namespace ShapeAnimator.Model.Shapes
         /// <summary>
         ///     Initializes a new instance of the <see cref="Circle" /> class.
         /// </summary>
-        public Circle() : base()
+        public Circle()
         {
             this.Sprite = new CircleSprite(this);
         }
@@ -28,7 +28,7 @@ namespace ShapeAnimator.Model.Shapes
         /// </returns>
         public override double CalculateArea()
         {
-            return Math.PI * (this.Height / 2) * (this.Width / 2);
+            return Math.PI * ((double)this.Height / 2) * ((double)this.Width / 2);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ShapeAnimator.Model.Shapes
         /// </returns>
         public override double CalculatePerimeter()
         {
-            return (2 * Math.PI) * (Math.Sqrt((Math.Pow((this.Height / 2), 2) + Math.Pow((this.Width / 2), 2)) / 2));
+            return (2 * Math.PI) * (Math.Sqrt((Math.Pow(((double)this.Height / 2), 2) + Math.Pow(((double)this.Width / 2), 2)) / 2));
         }
 
         #endregion

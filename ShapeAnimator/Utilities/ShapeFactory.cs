@@ -1,7 +1,7 @@
 ﻿using System;
 using ShapeAnimator.Model.Shapes;
 
-namespace ShapeAnimator.Model
+namespace ShapeAnimator.Utilities
 {
     internal static class ShapeFactory
     {
@@ -34,15 +34,15 @@ namespace ShapeAnimator.Model
         {
             if ((Shapes) randomShape == Shapes.Circle)
             {
-                return new Circle();
+                return CreateNewCircle();
             }
             if ((Shapes) randomShape == Shapes.Rectangle)
             {
-                return new Rectangle();
+                return CreateNewRectangle();
             }
             if ((Shapes) randomShape == Shapes.SpottedRectangle)
             {
-                return new SpottedRectangle();
+                return CreateNewSpottedRectangle();
             }
             return null;
         }

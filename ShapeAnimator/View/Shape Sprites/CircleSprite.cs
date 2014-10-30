@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
-using ShapeAnimator.Model;
+using ShapeAnimator.Model.Shapes;
 
-namespace ShapeAnimator.View.Shapes
+namespace ShapeAnimator.View
 {
     /// <summary>
     ///     Responsible for drawing the actual sprite on the screen.

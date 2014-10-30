@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Drawing;
 
-namespace ShapeAnimator.Model
+namespace ShapeAnimator.Utilities
 {
     internal static class RandomUtils
     {
@@ -12,15 +11,6 @@ namespace ShapeAnimator.Model
 
         #endregion
 
-        #region Constants
-
-        private const int MaxRgbValue = 256;
-        private const int MinRgbValue = 1;
-        private const int MaxSpeedValue = 5;
-        private const int MinSize = 20;
-        private const int MaxSize = 101;
-
-        #endregion
 
         #region Methods
 
@@ -45,50 +35,6 @@ namespace ShapeAnimator.Model
             return Randomizer.Next(minNumber, maxNumber);
         }
 
-        /// <summary>
-        ///     Generates a random color.
-        /// </summary>
-        /// <returns></returns>
-        public static Color GenerateRandomColor()
-        {
-            return Color.FromArgb(NextInt(MinRgbValue, MaxRgbValue), NextInt(MinRgbValue, MaxRgbValue), NextInt(MinRgbValue, MaxRgbValue));
-        }
-
-        /// <summary>
-        ///     Generates the random speed.
-        /// </summary>
-        /// <returns></returns>
-        public static int GenerateRandomSpeed()
-        {
-            return NextInt(MaxSpeedValue);
-        }
-
-        /// <summary>
-        /// Generates the random width or height.
-        /// </summary>
-        /// <returns></returns>
-        public static int GenerateRandomHeightWidth()
-        {
-            return NextInt(MinSize, MaxSize);
-        }
-
-        /// <summary>
-        ///     Generates the random direction.
-        /// </summary>
-        /// <returns></returns>
-        public static int GenerateRandomDirection()
-        {
-            return verifyDirectionValue(NextInt(2));
-        }
-
-        private static int verifyDirectionValue(int randomDirection)
-        {
-            if (randomDirection == 0)
-            {
-                return -1;
-            }
-            return 1;
-        }
 
         #endregion
 

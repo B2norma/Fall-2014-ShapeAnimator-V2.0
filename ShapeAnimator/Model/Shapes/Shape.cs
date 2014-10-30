@@ -1,14 +1,24 @@
 using System;
 using System.Drawing;
-using ShapeAnimator.View.Shapes;
+using ShapeAnimator.Utilities;
+using ShapeAnimator.View;
 
-namespace ShapeAnimator.Model
+namespace ShapeAnimator.Model.Shapes
 {
     /// <summary>
     ///     Holds information about the shape
     /// </summary>
     public abstract class Shape
     {
+        #region Constants
+
+        private const int MaxRgbValue = 256;
+        private const int MinRgbValue = 1;
+        private const int MaxSpeedValue = 5;
+        private const int MinSize = 20;
+        private const int MaxSize = 101;
+
+        #endregion
 
         #region Instance variables
 
@@ -139,13 +149,13 @@ namespace ShapeAnimator.Model
         /// </summary>
         protected Shape()
         {
-            this.shapeColor = RandomUtils.GenerateRandomColor();
-            this.speedX = RandomUtils.GenerateRandomSpeed();
-            this.speedY = RandomUtils.GenerateRandomSpeed();
-            this.directionX = RandomUtils.GenerateRandomDirection();
-            this.directionY = RandomUtils.GenerateRandomDirection();
-            this.Width = RandomUtils.GenerateRandomHeightWidth();
-            this.Height = RandomUtils.GenerateRandomHeightWidth();
+            this.shapeColor = generateRandomColor();
+            this.speedX = generateRandomSpeed();
+            this.speedY = generateRandomSpeed();
+            this.directionX = generateRandomDirection();
+            this.directionY = generateRandomDirection();
+            this.Width = generateRandomHeightWidth();
+            this.Height = generateRandomHeightWidth();
         }
 
         #endregion
@@ -205,19 +215,48 @@ namespace ShapeAnimator.Model
             }
         }
 
+        private static Color generateRandomColor()
+        {
+            return Color.FromArgb(RandomUtils.NextInt(MinRgbValue, MaxRgbValue),
+                RandomUtils.NextInt(MinRgbValue, MaxRgbValue), RandomUtils.NextInt(MinRgbValue, MaxRgbValue));
+        }
+
+        private static int generateRandomSpeed()
+        {
+            return RandomUtils.NextInt(MaxSpeedValue);
+        }
+
+        private static int generateRandomHeightWidth()
+        {
+            return RandomUtils.NextInt(MinSize, MaxSize);
+        }
+
+        private static int generateRandomDirection()
+        {
+            return verifyDirectionValue(RandomUtils.NextInt(2));
+        }
+
+        private static int verifyDirectionValue(int randomDirection)
+        {
+            if (randomDirection == 0)
+            {
+                return -1;
+            }
+            return 1;
+        }
+
         /// <summary>
-        ///  Calculates the area of the shape.
+        ///     Calculates the area of the shape.
         /// </summary>
         /// <returns> The area of the shape. </returns>
         public abstract double CalculateArea();
 
         /// <summary>
-        ///  Calculates the perimeter of the shape.
+        ///     Calculates the perimeter of the shape.
         /// </summary>
         /// <returns> The parimeter of the shape. </returns>
         public abstract double CalculatePerimeter();
 
         #endregion
-
     }
 }

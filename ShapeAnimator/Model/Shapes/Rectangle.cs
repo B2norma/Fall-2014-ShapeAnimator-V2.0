@@ -1,4 +1,4 @@
-﻿using ShapeAnimator.View.Shapes;
+﻿using ShapeAnimator.View;
 
 namespace ShapeAnimator.Model.Shapes
 {
@@ -11,7 +11,7 @@ namespace ShapeAnimator.Model.Shapes
         ///     Initializes a new instance of the <see cref="Rectangle" /> class.
         ///     Pre: nothing can be null
         /// </summary>
-        public Rectangle() : base()
+        public Rectangle()
         {
             this.Sprite = new RectangleSprite(this);
         }
