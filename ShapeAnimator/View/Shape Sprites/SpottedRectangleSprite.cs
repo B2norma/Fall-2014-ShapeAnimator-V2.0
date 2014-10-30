@@ -22,6 +22,7 @@ namespace ShapeAnimator.View.Shapes
         #endregion
 
         #region Methods
+
         /// <summary>
         ///     Draws a LRectangle shape
         ///     Preconditon: g != null
