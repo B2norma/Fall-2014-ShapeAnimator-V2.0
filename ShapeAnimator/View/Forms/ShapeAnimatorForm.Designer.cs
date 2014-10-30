@@ -59,8 +59,17 @@ namespace ShapeAnimator.View.Forms
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.dataGridForShapes = new System.Windows.Forms.DataGridView();
+            this.shapeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ShapeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColorForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PerimiterForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AreaForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CollisionsForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnimationSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridForShapes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shapeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // canvasPictureBox
@@ -185,7 +194,7 @@ namespace ShapeAnimator.View.Forms
             this.AnimationSlider.SmallChange = 10;
             this.AnimationSlider.TabIndex = 12;
             this.AnimationSlider.TickFrequency = 50;
-            this.AnimationSlider.Value = 50;
+            this.AnimationSlider.Value = 10;
             this.AnimationSlider.Scroll += new System.EventHandler(this.AnimationSlider_Scroll);
             // 
             // AnimationSpeedLabel
@@ -224,7 +233,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(915, 372);
+            this.label3.Location = new System.Drawing.Point(915, 381);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 13);
             this.label3.TabIndex = 16;
@@ -234,7 +243,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(915, 352);
+            this.label4.Location = new System.Drawing.Point(916, 368);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 13);
             this.label4.TabIndex = 17;
@@ -245,7 +254,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(915, 270);
+            this.label5.Location = new System.Drawing.Point(916, 292);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(20, 13);
             this.label5.TabIndex = 18;
@@ -255,7 +264,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(915, 290);
+            this.label6.Location = new System.Drawing.Point(916, 320);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 13);
             this.label6.TabIndex = 19;
@@ -265,7 +274,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(915, 311);
+            this.label7.Location = new System.Drawing.Point(916, 342);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 13);
             this.label7.TabIndex = 20;
@@ -275,7 +284,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(915, 331);
+            this.label8.Location = new System.Drawing.Point(916, 355);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 13);
             this.label8.TabIndex = 21;
@@ -295,7 +304,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(915, 209);
+            this.label10.Location = new System.Drawing.Point(916, 216);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(20, 13);
             this.label10.TabIndex = 23;
@@ -305,7 +314,7 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(915, 229);
+            this.label11.Location = new System.Drawing.Point(916, 239);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(20, 13);
             this.label11.TabIndex = 24;
@@ -325,17 +334,65 @@ namespace ShapeAnimator.View.Forms
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(915, 250);
+            this.label13.Location = new System.Drawing.Point(915, 266);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(20, 13);
             this.label13.TabIndex = 26;
             this.label13.Text = "x6";
+            // 
+            // dataGridForShapes
+            // 
+            this.dataGridForShapes.AllowUserToAddRows = false;
+            this.dataGridForShapes.AllowUserToDeleteRows = false;
+            this.dataGridForShapes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridForShapes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ShapeType,
+            this.ColorForShape,
+            this.PerimiterForShape,
+            this.AreaForShape,
+            this.CollisionsForShape});
+            this.dataGridForShapes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridForShapes.Location = new System.Drawing.Point(4, 479);
+            this.dataGridForShapes.MultiSelect = false;
+            this.dataGridForShapes.Name = "dataGridForShapes";
+            this.dataGridForShapes.Size = new System.Drawing.Size(869, 315);
+            this.dataGridForShapes.TabIndex = 27;
+            // 
+            // shapeBindingSource
+            // 
+            this.shapeBindingSource.DataSource = typeof(ShapeAnimator.Model.Shapes.Shape);
+            // 
+            // ShapeType
+            // 
+            this.ShapeType.HeaderText = "Shape Type";
+            this.ShapeType.Name = "ShapeType";
+            // 
+            // ColorForShape
+            // 
+            this.ColorForShape.HeaderText = "Color";
+            this.ColorForShape.Name = "ColorForShape";
+            // 
+            // PerimiterForShape
+            // 
+            this.PerimiterForShape.HeaderText = "Perimiter";
+            this.PerimiterForShape.Name = "PerimiterForShape";
+            // 
+            // AreaForShape
+            // 
+            this.AreaForShape.HeaderText = "Area";
+            this.AreaForShape.Name = "AreaForShape";
+            // 
+            // CollisionsForShape
+            // 
+            this.CollisionsForShape.HeaderText = "Collision Count";
+            this.CollisionsForShape.Name = "CollisionsForShape";
             // 
             // ShapeAnimatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 806);
+            this.Controls.Add(this.dataGridForShapes);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -369,6 +426,8 @@ namespace ShapeAnimator.View.Forms
             this.Load += new System.EventHandler(this.ShapeAnimatorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnimationSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridForShapes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shapeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,6 +463,13 @@ namespace ShapeAnimator.View.Forms
         private Label label11;
         private Label label12;
         private Label label13;
+        private DataGridView dataGridForShapes;
+        private BindingSource shapeBindingSource;
+        private DataGridViewTextBoxColumn ShapeType;
+        private DataGridViewTextBoxColumn ColorForShape;
+        private DataGridViewTextBoxColumn PerimiterForShape;
+        private DataGridViewTextBoxColumn AreaForShape;
+        private DataGridViewTextBoxColumn CollisionsForShape;
     }
 }
 

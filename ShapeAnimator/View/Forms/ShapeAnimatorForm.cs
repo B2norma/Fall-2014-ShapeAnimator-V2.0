@@ -12,7 +12,7 @@ namespace ShapeAnimator.View.Forms
     {
         #region Constants
 
-        private const int DefaultAnimationSpeed = 50;
+        private const int DefaultAnimationSpeed = 10;
 
         private const string PauseButtonPause = "Pause";
 

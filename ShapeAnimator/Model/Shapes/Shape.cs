@@ -15,8 +15,10 @@ namespace ShapeAnimator.Model.Shapes
         private const int MaxRgbValue = 256;
         private const int MinRgbValue = 1;
         private const int MaxSpeedValue = 5;
+        private const int MinSpeedValue = 1;
         private const int MinSize = 20;
         private const int MaxSize = 101;
+        private const int AvaliableDirections = 2;
 
         #endregion
 
@@ -223,7 +225,7 @@ namespace ShapeAnimator.Model.Shapes
 
         private static int generateRandomSpeed()
         {
-            return RandomUtils.NextInt(MaxSpeedValue);
+            return RandomUtils.NextInt(MinSpeedValue,MaxSpeedValue);
         }
 
         private static int generateRandomHeightWidth()
@@ -233,7 +235,7 @@ namespace ShapeAnimator.Model.Shapes
 
         private static int generateRandomDirection()
         {
-            return verifyDirectionValue(RandomUtils.NextInt(2));
+            return verifyDirectionValue(RandomUtils.NextInt(AvaliableDirections));
         }
 
         private static int verifyDirectionValue(int randomDirection)
