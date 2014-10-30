@@ -8,6 +8,8 @@ namespace ShapeAnimator.View.Shapes
     /// </summary>
     public class SpottedRectangleSprite : RectangleSprite
     {
+
+        # region Constructors
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpottedRectangleSprite" /> class.
         ///     Precondition: shape != null
@@ -17,6 +19,9 @@ namespace ShapeAnimator.View.Shapes
         {
         }
 
+        #endregion
+
+        #region Methods
         /// <summary>
         ///     Draws a LRectangle shape
         ///     Preconditon: g != null
@@ -31,5 +36,8 @@ namespace ShapeAnimator.View.Shapes
             g.FillEllipse(redBrush, this.TheShape.X + this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,
                 10, 10);
         }
+
+        #endregion
+
     }
 }

@@ -14,9 +14,28 @@ namespace ShapeAnimator.View.Shapes
         /// <summary>
         ///     The shape object.
         /// </summary>
-        protected readonly Shape TheShape;
+        private Shape theShape;
 
         #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the value of theShape variable.
+        /// </summary>
+        /// <value>
+        /// theShape.
+        /// </value>
+        protected Shape TheShape
+        {
+            get { return this.theShape;}
+            set { this.theShape = value;}
+        }
+
+        #endregion
+
+
+        #region Constructors
 
         /// <summary>
         ///     Prevents a default instance of the <see cref="ShapeSprite" /> class from being created.
@@ -40,6 +59,10 @@ namespace ShapeAnimator.View.Shapes
             this.TheShape = theShape;
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         ///     Draws a shape
         ///     Preconditon: g != null
@@ -57,5 +80,7 @@ namespace ShapeAnimator.View.Shapes
                 throw new Exception("Shape is null");
             }
         }
-    }
+
+        #endregion
+    }     
 }
