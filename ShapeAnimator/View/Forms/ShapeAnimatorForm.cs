@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using ShapeAnimator.Controller;
 
@@ -12,7 +13,7 @@ namespace ShapeAnimator.View.Forms
     {
         #region Constants
 
-        private const int DefaultAnimationSpeed = 50;
+        private const int DefaultAnimationSpeed = 10;
 
         private const string PauseButtonPause = "Pause";
 
@@ -217,6 +218,14 @@ namespace ShapeAnimator.View.Forms
 
         private void ShapeAnimatorForm_Load(object sender, EventArgs e)
         {
+            this.makeDataGridViewDoubleBuffered();
+        }
+
+        private void makeDataGridViewDoubleBuffered()
+        {
+            Type dgvType = this.dataGridForShapes.GetType();
+            PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            pi.SetValue(this.dataGridForShapes, true, null);
         }
 
         private void enableButtonsForAnimation()

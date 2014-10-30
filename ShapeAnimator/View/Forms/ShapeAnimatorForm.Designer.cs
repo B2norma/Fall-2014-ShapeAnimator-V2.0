@@ -60,7 +60,6 @@ namespace ShapeAnimator.View.Forms
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.dataGridForShapes = new System.Windows.Forms.DataGridView();
-            this.shapeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ShapeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PerimiterForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,7 +69,6 @@ namespace ShapeAnimator.View.Forms
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnimationSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridForShapes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shapeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // canvasPictureBox
@@ -194,8 +192,8 @@ namespace ShapeAnimator.View.Forms
             this.AnimationSlider.Size = new System.Drawing.Size(45, 231);
             this.AnimationSlider.SmallChange = 10;
             this.AnimationSlider.TabIndex = 12;
-            this.AnimationSlider.TickFrequency = 50;
-            this.AnimationSlider.Value = 50;
+            this.AnimationSlider.TickFrequency = 10;
+            this.AnimationSlider.Value = 10;
             this.AnimationSlider.Scroll += new System.EventHandler(this.AnimationSlider_Scroll);
             // 
             // AnimationSpeedLabel
@@ -360,10 +358,6 @@ namespace ShapeAnimator.View.Forms
             this.dataGridForShapes.Size = new System.Drawing.Size(869, 315);
             this.dataGridForShapes.TabIndex = 27;
             // 
-            // shapeBindingSource
-            // 
-            this.shapeBindingSource.DataSource = typeof(ShapeAnimator.Model.Shapes.Shape);
-            // 
             // ShapeType
             // 
             this.ShapeType.HeaderText = "Shape Type";
@@ -434,7 +428,6 @@ namespace ShapeAnimator.View.Forms
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnimationSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridForShapes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shapeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,7 +464,6 @@ namespace ShapeAnimator.View.Forms
         private Label label12;
         private Label label13;
         private DataGridView dataGridForShapes;
-        private BindingSource shapeBindingSource;
         private DataGridViewTextBoxColumn ShapeType;
         private DataGridViewTextBoxColumn ColorForShape;
         private DataGridViewTextBoxColumn PerimiterForShape;
