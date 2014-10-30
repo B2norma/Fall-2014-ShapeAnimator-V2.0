@@ -5,7 +5,7 @@ using ShapeAnimator.View.Shapes;
 namespace ShapeAnimator.Model
 {
     /// <summary>
-    ///     Holds information about a shape
+    ///     It holds information about a shape
     /// </summary>
     public abstract class Shape
     {
