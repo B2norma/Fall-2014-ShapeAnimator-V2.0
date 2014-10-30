@@ -32,6 +32,7 @@ namespace ShapeAnimator.Model.Shapes
         private Point location;
         private ShapeSprite sprite;
         private int hitCount;
+        private readonly int id;
 
         #endregion
 
@@ -154,6 +155,17 @@ namespace ShapeAnimator.Model.Shapes
             get { return this.hitCount; }
         }
 
+        /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public int Id
+        {
+            get { return this.id; }
+        }
+
         #endregion
 
         #region Constructors
@@ -170,6 +182,7 @@ namespace ShapeAnimator.Model.Shapes
             this.directionY = generateRandomDirection();
             this.Width = generateRandomHeightWidth();
             this.Height = generateRandomHeightWidth();
+            this.id = this.generateRandomId();
         }
 
         #endregion
@@ -250,6 +263,11 @@ namespace ShapeAnimator.Model.Shapes
         private static int generateRandomDirection()
         {
             return verifyDirectionValue(RandomUtils.NextInt(AvaliableDirections));
+        }
+
+        private int generateRandomId()
+        {
+            return RandomUtils.NextInt(int.MaxValue);
         }
 
         private static int verifyDirectionValue(int randomDirection)

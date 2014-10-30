@@ -12,7 +12,7 @@ namespace ShapeAnimator.View.Forms
     {
         #region Constants
 
-        private const int DefaultAnimationSpeed = 10;
+        private const int DefaultAnimationSpeed = 50;
 
         private const string PauseButtonPause = "Pause";
 
@@ -130,9 +130,10 @@ namespace ShapeAnimator.View.Forms
         {
             if (this.isPaused == false)
             {
-                this.updateGuiDataGrid();
+                
                 for (int i = 0; i < (this.AnimationSlider.Value/DefaultAnimationSpeed); i++)
                 {
+                    this.updateGuiDataGrid();
                     this.Refresh();
                 }
             }
@@ -140,11 +141,16 @@ namespace ShapeAnimator.View.Forms
 
         private void updateGuiDataGrid()
         {
-            this.dataGridForShapes.Rows.Clear();
-            foreach (var currentShape in canvasManager.ShapesList)
+
+            foreach (DataGridViewRow currentRow in this.dataGridForShapes.Rows)
             {
-                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, formatColor(currentShape.Color),
-                    currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount);
+                foreach (var currentShape in canvasManager.ShapesList)
+                {
+                    if ((int) currentRow.Cells[5].Value == currentShape.Id)
+                    {
+                        currentRow.Cells[4].Value = currentShape.HitCount;
+                    }
+                }
             }
         }
 
@@ -165,8 +171,19 @@ namespace ShapeAnimator.View.Forms
             this.canvasManager.PlaceShapesOnCanvas(this.NumberShapes, this.NumberCircles, this.NumberRectangles,
                 this.NumberSpottedRectangles);
             this.animationTimer.Start();
+            this.loadInitialGrid();
 
             this.enableButtonsForAnimation();
+        }
+
+        private void loadInitialGrid()
+        {
+            this.dataGridForShapes.Rows.Clear();
+            foreach (var currentShape in canvasManager.ShapesList)
+            {
+                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, formatColor(currentShape.Color),
+                    currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount, currentShape.Id);
+            }   
         }
 
         private void PauseResumeButton_Click(object sender, EventArgs e)

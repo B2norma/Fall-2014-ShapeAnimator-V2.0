@@ -66,6 +66,7 @@ namespace ShapeAnimator.View.Forms
             this.PerimiterForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AreaForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollisionsForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDforShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnimationSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridForShapes)).BeginInit();
@@ -194,7 +195,7 @@ namespace ShapeAnimator.View.Forms
             this.AnimationSlider.SmallChange = 10;
             this.AnimationSlider.TabIndex = 12;
             this.AnimationSlider.TickFrequency = 50;
-            this.AnimationSlider.Value = 10;
+            this.AnimationSlider.Value = 50;
             this.AnimationSlider.Scroll += new System.EventHandler(this.AnimationSlider_Scroll);
             // 
             // AnimationSpeedLabel
@@ -350,7 +351,8 @@ namespace ShapeAnimator.View.Forms
             this.ColorForShape,
             this.PerimiterForShape,
             this.AreaForShape,
-            this.CollisionsForShape});
+            this.CollisionsForShape,
+            this.IDforShape});
             this.dataGridForShapes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridForShapes.Location = new System.Drawing.Point(4, 479);
             this.dataGridForShapes.MultiSelect = false;
@@ -386,6 +388,11 @@ namespace ShapeAnimator.View.Forms
             // 
             this.CollisionsForShape.HeaderText = "Collision Count";
             this.CollisionsForShape.Name = "CollisionsForShape";
+            // 
+            // IDforShape
+            // 
+            this.IDforShape.HeaderText = "ID";
+            this.IDforShape.Name = "IDforShape";
             // 
             // ShapeAnimatorForm
             // 
@@ -470,6 +477,7 @@ namespace ShapeAnimator.View.Forms
         private DataGridViewTextBoxColumn PerimiterForShape;
         private DataGridViewTextBoxColumn AreaForShape;
         private DataGridViewTextBoxColumn CollisionsForShape;
+        private DataGridViewTextBoxColumn IDforShape;
     }
 }
 
