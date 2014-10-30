@@ -155,31 +155,40 @@ namespace ShapeAnimator.Controller
 
         private static void moveAndDrawShape(Graphics g, Shape shape)
         {
-            checkbounds(g, shape);
+            
             shape.Move();
+            if (checkbounds(g, shape))
+            {
+                shape.Move();
+            }
             shape.Paint(g);
         }
 
-        private static void checkbounds(Graphics g, Shape shape)
+        private static bool checkbounds(Graphics g, Shape shape)
         {
-            verifyXBounds(g, shape);
-            verifyYBounds(g, shape);
+            bool xOutOfBounds = verifyXBounds(g, shape);
+            bool yOutOfBounds = verifyYBounds(g, shape);
+            return (xOutOfBounds || yOutOfBounds);
         }
 
-        private static void verifyYBounds(Graphics g, Shape shape)
+        private static bool verifyYBounds(Graphics g, Shape shape)
         {
-            if ((shape.Y + shape.Height + shape.SpeedY) >= g.VisibleClipBounds.Height || shape.Y - shape.SpeedY <= 0)
+            if ((shape.Y + shape.Height) >= g.VisibleClipBounds.Height || shape.Y<= 0)
             {
                 shape.DirectionYFlip();
+                return true;
             }
+            return false;
         }
 
-        private static void verifyXBounds(Graphics g, Shape shape)
+        private static bool verifyXBounds(Graphics g, Shape shape)
         {
-            if ((shape.X + shape.Width + shape.SpeedX) >= g.VisibleClipBounds.Width || shape.X - shape.SpeedX <= 0)
+            if ((shape.X + shape.Width) >= g.VisibleClipBounds.Width || shape.X <= 0)
             {
                 shape.DirectionXFlip();
+                return true;
             }
+            return false;
         }
 
         #endregion
