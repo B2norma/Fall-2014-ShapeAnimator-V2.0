@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using ShapeAnimator.Controller;
+using ShapeAnimator.Model.Shapes;
 
 namespace ShapeAnimator.View.Forms
 {
@@ -12,8 +13,6 @@ namespace ShapeAnimator.View.Forms
     public partial class ShapeAnimatorForm
     {
         #region Constants
-
-        private const int DefaultAnimationSpeed = 10;
 
         private const string PauseButtonPause = "Pause";
 
@@ -26,7 +25,6 @@ namespace ShapeAnimator.View.Forms
         private readonly ShapeController canvasManager;
 
         private bool isPaused;
-
 
         #endregion
 
@@ -131,21 +129,16 @@ namespace ShapeAnimator.View.Forms
         {
             if (this.isPaused == false)
             {
-                
-                for (int i = 0; i < (this.AnimationSlider.Value/DefaultAnimationSpeed); i++)
-                {
-                    this.updateGuiDataGrid();
-                    this.Refresh();
-                }
+                this.updateGuiDataGrid();
+                this.Refresh();
             }
         }
 
         private void updateGuiDataGrid()
         {
-
             foreach (DataGridViewRow currentRow in this.dataGridForShapes.Rows)
             {
-                foreach (var currentShape in canvasManager.ShapesList)
+                foreach (Shape currentShape in this.canvasManager.ShapesList)
                 {
                     if ((int) currentRow.Cells[5].Value == currentShape.Id)
                     {
@@ -180,11 +173,12 @@ namespace ShapeAnimator.View.Forms
         private void loadInitialGrid()
         {
             this.dataGridForShapes.Rows.Clear();
-            foreach (var currentShape in canvasManager.ShapesList)
+            foreach (Shape currentShape in this.canvasManager.ShapesList)
             {
-                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, formatColor(currentShape.Color),
-                    currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount, currentShape.Id);
-            }   
+                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, this.formatColor(currentShape.Color),
+                    currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount,
+                    currentShape.Id);
+            }
         }
 
         private void PauseResumeButton_Click(object sender, EventArgs e)
@@ -247,22 +241,23 @@ namespace ShapeAnimator.View.Forms
 
         private void AnimationSlider_Scroll(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
+        }
 
+        private void AnimationSlider_ValueChanged(object sender, EventArgs e)
+        {
+            this.animationTimer.Interval = (500 - this.AnimationSlider.Value + 1);
         }
     }
 }
