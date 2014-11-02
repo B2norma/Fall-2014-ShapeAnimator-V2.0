@@ -46,8 +46,8 @@ namespace ShapeAnimator.View.Forms
             this.ClearButton = new System.Windows.Forms.Button();
             this.AnimationSlider = new System.Windows.Forms.TrackBar();
             this.AnimationSpeedLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.slowerLabel = new System.Windows.Forms.Label();
+            this.fasterLabel = new System.Windows.Forms.Label();
             this.dataGridForShapes = new System.Windows.Forms.DataGridView();
             this.ShapeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorForShape = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -196,27 +196,25 @@ namespace ShapeAnimator.View.Forms
             this.AnimationSpeedLabel.TabIndex = 13;
             this.AnimationSpeedLabel.Text = "Animation Speed:";
             // 
-            // label1
+            // slowerLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(891, 397);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Slower";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.slowerLabel.AutoSize = true;
+            this.slowerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.slowerLabel.Location = new System.Drawing.Point(891, 397);
+            this.slowerLabel.Name = "slowerLabel";
+            this.slowerLabel.Size = new System.Drawing.Size(45, 13);
+            this.slowerLabel.TabIndex = 14;
+            this.slowerLabel.Text = "Slower";
             // 
-            // label2
+            // fasterLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(891, 147);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Faster";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.fasterLabel.AutoSize = true;
+            this.fasterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fasterLabel.Location = new System.Drawing.Point(891, 147);
+            this.fasterLabel.Name = "fasterLabel";
+            this.fasterLabel.Size = new System.Drawing.Size(42, 13);
+            this.fasterLabel.TabIndex = 15;
+            this.fasterLabel.Text = "Faster";
             // 
             // dataGridForShapes
             // 
@@ -231,42 +229,52 @@ namespace ShapeAnimator.View.Forms
             this.CollisionsForShape,
             this.IDforShape});
             this.dataGridForShapes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridForShapes.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridForShapes.Location = new System.Drawing.Point(4, 479);
             this.dataGridForShapes.MultiSelect = false;
             this.dataGridForShapes.Name = "dataGridForShapes";
             this.dataGridForShapes.Size = new System.Drawing.Size(869, 315);
             this.dataGridForShapes.TabIndex = 27;
-            this.dataGridForShapes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sortButton_Click);
+            this.dataGridForShapes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridForShapes_ColumnHeaderMouseClick);
             // 
             // ShapeType
             // 
             this.ShapeType.HeaderText = "Shape Type";
             this.ShapeType.Name = "ShapeType";
+            this.ShapeType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ShapeType.Width = 140;
             // 
             // ColorForShape
             // 
             this.ColorForShape.HeaderText = "Color";
             this.ColorForShape.Name = "ColorForShape";
+            this.ColorForShape.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColorForShape.Width = 140;
             // 
             // PerimiterForShape
             // 
             this.PerimiterForShape.HeaderText = "Perimiter";
             this.PerimiterForShape.Name = "PerimiterForShape";
+            this.PerimiterForShape.Width = 140;
             // 
             // AreaForShape
             // 
             this.AreaForShape.HeaderText = "Area";
             this.AreaForShape.Name = "AreaForShape";
+            this.AreaForShape.Width = 140;
             // 
             // CollisionsForShape
             // 
             this.CollisionsForShape.HeaderText = "Collision Count";
             this.CollisionsForShape.Name = "CollisionsForShape";
+            this.CollisionsForShape.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.CollisionsForShape.Width = 140;
             // 
             // IDforShape
             // 
             this.IDforShape.HeaderText = "ID";
             this.IDforShape.Name = "IDforShape";
+            this.IDforShape.Width = 130;
             // 
             // ShapeAnimatorForm
             // 
@@ -274,8 +282,8 @@ namespace ShapeAnimator.View.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 806);
             this.Controls.Add(this.dataGridForShapes);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.fasterLabel);
+            this.Controls.Add(this.slowerLabel);
             this.Controls.Add(this.AnimationSpeedLabel);
             this.Controls.Add(this.AnimationSlider);
             this.Controls.Add(this.ClearButton);
@@ -319,8 +327,8 @@ namespace ShapeAnimator.View.Forms
         private Button ClearButton;
         private TrackBar AnimationSlider;
         private Label AnimationSpeedLabel;
-        private Label label1;
-        private Label label2;
+        private Label slowerLabel;
+        private Label fasterLabel;
         private DataGridView dataGridForShapes;
         private DataGridViewTextBoxColumn ShapeType;
         private DataGridViewTextBoxColumn ColorForShape;

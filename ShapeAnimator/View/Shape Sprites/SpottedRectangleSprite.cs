@@ -8,8 +8,14 @@ namespace ShapeAnimator.View
     /// </summary>
     public class SpottedRectangleSprite : RectangleSprite
     {
+        #region Constants
+
+        private const int SizeOfCircle = 10;
+
+        #endregion
 
         # region Constructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpottedRectangleSprite" /> class.
         ///     Precondition: shape != null
@@ -35,10 +41,9 @@ namespace ShapeAnimator.View
 
             var redBrush = new SolidBrush(Color.IndianRed);
             g.FillEllipse(redBrush, this.TheShape.X + this.TheShape.Width/2, this.TheShape.Y + this.TheShape.Height/2,
-                10, 10);
+                SizeOfCircle, SizeOfCircle);
         }
 
         #endregion
-
     }
 }

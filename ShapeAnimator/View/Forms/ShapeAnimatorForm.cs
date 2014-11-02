@@ -1,6 +1,7 @@
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using ShapeAnimator.Controller;
@@ -18,6 +19,8 @@ namespace ShapeAnimator.View.Forms
         private const string PauseButtonPause = "Pause";
 
         private const string PauseButtonResume = "Resume";
+
+        private const double NumberDisplayScale = .001;
 
         #endregion
 
@@ -173,33 +176,19 @@ namespace ShapeAnimator.View.Forms
 
         private void loadInitialGrid()
         {
-            this.dataGridForShapes.Rows.Clear();
-
-            foreach (Shape currentShape in this.canvasManager.ShapesList)
-            {
-                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, this.formatColor(currentShape.Color),
-                    currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount,
-                    currentShape.Id);
-
-            }
+            this.loadNewGrid(this.canvasManager.ShapesList);
         }
 
-        private void sortButton_Click(object sender, DataGridViewCellMouseEventArgs e)
+        private void loadNewGrid(IEnumerable<Shape> shapeList)
         {
-            DataGridViewColumn newColumn =
-            dataGridForShapes.Columns.GetColumnCount(
-            DataGridViewElementStates.Selected) == 1 ?
-            dataGridForShapes.SelectedColumns[0] : null;
+            this.dataGridForShapes.Rows.Clear();
 
-            if (newColumn.HeaderCell.ToString() == "Shape Type")
+            foreach (Shape currentShape in shapeList)
             {
-                dataGridForShapes.Sort(dataGridForShapes.Columns[
-                    "Shape Type"], ListSortDirection.Ascending);
-
-                dataGridForShapes.Sort(dataGridForShapes.Columns[
-                   "Color"], ListSortDirection.Ascending);
-                
-                
+                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, this.formatColor(currentShape.Color),
+                    this.formatNumber(currentShape.CalculatePerimeter()),
+                    this.formatNumber(currentShape.CalculateArea()), currentShape.HitCount,
+                    currentShape.Id);
             }
         }
 
@@ -231,6 +220,13 @@ namespace ShapeAnimator.View.Forms
         }
 
         #endregion
+
+        #region Private Methods
+
+        private double formatNumber(double numberToBeFormatted)
+        {
+            return (int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale;
+        }
 
         private void ShapeAnimatorForm_Load(object sender, EventArgs e)
         {
@@ -265,31 +261,44 @@ namespace ShapeAnimator.View.Forms
         {
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-        }
-
         private void AnimationSlider_ValueChanged(object sender, EventArgs e)
         {
             this.animationTimer.Interval = (500 - this.AnimationSlider.Value + 1);
         }
 
-        private void dataGridForShapes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridForShapes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            if (e.ColumnIndex == 0)
+            {
+                IOrderedEnumerable<Shape> sortedShapes =
+                    this.canvasManager.ShapesList.OrderBy(shape => shape.GetType().Name)
+                        .ThenBy(shape => shape.Color.ToArgb());
+                this.convertAndDisplayUpdatedList(sortedShapes);
+            }
+            else if (e.ColumnIndex == 1)
+            {
+                IOrderedEnumerable<Shape> sortedShapes =
+                    this.canvasManager.ShapesList.OrderBy(shape => shape.Color.ToArgb());
+                this.convertAndDisplayUpdatedList(sortedShapes);
+            }
+            else if (e.ColumnIndex == 4)
+            {
+                IOrderedEnumerable<Shape> sortedShapes =
+                    this.canvasManager.ShapesList.OrderBy(shape => shape.HitCount).ThenBy(shape => shape.GetType().Name);
+                this.convertAndDisplayUpdatedList(sortedShapes);
+            }
         }
 
-        private void sortButton_Click(object sender, DataGridViewCellEventArgs e)
+        private void convertAndDisplayUpdatedList(IEnumerable<Shape> sortedShapes)
         {
-
+            var tempShapes = new List<Shape>();
+            foreach (Shape shape in sortedShapes)
+            {
+                tempShapes.Add(shape);
+            }
+            this.loadNewGrid(tempShapes);
         }
+
+        #endregion
     }
 }
