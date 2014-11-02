@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -173,11 +174,32 @@ namespace ShapeAnimator.View.Forms
         private void loadInitialGrid()
         {
             this.dataGridForShapes.Rows.Clear();
+
             foreach (Shape currentShape in this.canvasManager.ShapesList)
             {
                 this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, this.formatColor(currentShape.Color),
                     currentShape.CalculatePerimeter(), currentShape.CalculateArea(), currentShape.HitCount,
                     currentShape.Id);
+
+            }
+        }
+
+        private void sortButton_Click(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn newColumn =
+            dataGridForShapes.Columns.GetColumnCount(
+            DataGridViewElementStates.Selected) == 1 ?
+            dataGridForShapes.SelectedColumns[0] : null;
+
+            if (newColumn.HeaderCell.ToString() == "Shape Type")
+            {
+                dataGridForShapes.Sort(dataGridForShapes.Columns[
+                    "Shape Type"], ListSortDirection.Ascending);
+
+                dataGridForShapes.Sort(dataGridForShapes.Columns[
+                   "Color"], ListSortDirection.Ascending);
+                
+                
             }
         }
 
@@ -258,6 +280,16 @@ namespace ShapeAnimator.View.Forms
         private void AnimationSlider_ValueChanged(object sender, EventArgs e)
         {
             this.animationTimer.Interval = (500 - this.AnimationSlider.Value + 1);
+        }
+
+        private void dataGridForShapes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void sortButton_Click(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

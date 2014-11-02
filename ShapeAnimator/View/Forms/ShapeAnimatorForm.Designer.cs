@@ -236,6 +236,7 @@ namespace ShapeAnimator.View.Forms
             this.dataGridForShapes.Name = "dataGridForShapes";
             this.dataGridForShapes.Size = new System.Drawing.Size(869, 315);
             this.dataGridForShapes.TabIndex = 27;
+            this.dataGridForShapes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.sortButton_Click);
             // 
             // ShapeType
             // 
