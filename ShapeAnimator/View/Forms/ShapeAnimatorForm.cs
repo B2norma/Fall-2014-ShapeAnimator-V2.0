@@ -129,6 +129,11 @@ namespace ShapeAnimator.View.Forms
 
         #region Event generated methods
 
+        private void ShapeAnimatorForm_Load(object sender, EventArgs e)
+        {
+            this.makeDataGridViewDoubleBuffered();
+        }
+
         private void animationTimer_Tick(object sender, EventArgs e)
         {
             if (this.isPaused == false)
@@ -136,25 +141,6 @@ namespace ShapeAnimator.View.Forms
                 this.updateGuiDataGrid();
                 this.Refresh();
             }
-        }
-
-        private void updateGuiDataGrid()
-        {
-            foreach (DataGridViewRow currentRow in this.dataGridForShapes.Rows)
-            {
-                foreach (Shape currentShape in this.canvasManager.ShapesList)
-                {
-                    if ((int) currentRow.Cells[5].Value == currentShape.Id)
-                    {
-                        currentRow.Cells[4].Value = currentShape.HitCount;
-                    }
-                }
-            }
-        }
-
-        private object formatColor(Color color)
-        {
-            return "(" + color.R + ", " + color.G + ", " + color.B + ")";
         }
 
         private void shapeCanvasPictureBox_Paint(object sender, PaintEventArgs e)
@@ -172,24 +158,6 @@ namespace ShapeAnimator.View.Forms
             this.loadInitialGrid();
 
             this.enableButtonsForAnimation();
-        }
-
-        private void loadInitialGrid()
-        {
-            this.loadNewGrid(this.canvasManager.ShapesList);
-        }
-
-        private void loadNewGrid(IEnumerable<Shape> shapeList)
-        {
-            this.dataGridForShapes.Rows.Clear();
-
-            foreach (Shape currentShape in shapeList)
-            {
-                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, this.formatColor(currentShape.Color),
-                    this.formatNumber(currentShape.CalculatePerimeter()),
-                    this.formatNumber(currentShape.CalculateArea()), currentShape.HitCount,
-                    currentShape.Id);
-            }
         }
 
         private void PauseResumeButton_Click(object sender, EventArgs e)
@@ -212,55 +180,6 @@ namespace ShapeAnimator.View.Forms
             this.clearCanvas();
         }
 
-        private void clearCanvas()
-        {
-            this.animationTimer.Stop();
-            this.canvasManager.PlaceShapesOnCanvas(0, 0, 0, 0);
-            this.animationTimer.Start();
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private double formatNumber(double numberToBeFormatted)
-        {
-            return (int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale;
-        }
-
-        private void ShapeAnimatorForm_Load(object sender, EventArgs e)
-        {
-            this.makeDataGridViewDoubleBuffered();
-        }
-
-        private void makeDataGridViewDoubleBuffered()
-        {
-            Type dgvType = this.dataGridForShapes.GetType();
-            PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
-            pi.SetValue(this.dataGridForShapes, true, null);
-        }
-
-        private void enableButtonsForAnimation()
-        {
-            this.PauseResumeButton.Enabled = true;
-            this.ClearButton.Enabled = true;
-            this.isPaused = false;
-            this.startButton.Enabled = false;
-        }
-
-        private void resetButtons()
-        {
-            this.isPaused = false;
-            this.PauseResumeButton.Text = PauseButtonPause;
-            this.PauseResumeButton.Enabled = false;
-            this.ClearButton.Enabled = false;
-            this.startButton.Enabled = true;
-        }
-
-        private void AnimationSlider_Scroll(object sender, EventArgs e)
-        {
-        }
-
         private void AnimationSlider_ValueChanged(object sender, EventArgs e)
         {
             this.animationTimer.Interval = (500 - this.AnimationSlider.Value + 1);
@@ -268,6 +187,7 @@ namespace ShapeAnimator.View.Forms
 
         private void dataGridForShapes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            Console.WriteLine(e.ToString());
             if (e.ColumnIndex == 0)
             {
                 IOrderedEnumerable<Shape> sortedShapes =
@@ -287,6 +207,85 @@ namespace ShapeAnimator.View.Forms
                     this.canvasManager.ShapesList.OrderBy(shape => shape.HitCount).ThenBy(shape => shape.GetType().Name);
                 this.convertAndDisplayUpdatedList(sortedShapes);
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        #region Grid Related Methods
+
+        private void loadInitialGrid()
+        {
+            this.loadNewGrid(this.canvasManager.ShapesList);
+        }
+
+        private void loadNewGrid(IEnumerable<Shape> shapeList)
+        {
+            this.dataGridForShapes.Rows.Clear();
+
+            foreach (Shape currentShape in shapeList)
+            {
+                this.dataGridForShapes.Rows.Add(currentShape.GetType().Name, this.formatColor(currentShape.Color),
+                    this.formatNumber(currentShape.CalculatePerimeter()),
+                    this.formatNumber(currentShape.CalculateArea()), currentShape.HitCount,
+                    currentShape.Id);
+            }
+        }
+
+        private void updateGuiDataGrid()
+        {
+            foreach (DataGridViewRow currentRow in this.dataGridForShapes.Rows)
+            {
+                foreach (Shape currentShape in this.canvasManager.ShapesList)
+                {
+                    if ((int) currentRow.Cells[5].Value == currentShape.Id)
+                    {
+                        currentRow.Cells[4].Value = currentShape.HitCount;
+                    }
+                }
+            }
+        }
+
+        private object formatColor(Color color)
+        {
+            return "(" + color.R + ", " + color.G + ", " + color.B + ")";
+        }
+
+        private double formatNumber(double numberToBeFormatted)
+        {
+            return (int)(numberToBeFormatted / NumberDisplayScale) * NumberDisplayScale;
+        }
+
+        private void makeDataGridViewDoubleBuffered()
+        {
+            Type dgvType = this.dataGridForShapes.GetType();
+            PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            pi.SetValue(this.dataGridForShapes, true, null);
+        }
+        #endregion
+        private void clearCanvas()
+        {
+            this.animationTimer.Stop();
+            this.canvasManager.PlaceShapesOnCanvas(0, 0, 0, 0);
+            this.animationTimer.Start();
+        }
+
+        private void enableButtonsForAnimation()
+        {
+            this.PauseResumeButton.Enabled = true;
+            this.ClearButton.Enabled = true;
+            this.isPaused = false;
+            this.startButton.Enabled = false;
+        }
+
+        private void resetButtons()
+        {
+            this.isPaused = false;
+            this.PauseResumeButton.Text = PauseButtonPause;
+            this.PauseResumeButton.Enabled = false;
+            this.ClearButton.Enabled = false;
+            this.startButton.Enabled = true;
         }
 
         private void convertAndDisplayUpdatedList(IEnumerable<Shape> sortedShapes)

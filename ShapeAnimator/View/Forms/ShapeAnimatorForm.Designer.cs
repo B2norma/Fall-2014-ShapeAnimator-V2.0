@@ -183,7 +183,6 @@ namespace ShapeAnimator.View.Forms
             this.AnimationSlider.TabIndex = 12;
             this.AnimationSlider.TickFrequency = 10;
             this.AnimationSlider.Value = 300;
-            this.AnimationSlider.Scroll += new System.EventHandler(this.AnimationSlider_Scroll);
             this.AnimationSlider.ValueChanged += new System.EventHandler(this.AnimationSlider_ValueChanged);
             // 
             // AnimationSpeedLabel
