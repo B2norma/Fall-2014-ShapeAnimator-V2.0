@@ -187,7 +187,6 @@ namespace ShapeAnimator.View.Forms
 
         private void dataGridForShapes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Console.WriteLine(e.ToString());
             if (e.ColumnIndex == 0)
             {
                 IOrderedEnumerable<Shape> sortedShapes =
