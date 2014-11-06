@@ -153,7 +153,7 @@ namespace ShapeAnimator.Controller
             }
         }
 
-        private static void moveAndDrawShape(Graphics g, Shape shape)
+        private void moveAndDrawShape(Graphics g, Shape shape)
         {
             
             shape.Move();
@@ -164,14 +164,14 @@ namespace ShapeAnimator.Controller
             shape.Paint(g);
         }
 
-        private static bool checkbounds(Graphics g, Shape shape)
+        private bool checkbounds(Graphics g, Shape shape)
         {
             bool xOutOfBounds = verifyXBounds(g, shape);
             bool yOutOfBounds = verifyYBounds(g, shape);
             return (xOutOfBounds || yOutOfBounds);
         }
 
-        private static bool verifyYBounds(Graphics g, Shape shape)
+        private bool verifyYBounds(Graphics g, Shape shape)
         {
             if ((shape.Y + shape.Height) >= g.VisibleClipBounds.Height || shape.Y<= 0)
             {
@@ -181,7 +181,7 @@ namespace ShapeAnimator.Controller
             return false;
         }
 
-        private static bool verifyXBounds(Graphics g, Shape shape)
+        private bool verifyXBounds(Graphics g, Shape shape)
         {
             if ((shape.X + shape.Width) >= g.VisibleClipBounds.Width || shape.X <= 0)
             {

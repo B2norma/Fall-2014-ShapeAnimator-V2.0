@@ -218,14 +218,7 @@ namespace ShapeAnimator.Model.Shapes
         public void DirectionXFlip()
         {
             hitCount++;
-            if (this.directionX == 1)
-            {
-                this.directionX = -1;
-            }
-            else
-            {
-                this.directionX = 1;
-            }
+            this.directionX = this.directionX*-1;
         }
 
         /// <summary>
@@ -234,14 +227,7 @@ namespace ShapeAnimator.Model.Shapes
         public void DirectionYFlip()
         {
             hitCount++;
-            if (this.directionY == 1)
-            {
-                this.directionY = -1;
-            }
-            else
-            {
-                this.directionY = 1;
-            }
+            this.directionY = this.directionY * -1;
         }
 
         private static Color generateRandomColor()

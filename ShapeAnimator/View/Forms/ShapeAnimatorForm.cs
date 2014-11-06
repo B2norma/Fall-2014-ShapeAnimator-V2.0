@@ -30,6 +30,7 @@ namespace ShapeAnimator.View.Forms
 
         private bool isPaused;
 
+
         #endregion
 
         #region Properties
@@ -280,10 +281,17 @@ namespace ShapeAnimator.View.Forms
             this.ClearButton.Enabled = true;
             this.isPaused = false;
             this.startButton.Enabled = false;
+            this.CircleBox.Enabled = false;
+            this.RectangleBox.Enabled = false;
+            this.numberShapesTextBox.Enabled = false;
         }
 
         private void resetButtons()
         {
+            this.startButton.Enabled = true;
+            this.CircleBox.Enabled = true;
+            this.RectangleBox.Enabled = true;
+            this.numberShapesTextBox.Enabled = true;
             this.isPaused = false;
             this.PauseResumeButton.Text = PauseButtonPause;
             this.PauseResumeButton.Enabled = false;
