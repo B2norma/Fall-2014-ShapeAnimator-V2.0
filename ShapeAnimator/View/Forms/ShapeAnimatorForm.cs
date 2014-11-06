@@ -251,9 +251,13 @@ namespace ShapeAnimator.View.Forms
             return "(" + color.R + ", " + color.G + ", " + color.B + ")";
         }
 
-        private double formatNumber(double numberToBeFormatted)
+        private string formatNumber(double numberToBeFormatted)
         {
-            return (int)(numberToBeFormatted / NumberDisplayScale) * NumberDisplayScale;
+            String number = ((int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale).ToString();
+            int pos = number.IndexOf('.');
+            if (pos == -1) pos = number.Length;
+
+            return (new String(' ', 6 - pos) + number);
         }
 
         private void makeDataGridViewDoubleBuffered()
