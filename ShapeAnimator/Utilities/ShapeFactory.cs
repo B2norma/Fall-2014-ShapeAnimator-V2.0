@@ -10,7 +10,7 @@ namespace ShapeAnimator.Utilities
 
         private enum Shapes
         {
-            Circle,
+            Ellipse,
             Rectangle,
             SpottedRectangle
         }
@@ -32,28 +32,26 @@ namespace ShapeAnimator.Utilities
 
         private static Shape createFinalShape(int randomShape)
         {
-            if ((Shapes) randomShape == Shapes.Circle)
+            switch ((Shapes)randomShape)
             {
-                return CreateNewCircle();
+                case Shapes.Ellipse:
+                    return CreateNewEllipse();
+                case Shapes.Rectangle:
+                    return CreateNewRectangle();
+                case Shapes.SpottedRectangle:
+                    return CreateNewSpottedRectangle();
+                default:
+                    return null;
             }
-            if ((Shapes) randomShape == Shapes.Rectangle)
-            {
-                return CreateNewRectangle();
-            }
-            if ((Shapes) randomShape == Shapes.SpottedRectangle)
-            {
-                return CreateNewSpottedRectangle();
-            }
-            return null;
         }
 
         /// <summary>
         ///     Creates a new circle.
         /// </summary>
         /// <returns></returns>
-        public static Shape CreateNewCircle()
+        public static Shape CreateNewEllipse()
         {
-            return new Circle();
+            return new Ellipse();
         }
 
         /// <summary>

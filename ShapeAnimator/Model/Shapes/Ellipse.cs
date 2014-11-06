@@ -3,15 +3,15 @@ using System;
 
 namespace ShapeAnimator.Model.Shapes
 {
-    internal class Circle : Shape
+    internal class Ellipse : Shape
     {
 
         #region Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Circle" /> class.
+        ///     Initializes a new instance of the <see cref="Ellipse" /> class.
         /// </summary>
-        public Circle()
+        public Ellipse()
         {
             this.Sprite = new CircleSprite(this);
         }

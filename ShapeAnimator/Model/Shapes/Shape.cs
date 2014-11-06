@@ -12,13 +12,6 @@ namespace ShapeAnimator.Model.Shapes
     {
         #region Constants
 
-        private const int MaxRgbValue = 256;
-        private const int MinRgbValue = 1;
-        private const int MaxSpeedValue = 5;
-        private const int MinSpeedValue = 1;
-        private const int MinSize = 20;
-        private const int MaxSize = 101;
-        private const int AvaliableDirections = 2;
 
         #endregion
 
@@ -175,14 +168,14 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         protected Shape()
         {
-            this.shapeColor = generateRandomColor();
-            this.speedX = generateRandomSpeed();
-            this.speedY = generateRandomSpeed();
-            this.directionX = generateRandomDirection();
-            this.directionY = generateRandomDirection();
-            this.Width = generateRandomHeightWidth();
-            this.Height = generateRandomHeightWidth();
-            this.id = this.generateRandomId();
+            this.shapeColor = RandomUtils.GenerateRandomColor();
+            this.speedX = RandomUtils.GenerateRandomSpeed();
+            this.speedY = RandomUtils.GenerateRandomSpeed();
+            this.directionX = verifyDirectionValue(RandomUtils.GenerateRandomDirection());
+            this.directionY = verifyDirectionValue(RandomUtils.GenerateRandomDirection());
+            this.Width = RandomUtils.GenerateRandomHeightWidth();
+            this.Height = RandomUtils.GenerateRandomHeightWidth();
+            this.id = RandomUtils.GenerateRandomId();
         }
 
         #endregion
@@ -230,31 +223,6 @@ namespace ShapeAnimator.Model.Shapes
             this.directionY = this.directionY * -1;
         }
 
-        private static Color generateRandomColor()
-        {
-            return Color.FromArgb(RandomUtils.NextInt(MinRgbValue, MaxRgbValue),
-                RandomUtils.NextInt(MinRgbValue, MaxRgbValue), RandomUtils.NextInt(MinRgbValue, MaxRgbValue));
-        }
-
-        private static int generateRandomSpeed()
-        {
-            return RandomUtils.NextInt(MinSpeedValue,MaxSpeedValue);
-        }
-
-        private static int generateRandomHeightWidth()
-        {
-            return RandomUtils.NextInt(MinSize, MaxSize);
-        }
-
-        private static int generateRandomDirection()
-        {
-            return verifyDirectionValue(RandomUtils.NextInt(AvaliableDirections));
-        }
-
-        private int generateRandomId()
-        {
-            return RandomUtils.NextInt(int.MaxValue);
-        }
 
         private static int verifyDirectionValue(int randomDirection)
         {

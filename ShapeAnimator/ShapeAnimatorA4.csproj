@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Utilities\RandomUtils.cs" />
     <Compile Include="Controller\ShapeController.cs" />
-    <Compile Include="Model\Shapes\Circle.cs" />
+    <Compile Include="Model\Shapes\Ellipse.cs" />
     <Compile Include="Model\Shapes\SpottedRectangle.cs" />
     <Compile Include="Model\Shapes\Shape.cs" />
     <Compile Include="Utilities\ShapeFactory.cs" />
@@ -77,7 +77,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Shape Sprites\CircleSprite.cs" />
+    <Compile Include="View\Shape Sprites\EllipseSprite.cs" />
     <Compile Include="View\Shape Sprites\SpottedRectangleSprite.cs" />
     <Compile Include="View\Shape Sprites\RectangleSprite.cs" />
     <Compile Include="View\Shape Sprites\ShapeSprite.cs" />

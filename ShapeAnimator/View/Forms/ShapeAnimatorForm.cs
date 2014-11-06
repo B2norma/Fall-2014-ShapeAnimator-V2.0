@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -254,7 +255,7 @@ namespace ShapeAnimator.View.Forms
 
         private string formatNumber(double numberToBeFormatted)
         {
-            String number = ((int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale).ToString();
+            String number = ((int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale).ToString(CultureInfo.InvariantCulture);
             int pos = number.IndexOf('.');
             if (pos == -1) pos = number.Length;
 

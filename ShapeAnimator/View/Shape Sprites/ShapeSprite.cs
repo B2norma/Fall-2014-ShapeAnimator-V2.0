@@ -9,9 +9,6 @@ namespace ShapeAnimator.View
     /// </summary>
     public abstract class ShapeSprite
     {
-        #region Instance variables
-
-        #endregion
 
         #region Properties
 

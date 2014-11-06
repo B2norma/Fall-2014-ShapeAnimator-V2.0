@@ -79,7 +79,7 @@ namespace ShapeAnimator.Controller
             this.ShapesList.Clear();
 
             this.generateShapes(numberOfShapes);
-            this.generateCircles(numberOfCircles);
+            this.generateEllipses(numberOfCircles);
             this.generateRectangles(numberOfRectangles);
             this.generateSpottedRectangle(numberOfSpottedRectangles);
         }
@@ -104,11 +104,11 @@ namespace ShapeAnimator.Controller
             }
         }
 
-        private void generateCircles(int numberOfCircles)
+        private void generateEllipses(int numberOfEllipses)
         {
-            for (int i = 0; i < numberOfCircles; i++)
+            for (int i = 0; i < numberOfEllipses; i++)
             {
-                Shape tempShape = ShapeFactory.CreateNewCircle();
+                Shape tempShape = ShapeFactory.CreateNewEllipse();
                 this.placeShapeWithinBounds(tempShape);
                 this.ShapesList.Add(tempShape);
             }
