@@ -9,14 +9,13 @@ namespace ShapeAnimator.View
     /// </summary>
     public abstract class ShapeSprite
     {
-
         #region Properties
 
         /// <summary>
-        /// Gets the value of theShape variable.
+        ///     Gets the value of theShape variable.
         /// </summary>
         /// <value>
-        /// theShape.
+        ///     theShape.
         /// </value>
         protected Shape TheShape { get; set; }
 
@@ -69,5 +68,5 @@ namespace ShapeAnimator.View
         }
 
         #endregion
-    }     
+    }
 }

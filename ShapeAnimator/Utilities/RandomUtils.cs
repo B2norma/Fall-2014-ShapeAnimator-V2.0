@@ -5,7 +5,6 @@ namespace ShapeAnimator.Utilities
 {
     internal static class RandomUtils
     {
-
         #region Constants
 
         private const int MaxRgbValue = 256;
@@ -17,12 +16,12 @@ namespace ShapeAnimator.Utilities
         private const int AvaliableDirections = 2;
 
         #endregion
+
         #region Variables
 
         private static readonly Random Randomizer = new Random();
 
         #endregion
-
 
         #region Methods
 
@@ -47,9 +46,8 @@ namespace ShapeAnimator.Utilities
             return Randomizer.Next(minNumber, maxNumber);
         }
 
-
         /// <summary>
-        /// Generates the random color.
+        ///     Generates the random color.
         /// </summary>
         /// <returns></returns>
         public static Color GenerateRandomColor()
@@ -59,7 +57,7 @@ namespace ShapeAnimator.Utilities
         }
 
         /// <summary>
-        /// Generates the random speed.
+        ///     Generates the random speed.
         /// </summary>
         /// <returns></returns>
         public static int GenerateRandomSpeed()
@@ -68,7 +66,7 @@ namespace ShapeAnimator.Utilities
         }
 
         /// <summary>
-        /// Generates the random width or height.
+        ///     Generates the random width or height.
         /// </summary>
         /// <returns></returns>
         public static int GenerateRandomHeightWidth()
@@ -77,7 +75,7 @@ namespace ShapeAnimator.Utilities
         }
 
         /// <summary>
-        /// Generates the random direction.
+        ///     Generates the random direction.
         /// </summary>
         /// <returns></returns>
         public static int GenerateRandomDirection()
@@ -86,7 +84,7 @@ namespace ShapeAnimator.Utilities
         }
 
         /// <summary>
-        /// Generates the random identifier.
+        ///     Generates the random identifier.
         /// </summary>
         /// <returns></returns>
         public static int GenerateRandomId()
@@ -94,8 +92,6 @@ namespace ShapeAnimator.Utilities
             return NextInt(int.MaxValue);
         }
 
-
         #endregion
-
     }
 }

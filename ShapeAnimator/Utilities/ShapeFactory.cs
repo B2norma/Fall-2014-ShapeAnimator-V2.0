@@ -5,7 +5,6 @@ namespace ShapeAnimator.Utilities
 {
     internal static class ShapeFactory
     {
-
         #region Enums
 
         private enum Shapes
@@ -32,7 +31,7 @@ namespace ShapeAnimator.Utilities
 
         private static Shape createFinalShape(int randomShape)
         {
-            switch ((Shapes)randomShape)
+            switch ((Shapes) randomShape)
             {
                 case Shapes.Ellipse:
                     return CreateNewEllipse();
@@ -73,6 +72,5 @@ namespace ShapeAnimator.Utilities
         }
 
         #endregion
-
     }
 }

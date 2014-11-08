@@ -13,7 +13,6 @@ namespace ShapeAnimator.Controller
     /// </summary>
     public class ShapeController
     {
-
         #region Instance variables
 
         private readonly PictureBox canvas;
@@ -24,10 +23,10 @@ namespace ShapeAnimator.Controller
         #region Properties
 
         /// <summary>
-        /// Gets the shapes list.
+        ///     Gets the shapes list.
         /// </summary>
         /// <value>
-        /// The shapes list.
+        ///     The shapes list.
         /// </value>
         public List<Shape> ShapesList
         {
@@ -61,6 +60,7 @@ namespace ShapeAnimator.Controller
             this.canvas = pictureBox;
             this.shapesList = new List<Shape>();
         }
+
         #endregion
 
         #region Methods
@@ -126,10 +126,8 @@ namespace ShapeAnimator.Controller
 
         private void placeShapeWithinBounds(Shape tempShape)
         {
-
             tempShape.X = RandomUtils.NextInt(this.canvas.Width - tempShape.Width);
             tempShape.Y = RandomUtils.NextInt(this.canvas.Height - tempShape.Height);
-            
         }
 
         /// <summary>
@@ -148,16 +146,15 @@ namespace ShapeAnimator.Controller
             {
                 foreach (Shape shape in this.ShapesList)
                 {
-                    moveAndDrawShape(g, shape);
+                    this.moveAndDrawShape(g, shape);
                 }
             }
         }
 
         private void moveAndDrawShape(Graphics g, Shape shape)
         {
-            
             shape.Move();
-            if (checkbounds(g, shape))
+            if (this.checkbounds(g, shape))
             {
                 shape.Move();
             }
@@ -166,14 +163,14 @@ namespace ShapeAnimator.Controller
 
         private bool checkbounds(Graphics g, Shape shape)
         {
-            bool xOutOfBounds = verifyXBounds(g, shape);
-            bool yOutOfBounds = verifyYBounds(g, shape);
+            bool xOutOfBounds = this.verifyXBounds(g, shape);
+            bool yOutOfBounds = this.verifyYBounds(g, shape);
             return (xOutOfBounds || yOutOfBounds);
         }
 
         private bool verifyYBounds(Graphics g, Shape shape)
         {
-            if ((shape.Y + shape.Height) >= g.VisibleClipBounds.Height || shape.Y<= 0)
+            if ((shape.Y + shape.Height) >= g.VisibleClipBounds.Height || shape.Y <= 0)
             {
                 shape.DirectionYFlip();
                 return true;
@@ -192,6 +189,5 @@ namespace ShapeAnimator.Controller
         }
 
         #endregion
-
     }
 }

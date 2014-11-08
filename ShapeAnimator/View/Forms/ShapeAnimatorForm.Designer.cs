@@ -68,6 +68,7 @@ namespace ShapeAnimator.View.Forms
             this.canvasPictureBox.Size = new System.Drawing.Size(869, 429);
             this.canvasPictureBox.TabIndex = 0;
             this.canvasPictureBox.TabStop = false;
+            this.canvasPictureBox.Click += new System.EventHandler(this.pictureBox_MouseClick);
             this.canvasPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.shapeCanvasPictureBox_Paint);
             // 
             // animationTimer
@@ -299,7 +300,7 @@ namespace ShapeAnimator.View.Forms
             this.Controls.Add(this.canvasPictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ShapeAnimatorForm";
-            this.Text = "Shape Animator A4 by Nestrick and Norman";
+            this.Text = "Shape Animator A5 by Nestrick and Norman";
             this.Load += new System.EventHandler(this.ShapeAnimatorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvasPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnimationSlider)).EndInit();

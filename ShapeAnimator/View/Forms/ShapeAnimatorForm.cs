@@ -31,7 +31,6 @@ namespace ShapeAnimator.View.Forms
 
         private bool isPaused;
 
-
         #endregion
 
         #region Properties
@@ -255,9 +254,14 @@ namespace ShapeAnimator.View.Forms
 
         private string formatNumber(double numberToBeFormatted)
         {
-            String number = ((int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale).ToString(CultureInfo.InvariantCulture);
+            String number =
+                ((int) (numberToBeFormatted/NumberDisplayScale)*NumberDisplayScale).ToString(
+                    CultureInfo.InvariantCulture);
             int pos = number.IndexOf('.');
-            if (pos == -1) pos = number.Length;
+            if (pos == -1)
+            {
+                pos = number.Length;
+            }
 
             return (new String(' ', 6 - pos) + number);
         }
@@ -268,7 +272,9 @@ namespace ShapeAnimator.View.Forms
             PropertyInfo pi = dgvType.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
             pi.SetValue(this.dataGridForShapes, true, null);
         }
+
         #endregion
+
         private void clearCanvas()
         {
             this.animationTimer.Stop();
@@ -308,6 +314,29 @@ namespace ShapeAnimator.View.Forms
                 tempShapes.Add(shape);
             }
             this.loadNewGrid(tempShapes);
+        }
+
+        private void pictureBox_MouseClick(object sender, EventArgs e)
+        {
+            if (this.isPaused)
+            {
+                var cursor = (MouseEventArgs) e;
+                Point clickedPoint = cursor.Location;
+
+                foreach (Shape currentShape in this.canvasManager.ShapesList)
+                {
+                    foreach (Point currentPoint in currentShape.GetShapePoints())
+                    {
+                        if (clickedPoint.Equals(currentPoint))
+                        {
+                            var colorChooser = new ColorDialog {AllowFullOpen = true, Color = currentShape.Color};
+                            colorChooser.ShowDialog();
+                            currentShape.Color = colorChooser.Color;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         #endregion

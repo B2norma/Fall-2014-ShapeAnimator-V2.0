@@ -1,11 +1,10 @@
-﻿using ShapeAnimator.View;
-using System;
+﻿using System;
+using ShapeAnimator.View;
 
 namespace ShapeAnimator.Model.Shapes
 {
     internal class Ellipse : Shape
     {
-
         #region Constructors
 
         /// <summary>
@@ -21,28 +20,28 @@ namespace ShapeAnimator.Model.Shapes
         #region Methods
 
         /// <summary>
-        /// Calculates the area of the shape.
+        ///     Calculates the area of the shape.
         /// </summary>
         /// <returns>
-        /// The area of the shape.
+        ///     The area of the shape.
         /// </returns>
         public override double CalculateArea()
         {
-            return Math.PI * ((double)this.Height / 2) * ((double)this.Width / 2);
+            return Math.PI*((double) this.Height/2)*((double) this.Width/2);
         }
 
         /// <summary>
-        /// Calculates the perimeter of the shape.
+        ///     Calculates the perimeter of the shape.
         /// </summary>
         /// <returns>
-        /// The parimeter of the shape.
+        ///     The parimeter of the shape.
         /// </returns>
         public override double CalculatePerimeter()
         {
-            return (2 * Math.PI) * (Math.Sqrt((Math.Pow(((double)this.Height / 2), 2) + Math.Pow(((double)this.Width / 2), 2)) / 2));
+            return (2*Math.PI)*
+                   (Math.Sqrt((Math.Pow(((double) this.Height/2), 2) + Math.Pow(((double) this.Width/2), 2))/2));
         }
 
         #endregion
-
     }
 }

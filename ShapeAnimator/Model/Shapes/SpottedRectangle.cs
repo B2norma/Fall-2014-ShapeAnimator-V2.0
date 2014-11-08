@@ -4,7 +4,6 @@ namespace ShapeAnimator.Model.Shapes
 {
     internal class SpottedRectangle : Rectangle
     {
-
         #region Constructors
 
         /// <summary>
@@ -16,6 +15,5 @@ namespace ShapeAnimator.Model.Shapes
         }
 
         #endregion
-
     }
 }

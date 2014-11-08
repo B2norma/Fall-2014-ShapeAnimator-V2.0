@@ -8,7 +8,6 @@ namespace ShapeAnimator.View
     /// </summary>
     public class CircleSprite : ShapeSprite
     {
-
         #region Constructors
 
         /// <summary>
@@ -37,6 +36,5 @@ namespace ShapeAnimator.View
         }
 
         #endregion
-
     }
 }

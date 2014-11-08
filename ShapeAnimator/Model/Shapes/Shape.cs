@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using ShapeAnimator.Utilities;
 using ShapeAnimator.View;
@@ -12,20 +13,19 @@ namespace ShapeAnimator.Model.Shapes
     {
         #region Constants
 
-
         #endregion
 
         #region Instance variables
 
-        private readonly Color shapeColor;
+        private readonly int id;
         private readonly int speedX;
         private readonly int speedY;
         private int directionX;
         private int directionY;
-        private Point location;
-        private ShapeSprite sprite;
         private int hitCount;
-        private readonly int id;
+        private Point location;
+        private Color shapeColor;
+        private ShapeSprite sprite;
 
         #endregion
 
@@ -135,13 +135,14 @@ namespace ShapeAnimator.Model.Shapes
         public Color Color
         {
             get { return this.shapeColor; }
+            set { this.shapeColor = value; }
         }
 
         /// <summary>
-        /// Gets the hit count.
+        ///     Gets the hit count.
         /// </summary>
         /// <value>
-        /// The hit count.
+        ///     The hit count.
         /// </value>
         public int HitCount
         {
@@ -149,10 +150,10 @@ namespace ShapeAnimator.Model.Shapes
         }
 
         /// <summary>
-        /// Gets the identifier.
+        ///     Gets the identifier.
         /// </summary>
         /// <value>
-        /// The identifier.
+        ///     The identifier.
         /// </value>
         public int Id
         {
@@ -210,7 +211,7 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         public void DirectionXFlip()
         {
-            hitCount++;
+            this.hitCount++;
             this.directionX = this.directionX*-1;
         }
 
@@ -219,10 +220,9 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         public void DirectionYFlip()
         {
-            hitCount++;
-            this.directionY = this.directionY * -1;
+            this.hitCount++;
+            this.directionY = this.directionY*-1;
         }
-
 
         private static int verifyDirectionValue(int randomDirection)
         {
@@ -244,6 +244,25 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         /// <returns> The parimeter of the shape. </returns>
         public abstract double CalculatePerimeter();
+
+        /// <summary>
+        ///     Gets the shape points.
+        /// </summary>
+        /// <returns>The list of shape points.</returns>
+        public List<Point> GetShapePoints()
+        {
+            var points = new List<Point>();
+
+            for (int y = this.Y; y < this.Y + this.Height; y++)
+            {
+                for (int x = this.X; x < this.X + this.Width; x++)
+                {
+                    points.Add(new Point(x, y));
+                }
+            }
+
+            return points;
+        }
 
         #endregion
     }

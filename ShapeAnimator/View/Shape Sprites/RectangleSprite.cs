@@ -8,7 +8,6 @@ namespace ShapeAnimator.View
     /// </summary>
     public class RectangleSprite : ShapeSprite
     {
-
         #region Constructors
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace ShapeAnimator.View
         ///     Draws a shape
         ///     Preconditon: g != null
         /// </summary>
-        /// <param name="g">The graphics object to draw the shape one</param>
+        /// <param name="g">The graphics object to draw the shape on</param>
         /// <exception cref="System.ArgumentNullException">g</exception>
         public override void Paint(Graphics g)
         {
@@ -39,6 +38,5 @@ namespace ShapeAnimator.View
         }
 
         #endregion
-
     }
 }
