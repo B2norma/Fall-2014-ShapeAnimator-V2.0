@@ -13,6 +13,11 @@ namespace ShapeAnimator.Controller
     /// </summary>
     public class ShapeController
     {
+        #region Constants
+
+        private const int maxNumberOfShapes = 10;
+
+        #endregion
         #region Instance variables
 
         private readonly PictureBox canvas;
@@ -76,12 +81,15 @@ namespace ShapeAnimator.Controller
         public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfCircles, int numberOfRectangles,
             int numberOfSpottedRectangles)
         {
-            this.ShapesList.Clear();
+            if ((numberOfCircles + numberOfRectangles + numberOfShapes + numberOfSpottedRectangles) <= maxNumberOfShapes)
+            {
+                this.ShapesList.Clear();
 
-            this.generateShapes(numberOfShapes);
-            this.generateEllipses(numberOfCircles);
-            this.generateRectangles(numberOfRectangles);
-            this.generateSpottedRectangle(numberOfSpottedRectangles);
+                this.generateShapes(numberOfShapes);
+                this.generateEllipses(numberOfCircles);
+                this.generateRectangles(numberOfRectangles);
+                this.generateSpottedRectangle(numberOfSpottedRectangles);
+            }
         }
 
         private void generateSpottedRectangle(int numberOfSpottedCircles)

@@ -242,6 +242,7 @@ namespace ShapeAnimator.View.Forms
                     if ((int) currentRow.Cells[5].Value == currentShape.Id)
                     {
                         currentRow.Cells[4].Value = currentShape.HitCount;
+                        currentRow.Cells[1].Value = this.formatColor(currentShape.Color);
                     }
                 }
             }
@@ -332,7 +333,7 @@ namespace ShapeAnimator.View.Forms
                             var colorChooser = new ColorDialog {AllowFullOpen = true, Color = currentShape.Color};
                             colorChooser.ShowDialog();
                             currentShape.Color = colorChooser.Color;
-                            break;
+                            return;
                         }
                     }
                 }
