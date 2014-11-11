@@ -39,6 +39,14 @@ namespace ShapeAnimator.Controller
             get { return this.shapesList; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is paused.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is paused; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsPaused { get; set; }
+
         #endregion
 
         #region Constructors
@@ -98,7 +106,7 @@ namespace ShapeAnimator.Controller
             for (int i = 0; i < numberOfSpottedCircles; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewSpottedRectangle();
-                this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBoundsNotOverlapping(tempShape);
                 this.ShapesList.Add(tempShape);
             }
         }
@@ -108,7 +116,7 @@ namespace ShapeAnimator.Controller
             for (int i = 0; i < numberOfRectangles; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewRectangle();
-                this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBoundsNotOverlapping(tempShape);
                 this.ShapesList.Add(tempShape);
             }
         }
@@ -118,7 +126,7 @@ namespace ShapeAnimator.Controller
             for (int i = 0; i < numberOfEllipses; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewEllipse();
-                this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBoundsNotOverlapping(tempShape);
                 this.ShapesList.Add(tempShape);
             }
         }
@@ -128,12 +136,12 @@ namespace ShapeAnimator.Controller
             for (int i = 0; i < numberOfShapes; i++)
             {
                 Shape tempShape = ShapeFactory.CreateNewShape();
-                this.placeShapeWithinBounds(tempShape);
+                this.placeShapeWithinBoundsNotOverlapping(tempShape);
                 this.ShapesList.Add(tempShape);
             }
         }
 
-        private void placeShapeWithinBounds(Shape tempShape)
+        private void placeShapeWithinBoundsNotOverlapping(Shape tempShape)
         {
             do
             {
@@ -177,13 +185,21 @@ namespace ShapeAnimator.Controller
 
         private void moveAndDrawShape(Graphics g, Shape shape)
         {
+            if (!IsPaused)
+            {
+                this.moveTheShape(g, shape);
+            }
+            shape.Paint(g);
+        }
+
+        private void moveTheShape(Graphics g, Shape shape)
+        {
             shape.Move();
             if (this.checkbounds(g, shape))
             {
                 shape.Move();
             }
             this.loopThroughToCheckForCollissions(shape);
-            shape.Paint(g);
         }
 
         private bool checkbounds(Graphics g, Shape shape)

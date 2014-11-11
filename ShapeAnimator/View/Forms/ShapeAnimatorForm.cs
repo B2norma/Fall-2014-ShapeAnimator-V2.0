@@ -15,7 +15,6 @@ namespace ShapeAnimator.View.Forms
     /// </summary>
     public partial class ShapeAnimatorForm
     {
-
         #region Constants
 
         private const string PauseButtonPause = "Pause";
@@ -29,14 +28,12 @@ namespace ShapeAnimator.View.Forms
         #region Instance variables
 
         private readonly ShapeController canvasManager;
-
-        private bool isPaused;
+        private bool colorSelected;
 
         private bool hitCountSelected;
+        private bool isPaused;
 
         private bool nameSelected;
-
-        private bool colorSelected;
 
         #endregion
 
@@ -144,15 +141,12 @@ namespace ShapeAnimator.View.Forms
 
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            if (this.isPaused == false)
+            this.updateGuiDataGrid();
+            if (this.hitCountSelected)
             {
-                this.updateGuiDataGrid();
-                if (hitCountSelected)
-                {
-                    this.sortGridByCountThenName();
-                }
-                this.Refresh();
+                this.sortGridByCountThenName();
             }
+            this.Refresh();
         }
 
         private void shapeCanvasPictureBox_Paint(object sender, PaintEventArgs e)
@@ -178,11 +172,13 @@ namespace ShapeAnimator.View.Forms
             {
                 this.PauseResumeButton.Text = PauseButtonResume;
                 this.isPaused = true;
+                this.canvasManager.IsPaused = this.isPaused;
             }
             else
             {
                 this.PauseResumeButton.Text = PauseButtonPause;
                 this.isPaused = false;
+                this.canvasManager.IsPaused = this.isPaused;
             }
         }
 
@@ -199,9 +195,9 @@ namespace ShapeAnimator.View.Forms
 
         private void dataGridForShapes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            nameSelected = false;
-            hitCountSelected = false;
-            colorSelected = false;
+            this.nameSelected = false;
+            this.hitCountSelected = false;
+            this.colorSelected = false;
             if (e.ColumnIndex == 0)
             {
                 this.sortGridByNameThenColor();
@@ -216,12 +212,11 @@ namespace ShapeAnimator.View.Forms
             }
         }
 
-
         private void pictureBox_MouseClick(object sender, EventArgs e)
         {
             if (this.isPaused)
             {
-                var cursor = (MouseEventArgs)e;
+                var cursor = (MouseEventArgs) e;
                 Point clickedPoint = cursor.Location;
 
                 foreach (Shape currentShape in this.canvasManager.ShapesList)
@@ -262,7 +257,6 @@ namespace ShapeAnimator.View.Forms
         #region Private Methods
 
         #region Grid Related Methods
-
 
         private void loadInitialGrid()
         {
@@ -323,10 +317,9 @@ namespace ShapeAnimator.View.Forms
             pi.SetValue(this.dataGridForShapes, true, null);
         }
 
-
         private void sortGridByNameThenColor()
         {
-            nameSelected = true;
+            this.nameSelected = true;
             IOrderedEnumerable<Shape> sortedShapes =
                 this.canvasManager.ShapesList.OrderBy(shape => shape.GetType().Name)
                     .ThenBy(shape => shape.Color.ToArgb());
@@ -335,7 +328,7 @@ namespace ShapeAnimator.View.Forms
 
         private void sortGridByColor()
         {
-            colorSelected = true;
+            this.colorSelected = true;
             IOrderedEnumerable<Shape> sortedShapes =
                 this.canvasManager.ShapesList.OrderBy(shape => shape.Color.ToArgb());
             this.convertAndDisplayUpdatedList(sortedShapes);
@@ -343,7 +336,7 @@ namespace ShapeAnimator.View.Forms
 
         private void sortGridByCountThenName()
         {
-            hitCountSelected = true;
+            this.hitCountSelected = true;
             IOrderedEnumerable<Shape> sortedShapes =
                 this.canvasManager.ShapesList.OrderBy(shape => shape.HitCount).ThenBy(shape => shape.GetType().Name);
             this.convertAndDisplayUpdatedList(sortedShapes);
@@ -391,7 +384,6 @@ namespace ShapeAnimator.View.Forms
             }
             this.loadNewGrid(tempShapes);
         }
-
 
         #endregion
     }
