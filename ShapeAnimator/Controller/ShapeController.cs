@@ -139,14 +139,14 @@ namespace ShapeAnimator.Controller
             {
                 tempShape.X = RandomUtils.NextInt(this.canvas.Width - tempShape.Width);
                 tempShape.Y = RandomUtils.NextInt(this.canvas.Height - tempShape.Height);
-            } while (checkIfInitialPlacementValid(tempShape) == false);
+            } while (this.checkIfInitialPlacementValid(tempShape) == false);
         }
 
         private bool checkIfInitialPlacementValid(Shape tempShape)
         {
-            foreach (Shape shape in shapesList)
+            foreach (Shape shape in this.shapesList)
             {
-                if (this.collisionCheck(tempShape, shape))
+                if (this.isCollisionBetweenShapes(tempShape, shape))
                 {
                     return false;
                 }
@@ -182,7 +182,7 @@ namespace ShapeAnimator.Controller
             {
                 shape.Move();
             }
-            this.checkForOtherShapes(shape);
+            this.loopThroughToCheckForCollissions(shape);
             shape.Paint(g);
         }
 
@@ -191,128 +191,6 @@ namespace ShapeAnimator.Controller
             bool xOutOfBounds = this.verifyXBounds(g, shape);
             bool yOutOfBounds = this.verifyYBounds(g, shape);
             return (xOutOfBounds || yOutOfBounds);
-        }
-
-        private void checkForOtherShapes(Shape shape)
-        {
-            foreach (Shape shapeToCompare in this.shapesList)
-            {
-                if (shape != shapeToCompare)
-                {
-                    this.collissionLogic(shape, shapeToCompare);
-                }
-            }
-        }
-
-        private void collissionLogic(Shape shape, Shape shapeToCompare)
-        {
-            if (this.collisionCheck(shape, shapeToCompare))
-            {
-                if (shape.DirectionY == shapeToCompare.DirectionY)
-                {
-                    if (shape.DirectionX == shapeToCompare.DirectionX)
-                    {
-                        if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
-                        {
-                            shape.DirectionYFlip();
-                        }
-                        else
-                        {
-                            shape.DirectionXFlip();
-                        }
-                    }
-                    else
-                    {
-                        if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
-                        {
-                            shape.DirectionYFlip();
-                        }
-                        else
-                        {
-                            shape.DirectionXFlip();
-                            shapeToCompare.DirectionXFlip();
-                        }
-                    }
-                }
-                else
-                {
-                    if (shape.DirectionX == shapeToCompare.DirectionX)
-                    {
-                        if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
-                        {
-                            shape.DirectionYFlip();
-                            shapeToCompare.DirectionYFlip();
-                        }
-                        else
-                        {
-                            shape.DirectionXFlip();
-                        }
-                    }
-                    else
-                    {
-                        if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
-                        {
-                            shape.DirectionYFlip();
-                            shapeToCompare.DirectionYFlip();
-                        }
-                        else
-                        {
-                            shape.DirectionXFlip();
-                            shapeToCompare.DirectionXFlip();
-                        }
-                    }
-                }
-                shapeToCompare.Move();
-                shape.Move();
-            }
-        }
-
-        private bool checkForTopOrBottomCollision(Shape shape, Shape shapeToCompare)
-        {
-            if (shape.X + shape.Width > shapeToCompare.X &&
-                shape.X + shape.Width < shapeToCompare.X + shapeToCompare.Width)
-            {
-                if (shape.Y + shape.Height > shapeToCompare.Y &&
-                    shape.Y + shape.Height < shapeToCompare.Y + shapeToCompare.Height)
-                {
-                    if ((shape.X + shape.Width) - shapeToCompare.X > shape.Y + shape.Height - shapeToCompare.Y)
-                    {
-                        return true;
-                    }
-                    return false;
-                }
-                if ((shape.X + shape.Width) - shapeToCompare.X > shapeToCompare.Y + shapeToCompare.Height - shape.Y)
-                {
-                    return true;
-                }
-                return false;
-            }
-            if (shape.Y + shape.Height > shapeToCompare.Y &&
-                shape.Y + shape.Height < shapeToCompare.Y + shapeToCompare.Height)
-            {
-                if (shapeToCompare.X + shapeToCompare.Width - (shape.X) > shape.Y + shape.Height - shapeToCompare.Y)
-                {
-                    return true;
-                }
-                return false;
-            }
-            if (shapeToCompare.X + shapeToCompare.Width - (shape.X) > shapeToCompare.Y + shapeToCompare.Height - shape.Y)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool collisionCheck(Shape shape, Shape shapeToCompare)
-        {
-            if (shape.X < shapeToCompare.X + shapeToCompare.Width &&
-                shape.X + shape.Width > shapeToCompare.X &&
-                shape.Y < shapeToCompare.Y + shapeToCompare.Height &&
-                shape.Y + shape.Height > shapeToCompare.Y)
-            {
-                return true;
-            }
-            return false;
         }
 
         private bool verifyYBounds(Graphics g, Shape shape)
@@ -334,6 +212,158 @@ namespace ShapeAnimator.Controller
             }
             return false;
         }
+
+        #region Collision Detection
+
+        private void loopThroughToCheckForCollissions(Shape shape)
+        {
+            foreach (Shape shapeToCompare in this.shapesList)
+            {
+                if (shape != shapeToCompare)
+                {
+                    this.collissionLogic(shape, shapeToCompare);
+                }
+            }
+        }
+
+        private void collissionLogic(Shape shape, Shape shapeToCompare)
+        {
+            if (this.isCollisionBetweenShapes(shape, shapeToCompare))
+            {
+                this.collissionCheckIfYDirectionSame(shape, shapeToCompare);
+            }
+        }
+
+        private void collissionCheckIfYDirectionSame(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.DirectionY == shapeToCompare.DirectionY)
+            {
+                this.collissionCheckIfXDirectionSameIfYSame(shape, shapeToCompare);
+            }
+            else
+            {
+                this.collissionCheckIfXDirectionSameIfYDifferent(shape, shapeToCompare);
+            }
+            shapeToCompare.Move();
+            shape.Move();
+        }
+
+        private void collissionCheckIfXDirectionSameIfYDifferent(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.DirectionX == shapeToCompare.DirectionX)
+            {
+                if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
+                {
+                    shape.DirectionYFlip();
+                    shapeToCompare.DirectionYFlip();
+                }
+                else
+                {
+                    shape.DirectionXFlip();
+                }
+            }
+            else
+            {
+                if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
+                {
+                    shape.DirectionYFlip();
+                    shapeToCompare.DirectionYFlip();
+                }
+                else
+                {
+                    shape.DirectionXFlip();
+                    shapeToCompare.DirectionXFlip();
+                }
+            }
+        }
+
+        private void collissionCheckIfXDirectionSameIfYSame(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.DirectionX == shapeToCompare.DirectionX)
+            {
+                if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
+                {
+                    shape.DirectionYFlip();
+                }
+                else
+                {
+                    shape.DirectionXFlip();
+                }
+            }
+            else
+            {
+                if (this.checkForTopOrBottomCollision(shape, shapeToCompare))
+                {
+                    shape.DirectionYFlip();
+                }
+                else
+                {
+                    shape.DirectionXFlip();
+                    shapeToCompare.DirectionXFlip();
+                }
+            }
+        }
+
+        private bool checkForTopOrBottomCollision(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.X + shape.Width > shapeToCompare.X &&
+                shape.X + shape.Width < shapeToCompare.X + shapeToCompare.Width)
+            {
+                return ifXandWidthCornerCheckForY(shape, shapeToCompare);
+            }
+            return ifXCornerCheckForY(shape, shapeToCompare);
+        }
+
+        private static bool ifXCornerCheckForY(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.Y + shape.Height > shapeToCompare.Y &&
+                shape.Y + shape.Height < shapeToCompare.Y + shapeToCompare.Height)
+            {
+                if (shapeToCompare.X + shapeToCompare.Width - (shape.X) > shape.Y + shape.Height - shapeToCompare.Y)
+                {
+                    return true;
+                }
+                return false;
+            }
+            if (shapeToCompare.X + shapeToCompare.Width - (shape.X) >
+                shapeToCompare.Y + shapeToCompare.Height - shape.Y)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private static bool ifXandWidthCornerCheckForY(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.Y + shape.Height > shapeToCompare.Y &&
+                shape.Y + shape.Height < shapeToCompare.Y + shapeToCompare.Height)
+            {
+                if ((shape.X + shape.Width) - shapeToCompare.X > shape.Y + shape.Height - shapeToCompare.Y)
+                {
+                    return true;
+                }
+                return false;
+            }
+            if ((shape.X + shape.Width) - shapeToCompare.X > shapeToCompare.Y + shapeToCompare.Height - shape.Y)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool isCollisionBetweenShapes(Shape shape, Shape shapeToCompare)
+        {
+            if (shape.X < shapeToCompare.X + shapeToCompare.Width &&
+                shape.X + shape.Width > shapeToCompare.X &&
+                shape.Y < shapeToCompare.Y + shapeToCompare.Height &&
+                shape.Y + shape.Height > shapeToCompare.Y)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
 
         #endregion
     }

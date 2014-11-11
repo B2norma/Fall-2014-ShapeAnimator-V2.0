@@ -15,6 +15,7 @@ namespace ShapeAnimator.View.Forms
     /// </summary>
     public partial class ShapeAnimatorForm
     {
+
         #region Constants
 
         private const string PauseButtonPause = "Pause";
@@ -30,6 +31,12 @@ namespace ShapeAnimator.View.Forms
         private readonly ShapeController canvasManager;
 
         private bool isPaused;
+
+        private bool hitCountSelected;
+
+        private bool nameSelected;
+
+        private bool colorSelected;
 
         #endregion
 
@@ -140,6 +147,10 @@ namespace ShapeAnimator.View.Forms
             if (this.isPaused == false)
             {
                 this.updateGuiDataGrid();
+                if (hitCountSelected)
+                {
+                    this.sortGridByCountThenName();
+                }
                 this.Refresh();
             }
         }
@@ -188,25 +199,62 @@ namespace ShapeAnimator.View.Forms
 
         private void dataGridForShapes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            nameSelected = false;
+            hitCountSelected = false;
+            colorSelected = false;
             if (e.ColumnIndex == 0)
             {
-                IOrderedEnumerable<Shape> sortedShapes =
-                    this.canvasManager.ShapesList.OrderBy(shape => shape.GetType().Name)
-                        .ThenBy(shape => shape.Color.ToArgb());
-                this.convertAndDisplayUpdatedList(sortedShapes);
+                this.sortGridByNameThenColor();
             }
             else if (e.ColumnIndex == 1)
             {
-                IOrderedEnumerable<Shape> sortedShapes =
-                    this.canvasManager.ShapesList.OrderBy(shape => shape.Color.ToArgb());
-                this.convertAndDisplayUpdatedList(sortedShapes);
+                this.sortGridByColor();
             }
             else if (e.ColumnIndex == 4)
             {
-                IOrderedEnumerable<Shape> sortedShapes =
-                    this.canvasManager.ShapesList.OrderBy(shape => shape.HitCount).ThenBy(shape => shape.GetType().Name);
-                this.convertAndDisplayUpdatedList(sortedShapes);
+                this.sortGridByCountThenName();
             }
+        }
+
+
+        private void pictureBox_MouseClick(object sender, EventArgs e)
+        {
+            if (this.isPaused)
+            {
+                var cursor = (MouseEventArgs)e;
+                Point clickedPoint = cursor.Location;
+
+                foreach (Shape currentShape in this.canvasManager.ShapesList)
+                {
+                    foreach (Point currentPoint in currentShape.GetShapePoints())
+                    {
+                        if (this.checkIfShapeIsAtPoint(clickedPoint, currentPoint, currentShape))
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool checkIfShapeIsAtPoint(Point clickedPoint, Point currentPoint, Shape currentShape)
+        {
+            if (clickedPoint.Equals(currentPoint))
+            {
+                var colorChooser = new ColorDialog {AllowFullOpen = true, Color = currentShape.Color};
+                colorChooser.ShowDialog();
+                currentShape.Color = colorChooser.Color;
+                if (this.nameSelected)
+                {
+                    this.sortGridByNameThenColor();
+                }
+                else if (this.colorSelected)
+                {
+                    this.sortGridByColor();
+                }
+                return true;
+            }
+            return false;
         }
 
         #endregion
@@ -214,6 +262,7 @@ namespace ShapeAnimator.View.Forms
         #region Private Methods
 
         #region Grid Related Methods
+
 
         private void loadInitialGrid()
         {
@@ -274,6 +323,32 @@ namespace ShapeAnimator.View.Forms
             pi.SetValue(this.dataGridForShapes, true, null);
         }
 
+
+        private void sortGridByNameThenColor()
+        {
+            nameSelected = true;
+            IOrderedEnumerable<Shape> sortedShapes =
+                this.canvasManager.ShapesList.OrderBy(shape => shape.GetType().Name)
+                    .ThenBy(shape => shape.Color.ToArgb());
+            this.convertAndDisplayUpdatedList(sortedShapes);
+        }
+
+        private void sortGridByColor()
+        {
+            colorSelected = true;
+            IOrderedEnumerable<Shape> sortedShapes =
+                this.canvasManager.ShapesList.OrderBy(shape => shape.Color.ToArgb());
+            this.convertAndDisplayUpdatedList(sortedShapes);
+        }
+
+        private void sortGridByCountThenName()
+        {
+            hitCountSelected = true;
+            IOrderedEnumerable<Shape> sortedShapes =
+                this.canvasManager.ShapesList.OrderBy(shape => shape.HitCount).ThenBy(shape => shape.GetType().Name);
+            this.convertAndDisplayUpdatedList(sortedShapes);
+        }
+
         #endregion
 
         private void clearCanvas()
@@ -317,28 +392,6 @@ namespace ShapeAnimator.View.Forms
             this.loadNewGrid(tempShapes);
         }
 
-        private void pictureBox_MouseClick(object sender, EventArgs e)
-        {
-            if (this.isPaused)
-            {
-                var cursor = (MouseEventArgs) e;
-                Point clickedPoint = cursor.Location;
-
-                foreach (Shape currentShape in this.canvasManager.ShapesList)
-                {
-                    foreach (Point currentPoint in currentShape.GetShapePoints())
-                    {
-                        if (clickedPoint.Equals(currentPoint))
-                        {
-                            var colorChooser = new ColorDialog {AllowFullOpen = true, Color = currentShape.Color};
-                            colorChooser.ShowDialog();
-                            currentShape.Color = colorChooser.Color;
-                            return;
-                        }
-                    }
-                }
-            }
-        }
 
         #endregion
     }
