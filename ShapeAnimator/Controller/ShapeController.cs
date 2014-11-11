@@ -13,11 +13,6 @@ namespace ShapeAnimator.Controller
     /// </summary>
     public class ShapeController
     {
-        #region Constants
-
-        private const int MaxNumberOfShapes = 10;
-
-        #endregion
 
         #region Instance variables
 
@@ -90,15 +85,12 @@ namespace ShapeAnimator.Controller
         public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfCircles, int numberOfRectangles,
             int numberOfSpottedRectangles)
         {
-            if ((numberOfCircles + numberOfRectangles + numberOfShapes + numberOfSpottedRectangles) <= MaxNumberOfShapes)
-            {
                 this.ShapesList.Clear();
 
                 this.generateShapes(numberOfShapes);
                 this.generateEllipses(numberOfCircles);
                 this.generateRectangles(numberOfRectangles);
                 this.generateSpottedRectangle(numberOfSpottedRectangles);
-            }
         }
 
         private void generateSpottedRectangle(int numberOfSpottedCircles)

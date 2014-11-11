@@ -23,6 +23,8 @@ namespace ShapeAnimator.View.Forms
 
         private const double NumberDisplayScale = .001;
 
+        private const int MaxNumberOfShapes = 10;
+
         #endregion
 
         #region Instance variables
@@ -157,13 +159,25 @@ namespace ShapeAnimator.View.Forms
 
         private void animateButton_Click(object sender, EventArgs e)
         {
-            this.animationTimer.Stop();
-            this.canvasManager.PlaceShapesOnCanvas(this.NumberShapes, this.NumberCircles, this.NumberRectangles,
-                this.NumberSpottedRectangles);
-            this.animationTimer.Start();
-            this.loadInitialGrid();
+            if (this.NumberShapes + this.NumberCircles + this.NumberRectangles + this.NumberSpottedRectangles <=
+                MaxNumberOfShapes)
+            {
+                this.animationTimer.Stop();
+                this.canvasManager.PlaceShapesOnCanvas(this.NumberShapes, this.NumberCircles, this.NumberRectangles,
+                    this.NumberSpottedRectangles);
+                this.animationTimer.Start();
+                this.loadInitialGrid();
 
-            this.enableButtonsForAnimation();
+                this.enableButtonsForAnimation();
+            }
+            else
+            {
+                MessageBox.Show("The max number of shapes allowed on the screen is " + MaxNumberOfShapes + ".", 
+                    "Too Many Shapes",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void PauseResumeButton_Click(object sender, EventArgs e)
