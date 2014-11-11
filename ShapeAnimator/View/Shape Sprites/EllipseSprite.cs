@@ -6,16 +6,16 @@ namespace ShapeAnimator.View
     /// <summary>
     ///     Responsible for drawing the actual sprite on the screen.
     /// </summary>
-    public class CircleSprite : ShapeSprite
+    public class EllipseSprite : ShapeSprite
     {
         #region Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CircleSprite" /> class.
+        ///     Initializes a new instance of the <see cref="EllipseSprite" /> class.
         ///     Precondition: shape != null
         /// </summary>
         /// <param name="shape">The shape.</param>
-        public CircleSprite(Shape shape) : base(shape)
+        public EllipseSprite(Shape shape) : base(shape)
         {
         }
 

@@ -12,7 +12,7 @@ namespace ShapeAnimator.Model.Shapes
         /// </summary>
         public Ellipse()
         {
-            this.Sprite = new CircleSprite(this);
+            this.Sprite = new EllipseSprite(this);
         }
 
         #endregion
