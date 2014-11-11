@@ -364,6 +364,9 @@ namespace ShapeAnimator.View.Forms
 
         private void resetButtons()
         {
+            this.numberShapesTextBox.Clear();
+            this.CircleBox.Clear();
+            this.RectangleBox.Clear();
             this.startButton.Enabled = true;
             this.CircleBox.Enabled = true;
             this.RectangleBox.Enabled = true;
