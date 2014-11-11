@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\WhenCalculateArea.cs" />
     <Compile Include="Utilities\RandomUtils.cs" />
     <Compile Include="Controller\ShapeController.cs" />
     <Compile Include="Model\Shapes\Ellipse.cs" />
