@@ -378,6 +378,7 @@ namespace ShapeAnimator.View.Forms
 
         private void resetButtons()
         {
+            this.dataGridForShapes.Rows.Clear();
             this.numberShapesTextBox.Clear();
             this.CircleBox.Clear();
             this.RectangleBox.Clear();
