@@ -177,6 +177,8 @@ namespace ShapeAnimator.View.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1);
+                    this.resetButtons();
+                    this.clearCanvas();
             }
         }
 
@@ -373,6 +375,7 @@ namespace ShapeAnimator.View.Forms
             this.startButton.Enabled = false;
             this.CircleBox.Enabled = false;
             this.RectangleBox.Enabled = false;
+            this.SpottedRectangleBox.Enabled = false;
             this.numberShapesTextBox.Enabled = false;
         }
 
@@ -382,11 +385,14 @@ namespace ShapeAnimator.View.Forms
             this.numberShapesTextBox.Clear();
             this.CircleBox.Clear();
             this.RectangleBox.Clear();
+            this.SpottedRectangleBox.Clear();
             this.startButton.Enabled = true;
             this.CircleBox.Enabled = true;
             this.RectangleBox.Enabled = true;
             this.numberShapesTextBox.Enabled = true;
+            this.SpottedRectangleBox.Enabled = true;
             this.isPaused = false;
+            this.canvasManager.IsPaused = false;
             this.PauseResumeButton.Text = PauseButtonPause;
             this.PauseResumeButton.Enabled = false;
             this.ClearButton.Enabled = false;
