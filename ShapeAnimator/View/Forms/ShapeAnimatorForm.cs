@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using ShapeAnimator.Controller;
 using ShapeAnimator.Model.Shapes;
+using ShapeAnimator.Properties;
 
 namespace ShapeAnimator.View.Forms
 {
@@ -171,8 +172,8 @@ namespace ShapeAnimator.View.Forms
             }
             else
             {
-                MessageBox.Show("The max number of shapes allowed on the screen is " + MaxNumberOfShapes + ".", 
-                    "Too Many Shapes",
+                MessageBox.Show(Resources.ShapeAnimatorForm_animateButton_Click_MaxShapes + MaxNumberOfShapes + Resources.ShapeAnimatorForm_animateButton_Click__Period, 
+                    Resources.ShapeAnimatorForm_animateButton_Click_Too_Many_Shapes,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1);

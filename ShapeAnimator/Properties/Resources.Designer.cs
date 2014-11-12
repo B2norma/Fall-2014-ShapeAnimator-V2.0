@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace ShapeAnimator.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -63,6 +66,33 @@ namespace ShapeAnimator.Properties {
         internal static string PictureBoxNullMessage {
             get {
                 return ResourceManager.GetString("PictureBoxNullMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ..
+        /// </summary>
+        internal static string ShapeAnimatorForm_animateButton_Click__Period {
+            get {
+                return ResourceManager.GetString("ShapeAnimatorForm_animateButton_Click__Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The max number of shapes allowed on the screen is .
+        /// </summary>
+        internal static string ShapeAnimatorForm_animateButton_Click_MaxShapes {
+            get {
+                return ResourceManager.GetString("ShapeAnimatorForm_animateButton_Click_MaxShapes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too Many Shapes.
+        /// </summary>
+        internal static string ShapeAnimatorForm_animateButton_Click_Too_Many_Shapes {
+            get {
+                return ResourceManager.GetString("ShapeAnimatorForm_animateButton_Click_Too_Many_Shapes", resourceCulture);
             }
         }
     }

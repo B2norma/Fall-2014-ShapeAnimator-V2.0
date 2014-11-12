@@ -117,4 +117,13 @@
   <data name="PictureBoxNullMessage" xml:space="preserve">
     <value>Must have a valid PictureBox or program will crash when attempting to draw the canvas.</value>
   </data>
+  <data name="ShapeAnimatorForm_animateButton_Click_MaxShapes" xml:space="preserve">
+    <value>The max number of shapes allowed on the screen is </value>
+  </data>
+  <data name="ShapeAnimatorForm_animateButton_Click_Too_Many_Shapes" xml:space="preserve">
+    <value>Too Many Shapes</value>
+  </data>
+  <data name="ShapeAnimatorForm_animateButton_Click__Period" xml:space="preserve">
+    <value>.</value>
+  </data>
 </root>

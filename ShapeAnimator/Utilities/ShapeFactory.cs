@@ -7,6 +7,9 @@ namespace ShapeAnimator.Utilities
     {
         #region Enums
 
+        /// <summary>
+        ///     The Shapes that are avaliable to create.
+        /// </summary>
         public enum Shapes
         {
             Ellipse,
@@ -35,45 +38,21 @@ namespace ShapeAnimator.Utilities
             switch (randomShape)
             {
                 case Shapes.Ellipse:
-                    return CreateNewEllipse();
+                    return new Ellipse();
                 case Shapes.Rectangle:
-                    return CreateNewRectangle();
+                    return new Rectangle();
                 case Shapes.SpottedRectangle:
-                    return CreateNewSpottedRectangle();
+                    return new SpottedRectangle();
                 default:
                     return null;
             }
         }
 
-
-
         /// <summary>
-        ///     Creates a new circle.
+        ///     Creates a new shape.
         /// </summary>
+        /// <param name="shapeType">Type of the shape.</param>
         /// <returns></returns>
-        public static Shape CreateNewEllipse()
-        {
-            return new Ellipse();
-        }
-
-        /// <summary>
-        ///     Creates a new rectangle.
-        /// </summary>
-        /// <returns></returns>
-        public static Shape CreateNewRectangle()
-        {
-            return new Rectangle();
-        }
-
-        /// <summary>
-        ///     Creates a new spotted circle.
-        /// </summary>
-        /// <returns></returns>
-        public static Shape CreateNewSpottedRectangle()
-        {
-            return new SpottedRectangle();
-        }
-
         public static Shape CreateNewShape(Shapes shapeType)
         {
             if (shapeType.Equals(Shapes.Random))
