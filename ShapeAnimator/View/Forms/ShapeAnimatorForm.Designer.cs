@@ -79,7 +79,7 @@ namespace ShapeAnimator.View.Forms
             // numberOfShapesLabel
             // 
             this.numberOfShapesLabel.AutoSize = true;
-            this.numberOfShapesLabel.Location = new System.Drawing.Point(1, 24);
+            this.numberOfShapesLabel.Location = new System.Drawing.Point(1, 20);
             this.numberOfShapesLabel.Name = "numberOfShapesLabel";
             this.numberOfShapesLabel.Size = new System.Drawing.Size(96, 13);
             this.numberOfShapesLabel.TabIndex = 1;
