@@ -172,13 +172,15 @@ namespace ShapeAnimator.View.Forms
             }
             else
             {
-                MessageBox.Show(Resources.ShapeAnimatorForm_animateButton_Click_MaxShapes + MaxNumberOfShapes + Resources.ShapeAnimatorForm_animateButton_Click__Period, 
+                MessageBox.Show(
+                    Resources.ShapeAnimatorForm_animateButton_Click_MaxShapes + MaxNumberOfShapes +
+                    Resources.ShapeAnimatorForm_animateButton_Click__Period,
                     Resources.ShapeAnimatorForm_animateButton_Click_Too_Many_Shapes,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1);
-                    this.resetButtons();
-                    this.clearCanvas();
+                this.resetButtons();
+                this.clearCanvas();
             }
         }
 

@@ -3,7 +3,7 @@
 namespace ShapeAnimator.Model.Shapes
 {
     /// <summary>
-    /// The Spotted Rectangle Class. Inherits From Rectangle.
+    ///     The Spotted Rectangle Class. Inherits From Rectangle.
     /// </summary>
     public class SpottedRectangle : Rectangle
     {

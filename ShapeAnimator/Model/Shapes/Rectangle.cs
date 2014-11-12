@@ -3,7 +3,7 @@
 namespace ShapeAnimator.Model.Shapes
 {
     /// <summary>
-    /// The Rectangle Class. Inherits from shape. 
+    ///     The Rectangle Class. Inherits from shape.
     /// </summary>
     public class Rectangle : Shape
     {

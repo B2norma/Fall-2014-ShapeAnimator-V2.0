@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShapeAnimator.Model.Shapes;
 
 namespace ShapeTests
@@ -7,22 +6,22 @@ namespace ShapeTests
     [TestClass]
     public class ShapeTest
     {
-        private Shape testRectangle = new Rectangle();
-        private Shape testSpottedRectangle = new SpottedRectangle();
+        private readonly Shape testRectangle = new Rectangle();
+        private readonly Shape testSpottedRectangle = new SpottedRectangle();
 
         [TestMethod]
         public void VerifyAreaOfRectangle()
         {
-            double expected = testRectangle.Height*testRectangle.Width;
-            double actual = testRectangle.CalculateArea();
-            Assert.AreEqual(expected,actual,.001,"Area not calculated correctly.");
+            double expected = this.testRectangle.Height*this.testRectangle.Width;
+            double actual = this.testRectangle.CalculateArea();
+            Assert.AreEqual(expected, actual, .001, "Area not calculated correctly.");
         }
 
         [TestMethod]
         public void VerifyAreaOfSpottedRectangle()
         {
-            double expected = testSpottedRectangle.Height * testSpottedRectangle.Width;
-            double actual = testSpottedRectangle.CalculateArea();
+            double expected = this.testSpottedRectangle.Height*this.testSpottedRectangle.Width;
+            double actual = this.testSpottedRectangle.CalculateArea();
             Assert.AreEqual(expected, actual, .001, "Area not calculated correctly.");
         }
     }

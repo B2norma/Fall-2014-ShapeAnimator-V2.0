@@ -4,7 +4,7 @@ using ShapeAnimator.View;
 namespace ShapeAnimator.Model.Shapes
 {
     /// <summary>
-    /// The Ellipse Class. Inherits from Shape.
+    ///     The Ellipse Class. Inherits from Shape.
     /// </summary>
     public class Ellipse : Shape
     {
