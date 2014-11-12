@@ -7,7 +7,7 @@ namespace ShapeAnimator.Utilities
     {
         #region Constants
 
-        private const int MaxRgbValue = 256;
+        private const int MaxRgbValue = 255;
         private const int MinRgbValue = 1;
         private const int MaxSpeedValue = 5;
         private const int MinSpeedValue = 1;
@@ -52,8 +52,8 @@ namespace ShapeAnimator.Utilities
         /// <returns></returns>
         public static Color GenerateRandomColor()
         {
-            return Color.FromArgb(NextInt(MinRgbValue, MaxRgbValue),
-                NextInt(MinRgbValue, MaxRgbValue), NextInt(MinRgbValue, MaxRgbValue));
+            return Color.FromArgb(NextInt(MinRgbValue, MaxRgbValue + 1),
+                NextInt(MinRgbValue, MaxRgbValue + 1), NextInt(MinRgbValue, MaxRgbValue + 1));
         }
 
         /// <summary>
