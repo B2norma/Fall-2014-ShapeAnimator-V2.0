@@ -2,7 +2,10 @@
 
 namespace ShapeAnimator.Model.Shapes
 {
-    internal class SpottedRectangle : Rectangle
+    /// <summary>
+    /// The Spotted Rectangle Class. Inherits From Rectangle.
+    /// </summary>
+    public class SpottedRectangle : Rectangle
     {
         #region Constructors
 

@@ -3,7 +3,10 @@ using ShapeAnimator.View;
 
 namespace ShapeAnimator.Model.Shapes
 {
-    internal class Ellipse : Shape
+    /// <summary>
+    /// The Ellipse Class. Inherits from Shape.
+    /// </summary>
+    public class Ellipse : Shape
     {
         #region Constructors
 

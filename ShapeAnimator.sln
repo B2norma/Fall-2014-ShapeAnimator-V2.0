@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeAnimatorA5", "ShapeAnimator\ShapeAnimatorA5.csproj", "{561C1BE5-EC6A-4262-A170-CDD893BDF860}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeTests", "ShapeTests\ShapeTests.csproj", "{12EBA043-B1D7-40F9-AA99-69D0E6DA2513}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{561C1BE5-EC6A-4262-A170-CDD893BDF860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{561C1BE5-EC6A-4262-A170-CDD893BDF860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{561C1BE5-EC6A-4262-A170-CDD893BDF860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12EBA043-B1D7-40F9-AA99-69D0E6DA2513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12EBA043-B1D7-40F9-AA99-69D0E6DA2513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12EBA043-B1D7-40F9-AA99-69D0E6DA2513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12EBA043-B1D7-40F9-AA99-69D0E6DA2513}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
