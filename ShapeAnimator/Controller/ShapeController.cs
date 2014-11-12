@@ -13,7 +13,6 @@ namespace ShapeAnimator.Controller
     /// </summary>
     public class ShapeController
     {
-
         #region Instance variables
 
         private readonly PictureBox canvas;
@@ -35,10 +34,10 @@ namespace ShapeAnimator.Controller
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is paused.
+        ///     Gets or sets a value indicating whether this instance is paused.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is paused; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance is paused; otherwise, <c>false</c>.
         /// </value>
         public bool IsPaused { get; set; }
 
@@ -85,10 +84,10 @@ namespace ShapeAnimator.Controller
         public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfEllipses, int numberOfRectangles,
             int numberOfSpottedRectangles)
         {
-                this.ShapesList.Clear();
+            this.ShapesList.Clear();
 
-                this.generateShapes(numberOfShapes,ShapeFactory.Shapes.Random);
-            this.generateShapes(numberOfEllipses,ShapeFactory.Shapes.Ellipse);
+            this.generateShapes(numberOfShapes, ShapeFactory.Shapes.Random);
+            this.generateShapes(numberOfEllipses, ShapeFactory.Shapes.Ellipse);
             this.generateShapes(numberOfRectangles, ShapeFactory.Shapes.Rectangle);
             this.generateShapes(numberOfSpottedRectangles, ShapeFactory.Shapes.SpottedRectangle);
         }
@@ -147,7 +146,7 @@ namespace ShapeAnimator.Controller
 
         private void moveAndDrawShape(Graphics g, Shape shape)
         {
-            if (!IsPaused)
+            if (!this.IsPaused)
             {
                 this.moveTheShape(g, shape);
             }

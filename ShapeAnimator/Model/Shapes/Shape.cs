@@ -11,10 +11,6 @@ namespace ShapeAnimator.Model.Shapes
     /// </summary>
     public abstract class Shape
     {
-        #region Constants
-
-        #endregion
-
         #region Instance variables
 
         private readonly int id;
