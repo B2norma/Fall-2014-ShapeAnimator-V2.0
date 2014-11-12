@@ -79,55 +79,25 @@ namespace ShapeAnimator.Controller
         ///     Precondition: None
         /// </summary>
         /// <param name="numberOfShapes">The number of shapes</param>
-        /// <param name="numberOfCircles">The number of circles.</param>
+        /// <param name="numberOfEllipses">The number of circles.</param>
         /// <param name="numberOfRectangles">The number of rectangles.</param>
         /// <param name="numberOfSpottedRectangles">The number of spotted circles.</param>
-        public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfCircles, int numberOfRectangles,
+        public void PlaceShapesOnCanvas(int numberOfShapes, int numberOfEllipses, int numberOfRectangles,
             int numberOfSpottedRectangles)
         {
                 this.ShapesList.Clear();
 
-                this.generateShapes(numberOfShapes);
-                this.generateEllipses(numberOfCircles);
-                this.generateRectangles(numberOfRectangles);
-                this.generateSpottedRectangle(numberOfSpottedRectangles);
+                this.generateShapes(numberOfShapes,ShapeFactory.Shapes.Random);
+            this.generateShapes(numberOfEllipses,ShapeFactory.Shapes.Ellipse);
+            this.generateShapes(numberOfRectangles, ShapeFactory.Shapes.Rectangle);
+            this.generateShapes(numberOfSpottedRectangles, ShapeFactory.Shapes.SpottedRectangle);
         }
 
-        private void generateSpottedRectangle(int numberOfSpottedCircles)
-        {
-            for (int i = 0; i < numberOfSpottedCircles; i++)
-            {
-                Shape tempShape = ShapeFactory.CreateNewSpottedRectangle();
-                this.placeShapeWithinBoundsNotOverlapping(tempShape);
-                this.ShapesList.Add(tempShape);
-            }
-        }
-
-        private void generateRectangles(int numberOfRectangles)
-        {
-            for (int i = 0; i < numberOfRectangles; i++)
-            {
-                Shape tempShape = ShapeFactory.CreateNewRectangle();
-                this.placeShapeWithinBoundsNotOverlapping(tempShape);
-                this.ShapesList.Add(tempShape);
-            }
-        }
-
-        private void generateEllipses(int numberOfEllipses)
-        {
-            for (int i = 0; i < numberOfEllipses; i++)
-            {
-                Shape tempShape = ShapeFactory.CreateNewEllipse();
-                this.placeShapeWithinBoundsNotOverlapping(tempShape);
-                this.ShapesList.Add(tempShape);
-            }
-        }
-
-        private void generateShapes(int numberOfShapes)
+        private void generateShapes(int numberOfShapes, ShapeFactory.Shapes shapeType)
         {
             for (int i = 0; i < numberOfShapes; i++)
             {
-                Shape tempShape = ShapeFactory.CreateNewShape();
+                Shape tempShape = ShapeFactory.CreateNewShape(shapeType);
                 this.placeShapeWithinBoundsNotOverlapping(tempShape);
                 this.ShapesList.Add(tempShape);
             }

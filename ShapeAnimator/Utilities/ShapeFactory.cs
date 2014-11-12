@@ -7,11 +7,12 @@ namespace ShapeAnimator.Utilities
     {
         #region Enums
 
-        private enum Shapes
+        public enum Shapes
         {
             Ellipse,
             Rectangle,
-            SpottedRectangle
+            SpottedRectangle,
+            Random
         }
 
         #endregion
@@ -25,13 +26,13 @@ namespace ShapeAnimator.Utilities
         /// <returns></returns>
         public static Shape CreateNewShape()
         {
-            int randomShape = RandomUtils.NextInt(Enum.GetNames(typeof (Shapes)).Length);
-            return createFinalShape(randomShape);
+            int randomShape = RandomUtils.NextInt(Enum.GetNames(typeof (Shapes)).Length - 1);
+            return createFinalShape((Shapes) randomShape);
         }
 
-        private static Shape createFinalShape(int randomShape)
+        private static Shape createFinalShape(Shapes randomShape)
         {
-            switch ((Shapes) randomShape)
+            switch (randomShape)
             {
                 case Shapes.Ellipse:
                     return CreateNewEllipse();
@@ -43,6 +44,8 @@ namespace ShapeAnimator.Utilities
                     return null;
             }
         }
+
+
 
         /// <summary>
         ///     Creates a new circle.
@@ -69,6 +72,15 @@ namespace ShapeAnimator.Utilities
         public static Shape CreateNewSpottedRectangle()
         {
             return new SpottedRectangle();
+        }
+
+        public static Shape CreateNewShape(Shapes shapeType)
+        {
+            if (shapeType.Equals(Shapes.Random))
+            {
+                return CreateNewShape();
+            }
+            return createFinalShape(shapeType);
         }
 
         #endregion
