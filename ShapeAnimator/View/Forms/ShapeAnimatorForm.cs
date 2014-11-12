@@ -33,7 +33,6 @@ namespace ShapeAnimator.View.Forms
         private bool colorSelected;
 
         private bool hitCountSelected;
-        private bool isPaused;
 
         private bool nameSelected;
 
@@ -182,17 +181,15 @@ namespace ShapeAnimator.View.Forms
 
         private void PauseResumeButton_Click(object sender, EventArgs e)
         {
-            if (this.isPaused == false)
+            if (this.canvasManager.IsPaused == false)
             {
                 this.PauseResumeButton.Text = PauseButtonResume;
-                this.isPaused = true;
-                this.canvasManager.IsPaused = this.isPaused;
+                this.canvasManager.IsPaused = true;
             }
             else
             {
                 this.PauseResumeButton.Text = PauseButtonPause;
-                this.isPaused = false;
-                this.canvasManager.IsPaused = this.isPaused;
+                this.canvasManager.IsPaused = false;
             }
         }
 
@@ -228,7 +225,7 @@ namespace ShapeAnimator.View.Forms
 
         private void pictureBox_MouseClick(object sender, EventArgs e)
         {
-            if (this.isPaused)
+            if (this.canvasManager.IsPaused)
             {
                 var cursor = (MouseEventArgs) e;
                 Point clickedPoint = cursor.Location;
@@ -369,7 +366,7 @@ namespace ShapeAnimator.View.Forms
         {
             this.PauseResumeButton.Enabled = true;
             this.ClearButton.Enabled = true;
-            this.isPaused = false;
+            this.canvasManager.IsPaused = false;
             this.startButton.Enabled = false;
             this.CircleBox.Enabled = false;
             this.RectangleBox.Enabled = false;
@@ -386,7 +383,7 @@ namespace ShapeAnimator.View.Forms
             this.CircleBox.Enabled = true;
             this.RectangleBox.Enabled = true;
             this.numberShapesTextBox.Enabled = true;
-            this.isPaused = false;
+            this.canvasManager.IsPaused = false;
             this.PauseResumeButton.Text = PauseButtonPause;
             this.PauseResumeButton.Enabled = false;
             this.ClearButton.Enabled = false;
